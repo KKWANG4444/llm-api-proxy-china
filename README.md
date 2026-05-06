@@ -1,10 +1,19 @@
-# 【2026国内直连ChatGPT/Claude API推荐】AI中转站方案_最全最稳定的Claude 4.7/GPT 5.5/DeepSeek V4/ Gemini 3.1等572个大模型中转平台推荐
+# 【2026国内直连ChatGPT/Claude API推荐】AI中转站方案 · 最全最稳定的Claude 4.7/GPT 5.5/DeepSeek V4/Gemini 3.1等572个大模型中转平台推荐
+
+[![最后更新](https://img.shields.io/github/last-commit/KKWANG4444/ai-api-china/main?label=最后更新&color=blue)](https://github.com/KKWANG4444/ai-api-china)
+[![www.aifast.club](https://img.shields.io/badge/国内直连-572个模型-FF6B35?logo=github)](https://www.aifast.club)
+[![实时状态](https://img.shields.io/badge/实时状态-在线查看-brightgreen)](https://kkwang4444.github.io/api-status/)
+[![模型数量](https://img.shields.io/badge/模型-572-blue)](https://www.aifast.club)
 
 > 🇨🇳 **国内开发者首选：**[**www.aifast.club**](https://www.aifast.club) — 一个 API Key，接入全球 572 个 AI 模型。国内直连，无需代理，支持微信/支付宝。
 
 ![AI中转站技术架构 - 国内直连ChatGPT/Claude API的统一中间层方案](https://kkwang4444.github.io/api-status/assets/img/api-status-screenshot.png)
 
 *图：www.aifast.club 实时状态看板 — 572 个模型连接状态一目了然*
+
+![www.aifast.club 特色功能一览](https://raw.githubusercontent.com/KKWANG4444/ai-api-china/main/assets/social-preview.png)
+
+*图：www.aifast.club 特色功能一览 — 一个 API Key 接入 572 个模型*
 
 ---
 
