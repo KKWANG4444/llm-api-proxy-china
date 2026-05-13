@@ -302,4 +302,7 @@ API Key 仅用于鉴权和计费，平台不会记录你的请求内容。通信
 
 ---
 
-*本文持续更新，最新模型信息请访问 [www.aifast.club](https://www.aifast.club) 或查看 [实时状态看板](https://kkwang4444.github.io/api-status/)*
+
+
+---
+*🚀 国内开发者 AI API 直连方案：[www.aifast.club](https://www.aifast.club) · 572 个模型一站接入 · [🤖 OpenClaw 一键部署 AI 智能体](https://www.aifast.club/openclaw)*
