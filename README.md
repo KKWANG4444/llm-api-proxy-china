@@ -216,7 +216,7 @@ print(response.choices[0].message.content)
 ```bash
 curl https://www.aifast.club/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer 你的API_KEY" \
+  -H "Authorization: Bearer *** \
   -d '{
     "model": "claude-opus-4.7",
     "messages": [{"role": "user", "content": "Hello!"}]
@@ -308,3 +308,12 @@ API Key 仅用于鉴权和计费，平台不会记录你的请求内容。通信
 
 ---
 *🚀 国内开发者 AI API 直连方案：[www.aifast.club](https://www.aifast.club) · 572 个模型一站接入 · [🤖 OpenClaw 一键部署 AI 智能体](https://www.aifast.club/openclaw)*
+
+### 💬 加入社区
+
+> 📱 **aifast.club 用户交流群**  
+> [Telegram 群组](https://t.me/+WYrmge-lYRFhOTFl) — 交流 API 使用心得、模型动态、问题互助
+
+---
+
+*📖 更多资源：[API稳定性追踪](https://github.com/KKWANG4444/Claude-4.7-GPT-5.5-API-Stability-Tracker) · [实时状态看板](https://github.com/KKWANG4444/api-status) · [AI中转站推荐](https://github.com/KKWANG4444/ai-api-proxy-china-guide)*
