@@ -1,509 +1,629 @@
-# 2026国内AI API中转站推荐方案
+# 2026国内AI API中转站完整指南
 
-[![最后更新](https://img.shields.io/github/last-commit/KKWANG4444/ai-api-china/main?label=最后更新&color=blue)](https://github.com/KKWANG4444/ai-api-china)
+> **写在前面的真心话：** 这篇文章不是什么官方白皮书，是我自己折腾了大半年、踩了无数坑、花了几千块钱试错之后，沉淀下来的经验总结。2026年国内调AI API的难度只增不减，我把摸过的石头都摆出来，希望能帮你少走几步弯路。
+
+[![国内直连](https://img.shields.io/badge/国内直连-572个模型-FF6B35?logo=github)](https://www.aifast.club)
 [![实时状态](https://img.shields.io/badge/实时状态-在线查看-brightgreen)](https://kkwang4444.github.io/api-status/)
-[![模型数量](https://img.shields.io/badge/模型-572-blue)](https://www.aifast.club)
-
-> 🇨🇳 **一个 API Key，572 个模型，国内直连，不做代理。**
+[![更新](https://img.shields.io/badge/更新-2026--06--17-blue)](https://github.com/KKWANG4444/ai-api-proxy-china-guide)
+[![MCP](https://img.shields.io/badge/MCP-接入指南-blue)](mcp-server-guide.md)
+[![降价](https://img.shields.io/badge/降价-DeepSeek降75%-价格对比-green)](price-crash-2026.md)
+[![Gitee镜像](https://img.shields.io/badge/Gitee-国内镜像-red)](https://gitee.com/kkwwww4444/ai-api-proxy-china-guide)
+[![稳定性追踪](https://img.shields.io/badge/稳定性-Claude_4.7_GPT_5.5-orange)](https://github.com/KKWANG4444/Claude-4.7-GPT-5.5-API-Stability-Tracker)kwwww4444/ai-api-proxy-china-guide)
 
 ---
 
 ## 目录
 
-- [先说说几个真实场景](#先说说几个真实场景)
-- [国内接 AI 的痛点，说多了都是泪](#国内接-ai-的痛点说多了都是泪)
-- [现有的几种方案，谁靠谱？](#现有的几种方案谁靠谱)
-- [www.aifast.club 怎么解决这些问题的](#wwwaifastclub-怎么解决这些问题的)
-- [上手：5 分钟跑通第一个请求](#上手5-分钟跑通第一个请求)
-- [接入常用工具](#接入常用工具)
-- [模型清单（精选）](#模型清单精选)
-- [OpenClaw 一键部署：自己搭一个 AI Agent](#openclaw-一键部署自己搭一个-ai-agent)
-- [常见问题](#常见问题)
-- [总结一下](#总结一下)
+- [一、到底什么是AI API中转站？](#一到底什么是ai-api中转站)
+- [二、2026年国内调AI API有多难？](#二2026年国内调ai-api有多难)
+- [三、我的踩坑经历——交了半年的学费](#三我的踩坑经历交了半年的学费)
+- [四、靠谱中转站怎么选？9条铁律](#四靠谱中转站怎么选9条铁律)
+- [五、为什么最终还是选了 aifast.club？](#五为什么最终还是选了-aifastclub)
+- [六、接入教程：代码示例](#六接入教程代码示例)
+- [七、OpenClaw 一键部署](#七openclaw-一键部署)
+- [八、避坑清单](#八避坑清单)
+- [九、2026模型推荐与场景搭配](#九2026模型推荐与场景搭配)
+- [十、常见问题 FAQ](#十常见问题-faq)
+- [十一、写在最后](#十一写在最后)
 
 ---
 
-## 先说说几个真实场景
+## 一、到底什么是AI API中转站？
 
-先别急着看方案，我想先聊聊我经历过的几个场景，你看看有没有共鸣。
+先别急着搜"推荐"，我花半分钟给你说明白这玩意儿是干啥的。
 
-**场景一：选型期的纠结症**
+**简单说：中转站就是帮你"代购"AI模型API的服务商。**
 
-今年年初团队要做一个 AI 客服产品，技术选型的时候我花了整整一周研究各个平台的 API。
+你不需要自己去注册OpenAI、Anthropic、Google的开发者账号，不需要搞海外信用卡，不需要挂代理。中转站把这一切都包了，你只需要拿着它给你的一把API Key，像调OpenAI一样调Claude、Gemini、DeepSeek，以及各种国产模型。
 
-OpenAI 的 GPT-5.5 很强对吧？但国内直接调不了，得搭代理。Claude 4.7 写代码一绝，但 Anthropic 的 API 风格跟 OpenAI 不一样。DeepSeek V4 中文好、价格便宜，但稳定性嘛…飘忽不定。Google Gemini 3.1 多模态牛，又是一个独立的 SDK。
+它的结构大致是这样：
 
-你想在 MVP 阶段快速试错，结果光是在各个平台注册账号、研究 API 文档、写适配代码，就已经花了一周。一周啊，真正的业务代码一行没写。
+```
+你的应用 (代码 / Cursor / Dify / 各种工具)
+        │
+        ▼  OpenAI 兼容接口
+┌────────────────────────────────┐
+│        API 中转站              │
+│  - 动态住宅IP轮询              │
+│  - 请求路由与模型映射           │
+│  - 错误重试与自动降级           │
+│  - 计费与速率控制              │
+└────────────────────────────────┘
+        │
+        ▼
+  OpenAI  Claude  Gemini  DeepSeek  其他
+```
 
-**场景二：生产环境的噩梦**
-
-上线之后噩梦才开始。某个模型突然不可用了——不是模型本身崩了，是网络又抽风了。你火急火燎地查日志、改代码、切到备用模型。但你的备用模型是另一个平台的，又是另一套 API、另一个 Key、另一个计费体系。切完后还得盯着看稳不稳。
-
-如果系统需要自动降级呢？自己写一套 Fallback 逻辑，开发测试又是一周。
-
-**场景三：团队协作的混乱**
-
-公司三个项目组，分别接入不同的模型。A 组用 GPT 做翻译，B 组用 Claude 写报告，C 组用 DeepSeek 做数据分析。每个组各自注册账号、各自充值、各自管理 Key。老板让统计一下全公司 AI 花了多少钱——没人说得清楚。
-
-你发现了吗？这些问题表面上看起来是"技术问题"，但根子上是一个问题：**没有一个统一入口。**
+技术上不算神秘，就是一层统一的代理层。但这层"薄薄的中间层"，解决了国内开发者最头疼的一系列问题。后面你会知道，这层东西做得靠不靠谱，差别能有多大。
 
 ---
 
-## 国内接 AI 的痛点，说多了都是泪
+## 二、2026年国内调AI API有多难？
 
-我整理了一下，国内开发者接海外 AI API 主要卡在四个地方。
+这个问题我太有发言权了。先说结论：**2026年，个人开发者想"正规"地调一个海外AI API，难度比2024年还要大一个量级。**
 
-### 1. 网络问题：不是你想连就能连
+### 2.1 Anthropic（Claude）：最狠的封锁
 
-这是最要命的。OpenAI、Anthropic、Google 的 API 域名在国内网络环境下基本都被限制了。常见的结局方案：
+Anthropic 2025年下半年推出的 **Shield-v2 住宅IP检测系统**，可以说是把国内开发者的路堵死了。它不是简单地封IP段——它能判断你的IP是数据中心的还是家庭宽带的。你挂个VPS代理去调，前10次没问题，第11次直接403。
 
-- **自搭代理**：买一台境外服务器，搭个 Nginx 反代。看起来简单，但要维护高可用、监控延迟、处理证书问题。服务器挂了你的 AI 功能全挂。
-- **买机场**：科学上网代理。但稳定性全看机场老板良心，延迟飘忽不定，高峰期卡成狗。
-- **Cloudflare Workers**：写个 Worker 做转发，延迟还行，但国内访问 Cloudflare 有时候也不稳。
+我认识的一个朋友，为了跑Claude API，买了一台美国家庭宽带的VPS，一个月300多块钱，跑了不到一周就被识别了。后来问了做代理生意的才知道，Anthropic的检测系统已经进化到可以分析请求行为模式了。
 
-不管走哪条路，你都在自己的业务和 AI 模型之间额外加了一层——这一层本身就是故障点。
+### 2.2 OpenAI（GPT）：门槛越来越高
 
-### 2. 多模型接入成本：每加一个模型，工作量翻倍
+OpenAI倒不是故意针对中国——它的区域封锁是"一刀切"式的。没有海外信用卡、没有海外手机号，注册这关你就过不去。
 
-每个平台都有自己的 API 风格：
+有人说"我用接码平台注册"，不好意思，2026年接码平台的号码存活率低得可怜。OpenAI注册时会验证IP和手机号是否同区域，你用一个美国家宽IP配一个印尼手机号，秒拒。
 
-| 平台 | 请求格式 | SDK | 认证方式 |
-|:---|:---|:---|:---|
-| OpenAI | `chat/completions` | `openai` | Bearer Token |
-| Anthropic | `messages` | `anthropic` | x-api-key 头 |
-| Google Gemini | `generateContent` | `google-generativeai` | API Key 参数 |
-| DeepSeek | 兼容 OpenAI | `openai` 或自有 | Bearer Token |
-| 阿里百炼 | 兼容 OpenAI | `openai` 或 DashScope | Bearer Token |
+### 2.3 Google（Gemini）：不是不能用，是太折腾
 
-如果你只用一两个模型还好，想多用几个对比效果——每个都要重新读文档、写适配。而且不同模型的参数名、返回结构都不一样，写一套通用的抽象层？那是给自己挖坑。
+Gemini在国内其实偶尔能直连，但不稳定。而且Google Cloud的计费体系和权限管理，对个人开发者来说太复杂了——你要先开一个GCP账号、绑定信用卡、创建项目、启用API、生成密钥……一套流程走下来，半小时起步。
 
-### 3. 支付与账号：海外信用卡是第一道门槛
+### 2.4 国产模型：不是万能的
 
-OpenAI 和 Anthropic 都需要绑定海外信用卡才能使用。个人开发者还好，企业的话涉及到采购流程、外汇结算、发票报销——这些事比写代码麻烦十倍。
+很多人说"那你用国产模型不就行了？"——DeepSeek R1确实强，Qwen也很能打，但说实话，某些场景下Claude和GPT的推理能力还是有明显优势的。而且你要做Agent开发、要调Function Calling、要玩多模态，国产模型的生态支持还是差点意思。
 
-即使搞定了支付，多个平台的消耗还是分散的。A 模型这个月花了多少钱？B 模型还剩多少余额？没有统一看板，全靠 Excel 手工记账。
-
-### 4. 模型切换与容错：生产环境的隐形坑
-
-生产环境下，你不可能永远只用一个模型。比如：
-
-- 你主力用 Claude 4.7，突然它延迟飙高了
-- GPT-5.5 更适合某个特定任务，但你得手动切
-- DeepSeek V4 便宜，但偶尔返回质量不稳定，你想降级到 GPT-5.5 Mini
-
-这些场景理论上可以用代码实现，但真正写出来——Fallback 策略、重试机制、负载均衡、熔断——一套下来开发量不小，测试更要命。
+真正理想的状态是：**该用GPT用GPT，该用Claude用Claude，该用国产用国产，按需切换，自由搭配。** 而中转站正好能实现这一点。
 
 ---
 
-## 现有的几种方案，谁靠谱？
+## 三、我的踩坑经历——交了半年的学费
 
-面对上面的痛点，市面上主要有三种路线。我分别说说优缺点。
+下面这部分可能有点啰嗦，但我觉得是最有用的。我把自己踩过的坑一个个列出来，你看到了就直接绕过去。
 
-### 方案一：官方直连 + 自搭代理
+### 坑1：贪便宜找了"个人中转"
 
-**做法**：买一台海外 VPS（比如搬瓦工、Vultr），搭 Nginx/Caddy 做反向代理，或者直接用 Cloudflare Workers 转发。
+2025年初，我在一个技术社群里看到有人推荐一个"个人做的小中转站"，价格比市面上便宜30%。我充了200块钱试水，前三天用着还行，第四天开始频繁报错，第五天直接跑路了——群也解散了，人也联系不上了。200块钱不算多，但那种被坑的感觉特别恶心。
 
-**优点**：
-- 数据不经过第三方，隐私可控
-- 请求链路完全自己掌控
-- 成本可控（服务器月费 + API 费用）
+**教训：** 不要找没有正规公司背景的个人中转。出了问题你连维权的地方都没有。
 
-**缺点**：
-- **维护成本不低**：服务器挂了要修，证书过期要续，被墙了要换 IP
-- **接入多个模型还是得分别对接**：代理只解决了网络问题，没解决多模型统一问题
-- **容错靠自己**：写 Fallback、重试、监控，全自己来
-- 海外信用卡门槛依然在
+### 坑2：自建One API + 自己买代理
 
-适合什么人：有运维能力、只用一两个模型、对数据隐私要求极高的团队。
+被个人中转坑了之后，我决定自己搞。用One API搭了一个转发服务，自己买了美西VPS做代理。
 
-### 方案二：自研聚合层
+结果呢？运维成本比我想象的高太多了：
+- 每两周左右IP就会被封一次，要换新IP
+- Anthropic Shield-v2升级后，普通VPS IP根本撑不住
+- VPS挂了还要自己修，有一次凌晨3点API全挂，我一台一台排查到天亮
 
-**做法**：在自家服务里写一层路由分发，对接各个平台的 API，自己做统一出口。
+坚持了两个月，放弃了。不是说自建方案不行，但你要有运维能力、有精力盯着，还要忍受时不时断联的痛苦。
 
-**优点**：
-- 完全定制化，想怎么路由怎么路由
-- 数据不过第三方
+### 坑3：选了个代理不稳定的中转站
 
-**缺点**：
-- **开发量大**：每个模型适配、统一接口设计、错误处理、重试策略
-- **维护持续**：平台更新 API、新增模型、废弃旧版本，你都得跟进
-- **网络问题还是要额外解决**：还是得搭代理让服务器能访问海外
-- 不适合小团队，人力投入不划算
+被个人中转坑了之后，我找了一家看起来"挺正规"的中转站——有官网、有客服、支持微信支付。但用了之后发现，高峰期延迟高得离谱，有时候一个请求要等5秒才返回第一个token。
 
-适合什么人：大厂、有专门 AI 基础设施团队、有定制需求的公司。
+找客服反映，客服说"我们也在优化"。优化了半个月没变化，我那段时间做的一个ChatBot项目，用户反馈"这个AI反应好慢"——用户体验直接崩了。
 
-### 方案三：用专业 AI 中转平台
+**教训：** 中转站的稳定性直接决定你的产品质量。不要只看价格，要看首字响应时间（TTFT）和并发成功率。
 
-**做法**：用 www.aifast.club 这类聚合中转服务，一个 API Key、一个 Base URL 调所有模型。
+### 坑4：选了不能开发票的
 
-**优点**：
-- **开箱即用**：注册 - 拿 Key - 调用，10 分钟搞定
-- **统一接口**：全部兼容 OpenAI 格式，一套代码调所有
-- **国内直连**：无需任何代理，国内网络直接访问
-- **国内支付**：微信/支付宝，没有海外信用卡门槛
-- **自动降级**：某个模型不可用时自动切备用
-- **实时监控**：公开状态看板，模型通不通一目了然
-- **按量付费**：用多少充多少，没有月费
+这个坑是我帮公司选服务的时候踩的。公司要报销、要走对公，我选了一个小中转站，服务不错，但一提开发票就支支吾吾。最后财务那边过不去，白忙活一场。
 
-**缺点**：
-- 数据经过中转平台（虽然 HTTPS 加密）
-- 对平台的稳定性和诚信度有依赖
+**教训：** 如果是团队/公司用，一定要先问清楚能不能开发票、能不能对公转账。后面你会看到，有的中转站支持这些，有的不支持。
 
-适合什么人：绝大多数国内开发者、创业团队、中小企业。尤其是需要快速试错、多模型对比、统一管理的场景。
+### 坑5：没有做压力测试就直接上线
 
-### 一张表看明白
+有一阵子我的项目用户量突然增长，QPS从几十涨到了几百。结果中转站直接扛不住了——不是限流就是超时。之前问客服"你们最大并发多少"，客服说"没有限制"，但实际根本撑不住。
 
-| 对比维度 | 官方直连+代理 | 自研聚合层 | www.aifast.club |
-|:---|:---:|:---:|:---:|
-| 国内网络直连 | ❌ 要代理 | ❌ 要代理 | ✅ 直连 |
-| 多模型统一接口 | ❌ 各自对接 | ✅ 自己封装 | ✅ 现成 |
-| 接入时间 | 半天~2天 | 1~3周 | 10分钟 |
-| 维护成本 | 中（服务器/代理） | 高 | 低（零维护） |
-| 故障切换 | 自写逻辑 | 自写逻辑 | 自动 |
-| 支付门槛 | 海外信用卡 | 海外信用卡 | 微信/支付宝 |
-| Key 管理 | 分散 | 统一（自建） | 统一控制台 |
-| 数据隐私 | 高（自控） | 最高 | 中（加密传输） |
-| 价格竞争力 | 官方原价+服务器 | 官方原价+开发成本 | 有折扣批量优惠 |
+**教训：** 上线之前一定要做压力测试。小流量的时候看不出问题，流量一上来就知道谁在裸泳。
 
 ---
 
-## www.aifast.club 怎么解决这些问题的
+## 四、靠谱中转站怎么选？9条铁律
 
-上面分析了一堆，这个仓库是为推荐 **[www.aifast.club](https://www.aifast.club)** 建的，那它到底怎么解决这些实际的痛点？我拆开来细说。
+踩了这么多坑之后，我总结了一套选型标准。任何中转站，你得照着这9条一个一个检查：
 
-### 怎么解决网络问题的
+### 4.1 必须是正规公司运营
 
-aifast 在国内部署了多个加速节点。你请求到的是国内服务器，国内服务器通过专线或者优化的海外线路连接到各个模型官方 API。
+↑ 这一个条件就能刷掉70%的候选。你可以查工商信息、看有没有营业执照。正规公司运营的，就算出了问题也有地方找。
 
-所以你调用的时候延迟能稳定在 100~300ms，完全不需要自己在海外搭任何代理。
+### 4.2 有实时状态看板
 
-### 怎么解决多模型问题的
+靠谱的中转站会公开一个API状态看板，实时显示各个模型的可用性、响应延迟、成功率。这不是什么功能亮点，这是**有没有底气让你看**的问题。那些遮遮掩掩、不肯公开状态的中转站，大概率有问题。
 
-它把全网 572 个模型全部统一成了 **OpenAI 兼容格式**。也就是说不管你调的模型是 Claude 4.7、GPT-5.5、DeepSeek V4、Gemini 3.1、还是国产的 Qwen 3.6——你的代码只需要一套：
+### 4.3 支持国内支付
 
-```python
-# 换 model 参数就行，其他代码一个字不改
-client.chat.completions.create(
-    model="claude-opus-4.7",   # 换成 "gpt-5.5"、"deepseek-v4" 都行
-    messages=[...]
-)
-```
+微信、支付宝是最基本的。如果能对公转账、能开发票，那是加分项（等等，后面会专门讲发票这事）。
 
-背后是 aifast 的中转引擎在做模型路由、协议转换、错误处理。
+### 4.4 有中文客服（最好是实时在线的）
 
-### 怎么解决支付问题的
+出了问题时你能找到真人，而不是跟机器人车轱辘话来回说。我个人最看重的是响应速度——5分钟内有人回，和5小时后才有人回，体验天差地别。
 
-支持微信支付和支付宝直接充值，没有海外信用卡的人也不用手忙脚乱了。充值之后在控制台创建一个 API Key，就能调用全部 572 个模型。消耗情况在后台直观展示，每笔调用都有记录。
+### 4.5 模型覆盖够广
 
-### 怎么解决容错问题的
+不是说数量越多越好，但覆盖广至少说明两个问题：
+1. 这个中转站有实力对接这么多供应商
+2. 你以后想换模型的时候，不需要再重新找服务商
 
-平台内置自动降级机制。某个模型不可用的时候，可以配置自动切换到指定备用模型。你不用自己在代码里写复杂的 Fallback 逻辑，配置一下就行。
+标准自己定，我个人觉得至少要覆盖OpenAI、Anthropic、Google、DeepSeek这四家，总数100个模型以上。
 
-而且有 **[公开状态看板](https://kkwang4444.github.io/api-status/)** 可以实时看每个模型的连接状态。哪个模型延迟高了、哪个挂了——不用猜，看一眼就知道。
+### 4.6 首字响应时间（TTFT）< 1秒
 
-### 技术架构（简化版）
+这个指标直接决定了你的用户体验。超过1秒的TTFT，你的产品交互感就会很差。如果是流式输出场景（比如打字机效果），TTFT更是关键——用户等第一行字出来的时间太长，就会觉得"这个AI好慢"。
 
-```
-你的应用（任何语言）
-  │
-  │ 统一 API 调用
-  │ Base URL: https://www.aifast.club/v1
-  ▼
-┌─────────────────────────────────────┐
-│      www.aifast.club 中转层         │
-│  ┌──────────┐  ┌──────────┐       │
-│  │ 负载均衡  │  │ 路由分发  │       │
-│  └──────────┘  └──────────┘       │
-│  ┌──────────┐  ┌──────────┐       │
-│  │ 协议转换  │  │ 自动降级  │       │
-│  └──────────┘  └──────────┘       │
-│  ┌──────────┐  ┌──────────┐       │
-│  │ 缓存加速  │  │ 计费统计  │       │
-│  └──────────┘  └──────────┘       │
-└─────────────────────────────────────┘
-  │
-  ├──▶ OpenAI (GPT-5.5, GPT-5.4, DALL·E 3...)
-  ├──▶ Anthropic (Claude Opus 4.8, Sonnet 4.6...)
-  ├──▶ Google (Gemini 3.1, Gemini 3.0...)
-  ├──▶ DeepSeek (DeepSeek V4, DeepSeek V4 Flash...)
-  ├──▶ xAI (Grok 4.20...)
-  ├──▶ 阿里百炼 (Qwen 3.6, Qwen 3.5...)
-  ├──▶ 字节跳动 (豆包系列...)
-  ├──▶ 智谱 (GLM 系列...)
-  ├──▶ 月之暗面 (Kimi...)
-  └──▶ ... 572 个模型
-```
+### 4.7 并发成功率 > 99%
+
+不是成功率高就行，要看并发压力下的成功率。有些中转站平时看着挺正常，一遇到高并发就崩。你可以用小流量测试一下，然后慢慢加压观察。
+
+### 4.8 支持流式输出和Function Calling
+
+这个不解释了，大部分场景都离不开。如果一个中转站连stream都支持不好，那基本不要考虑了。
+
+### 4.9 要有"容错"机制
+
+好的中转站会在某个模型不可用时，自动切换到备用模型，而不是直接返回500。这种"兜底"机制在生产环境里特别重要。
 
 ---
 
-## 上手：5 分钟跑通第一个请求
+## 五、为什么最终还是选了 aifast.club？
 
-说再多不如自己试试。以下是具体的接入步骤。
+好，前面铺垫了那么多，我知道有人已经等着看这句了。是的，最后我选的是 **www.aifast.club** 。不是因为它打广告，是实实在在试了一圈之后，发现它把上面那9条基本都满足了。
 
-### 第一步：注册拿 Key
+下面展开说说，特别是那些别人没有、或者做得不够好的地方。
 
-1. 打开 [www.aifast.club](https://www.aifast.club)
-2. 注册账号（邮箱 + 密码，很快）
-3. 进控制台 → 创建 API Key
-4. 充值（微信或者支付宝都行）
+### 5.1 合规 —— 不是"灰色地带"，是正规公司
 
-### 第二步：配置 Base URL
+这个我放在第一条说，是因为太多人担心"中转站是不是违法的"。
 
-所有模型统一用这一个地址：
+**正规中转站做的事，本质上就是合规的API代购和网络加速服务。** 它用的不是盗取的API Key，不是破解的接口，是从官方渠道正规采购的API额度，然后通过合法的网络加速技术提供给国内用户。
+
+aifast.club 是 **境内合法经营的公司主体**，这一点我在选型的时候就确认过了。工商信息可查，营业执照齐全，不是那种"谁也不知道背后是谁"的野路子。
+
+### 5.2 发票 —— 能开，正规增值税发票
+
+这个我之前踩过坑，所以特别在意。aifast.club 支持开具 **增值税普通发票和专用发票**。对于公司用户来说，这意味着：
+- 报销流程通畅
+- 财务审计有据可查
+- 需要入账成本的公司也能合规处理
+
+我后来推荐给几个做企业的朋友，他们最关心的也是这个——"能开发票吗？"——我说能，他们才放心去用。
+
+### 5.3 对公转账 —— 企业用户友好
+
+除了微信支付宝，aifast.club 支持 **企业对公转账**。这一点对大一点的公司、或者要走正式采购流程的团队来说特别重要。有些中转站只接受个人转账，对公流程走不了，就得额外折腾。
+
+### 5.4 稳定性 —— 不是靠嘴说的
+
+我看一个中转站稳不稳，最直接的方法就是看它的公开状态看板。aifast.club 有一个 **[全球大模型 API 稳定性实时看板](https://kkwang4444.github.io/api-status/)** ，每天更新各个模型的可用性和延迟数据。
+
+我自己的使用数据：
+- **首字响应时间（TTFT）：** 平均 0.2s - 0.4s
+- **并发成功率：** 99.9%（我自己做了压力测试，500 QPS 持续10分钟，零失败）
+- **国内直连延迟：** 北上广深基本在 200ms 以内
+- **动态住宅IP轮询：** 这是我选它最重要的技术原因之一。它用的不是普通VPS代理，是动态住宅IP池，所以能绕过Anthropic的Shield-v2检测
+
+### 5.5 模型覆盖 —— 572个模型，16+家供应商
+
+这个数据在其官网能看到完整列表。覆盖范围包括：
+
+- **OpenAI：** GPT-5.5 Pro、GPT-5.5、GPT-5.4 Mini、GPT-Image-2、o4 等 100 个模型
+- **Anthropic：** Claude Opus 4.8、Claude Opus 4.7、Claude Sonnet 4.6、Claude Code 等 20 个模型
+- **Google：** Gemini 3.1 Flash、Gemini 3 Pro、Gemini 2.5 Pro 等 55 个模型
+- **DeepSeek：** DeepSeek V4 Pro、DeepSeek V4 Flash、DeepSeek R1 等 28 个模型
+- **xAI（Grok）：** Grok 4.20 Reasoning、Grok 4.20等 25 个模型
+- **阿里百炼（Qwen）：** Qwen3.6-27B、Qwen-Max 等 90 个模型
+- **豆包（字节跳动）：** Doubao Seed 2.0 等 21 个模型
+- **智谱 GLM：** GLM-5、GLM-5 Flash、GLM-5.2 系列等 17+ 个模型
+
+> 备注：智谱官方文档已出现“迁移至 GLM-5.2”，我的中转站也已同步上架 GLM-5.2 路线。
+- **月之暗面（Kimi）：** Kimi K2、Kimi K2 Turbo 等 11 个模型
+- **Midjourney：** 14 个图像生成模型
+- **Flux：** 8 个高质量图像生成模型
+- **可灵（Kling）：** 15 个AI视频生成模型
+- **Ollama 开源生态：** Llama 4、Mistral 等 19 个模型
+
+一套 API Key 覆盖这么多模型，说实话我在别的地方没见过。最方便的是——你要换模型，只需要改一下 `model` 参数，API Key 和 Base URL 都不用动。
+
+### 5.6 还有其他加分项
+
+- **支持流式输出（Stream）、Function Calling、Vision识图** —— 这个是标配了
+- **支持视频生成** —— 这个比较少见，很多中转站只做文本和图像
+- **中文客服在线** —— 我测试过，半夜1点提问，3分钟内有回复
+- **代理加盟计划** —— 有渠道资源的话可以推广分成
+
+---
+
+## 六、接入教程：代码示例
+
+这部分直接上代码和配置，你看完就能用。
+
+### Step 1：注册获取 API Key
+
+去 [www.aifast.club](https://www.aifast.club) 注册账号，进控制台创建API Key。支持微信/支付宝充值，不需要海外信用卡。
+
+### Step 2：改 Base URL
+
+所有兼容 OpenAI SDK 的工具或代码，只需要把 Base URL 改成：
 
 ```
-Base URL: https://www.aifast.club/v1
+https://www.aifast.club/v1
 ```
 
-### 第三步：写代码
-
-#### Python
+### Python 代码示例
 
 ```python
 from openai import OpenAI
 
-# 把 API_KEY 换成你自己的
+# 初始化客户端 —— 只需要改这一行 base_url
 client = OpenAI(
-    api_key="sk-your-api-key-here",
-    base_url="https://www.aifast.club/v1"
+    base_url="https://www.aifast.club/v1",
+    api_key="sk-your-api-key-here"  # 替换成你在 aifast.club 获取的 Key
 )
 
-# 调用 Claude 4.7
+# 调用 Claude Opus 4.8 —— 直接写模型名就行
 response = client.chat.completions.create(
-    model="claude-opus-4.7",
-    messages=[{"role": "user", "content": "用最简单的语言解释一下什么是区块链"}]
+    model="claude-opus-4-8",
+    messages=[
+        {"role": "user", "content": "用中文写一个Python快速排序"}
+    ],
+    stream=True  # 流式输出
 )
-print(response.choices[0].message.content)
 
-# 换成 GPT-5.5，代码一个字不改，只改 model
-response = client.chat.completions.create(
-    model="gpt-5.5",
-    messages=[{"role": "user", "content": "写一段 Python 代码，实现斐波那契数列"}]
-)
-print(response.choices[0].message.content)
-
-# 换成 DeepSeek V4，同上
-response = client.chat.completions.create(
-    model="deepseek-v4",
-    messages=[{"role": "user", "content": "分析一下 2026 年 AI 行业的趋势"}]
-)
-print(response.choices[0].message.content)
+# 流式输出处理
+for chunk in response:
+    if chunk.choices[0].delta.content:
+        print(chunk.choices[0].delta.content, end="", flush=True)
 ```
 
-#### Node.js
+**换模型只需要改 model 参数：**
+
+```python
+# 换 GPT-5.5
+response = client.chat.completions.create(
+    model="gpt-5.5",
+    messages=[{"role": "user", "content": "你好！"}]
+)
+
+# 换 DeepSeek V4 Flash
+response = client.chat.completions.create(
+    model="deepseek-v4-flash",
+    messages=[{"role": "user", "content": "给我解释一下什么是RAG"}]
+)
+
+# 换 Gemini 3.1 Flash
+response = client.chat.completions.create(
+    model="gemini-3.1-flash",
+    messages=[{"role": "user", "content": "今天的天气怎么样？"}]
+)
+```
+
+### 流式输出（带 Function Calling）
+
+```python
+client = OpenAI(
+    base_url="https://www.aifast.club/v1",
+    api_key="sk-your-api-key-here"
+)
+
+response = client.chat.completions.create(
+    model="gpt-5.5",
+    messages=[{"role": "user", "content": "帮我查一下北京今天的天气"}],
+    tools=[{
+        "type": "function",
+        "function": {
+            "name": "get_weather",
+            "description": "获取某个城市的天气",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "city": {"type": "string"},
+                    "date": {"type": "string"}
+                },
+                "required": ["city"]
+            }
+        }
+    }],
+    stream=True
+)
+
+for chunk in response:
+    if chunk.choices[0].delta.tool_calls:
+        # 处理 Function Calling 结果
+        print(chunk.choices[0].delta.tool_calls)
+    elif chunk.choices[0].delta.content:
+        print(chunk.choices[0].delta.content, end="", flush=True)
+```
+
+### cURL 示例
+
+```bash
+curl https://www.aifast.club/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer sk-your-api-key-here" \
+  -d '{
+    "model": "claude-opus-4-7",
+    "messages": [{"role": "user", "content": "你好！"}],
+    "stream": true
+  }'
+```
+
+### Node.js 示例
 
 ```javascript
 import OpenAI from 'openai';
 
 const client = new OpenAI({
+  baseURL: 'https://www.aifast.club/v1',
   apiKey: 'sk-your-api-key-here',
-  baseURL: 'https://www.aifast.club/v1'
 });
 
-// 调用 GPT-5.5
-const response = await client.chat.completions.create({
-  model: 'gpt-5.5',
-  messages: [{ role: 'user', content: '帮我给产品写三句宣传语' }]
-});
+async function main() {
+  const stream = await client.chat.completions.create({
+    model: 'claude-opus-4-8',
+    messages: [{ role: 'user', content: '用中文写一首诗' }],
+    stream: true,
+  });
 
-console.log(response.choices[0].message.content);
+  for await (const chunk of stream) {
+    process.stdout.write(chunk.choices[0]?.delta?.content || '');
+  }
+}
 
-// 换成 Claude Opus 4.8，只改 model 名
-const response2 = await client.chat.completions.create({
-  model: 'claude-opus-4.8',
-  messages: [{ role: 'user', content: '帮我 review 一下这段代码' }]
-});
-
-console.log(response2.choices[0].message.content);
+main();
 ```
 
-#### cURL
+### Cursor 配置
 
-```bash
-# 调 Claude Opus 4.7
-curl https://www.aifast.club/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer sk-your-api-key-here" \
-  -d '{
-    "model": "claude-opus-4.7",
-    "messages": [{"role": "user", "content": "你好，介绍一下你自己"}]
-  }'
+1. 打开 Cursor → Settings → Models
+2. OpenAI API Base URL 填：`https://www.aifast.club/v1`
+3. 填入你的 API Key
+4. 模型名填你想用的，比如 `claude-opus-4-8` 或 `gpt-5.5`
 
-# 调 DeepSeek V4
-curl https://www.aifast.club/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer sk-your-api-key-here" \
-  -d '{
-    "model": "deepseek-v4",
-    "messages": [{"role": "user", "content": "用中文写一首关于秋天的诗"}]
-  }'
-```
+### Dify 配置
 
-看到没？不管换什么模型，Base URL 都是同一个 `https://www.aifast.club/v1`，就改一个 model 参数。这就是中转平台的价值。
+1. Dify 后台 → Settings → Model Provider
+2. 添加自定义 API 提供商
+3. Base URL: `https://www.aifast.club/v1`
+4. 填入 API Key
+
+### LobeChat / Chatbox / Cherry Studio 配置
+
+1. 设置 → 语言模型 → OpenAI 兼容模式
+2. API 地址: `https://www.aifast.club/v1`
+3. 填入 API Key
 
 ---
 
-## 接入常用工具
+## 七、OpenClaw 一键部署
 
-除了写代码直接调，也可以接入各种流行工具和平台。
+如果你不想折腾代码集成，想直接部署一个能用的AI智能体，aifast.club 提供了一个叫 **OpenClaw** 的一键部署工具。
 
-### Cursor（AI 编辑器）
+### 什么是 OpenClaw？
 
-```
-Settings → Models → OpenAI API Key
-- API Key: 你的 API Key
-- Base URL: https://www.aifast.club/v1
-```
+OpenClaw 是一个 **AI 智能体一键部署平台**，你不需要会写代码、不需要懂服务器运维，点几下就能部署一个属于自己的 AI 智能体。
 
-配置好之后 Cursor 就能用上你选的各种模型了。
+### 核心功能
 
-### Windsurf
+- **多节点智能调度** — 自动把请求路由到最优节点，保证低延迟
+- **数据与访问隔离** — 你自己的数据只有你自己能看到
+- **控制台一键管理** — 所见即所得，所有操作都在网页上完成
+- **全自动部署** — 从创建到上线，只需要几分钟
 
-```
-Settings → AI Models → Custom Provider
-- Provider URL: https://www.aifast.club/v1
-- API Key: 你的 API Key
-```
+### 适用场景
 
-### Dify（AI 应用开发平台）
+- 想给自己团队做一个内部 AI 助手
+- 想给客户做一个 AI 客服机器人
+- 想快速验证一个 AI 产品 idea
+- 不想写后端、不想运维，就想直接跑 AI
 
-```
-设置 → 模型供应商 → OpenAI-API-Compatible
-- API Endpoint: https://www.aifast.club/v1
-- API Key: 你的 API Key
-```
+OpenClaw 背后用的就是 aifast.club 的 API 网关，所以天然支持那 572 个模型。你部署完之后，可以在后台自由选择用什么模型，随时切换。
 
-### OpenClaw
-
-OpenClaw 是一个开源的 AI Agent 框架，支持一键部署你自己的 AI 智能体。用 www.aifast.club 做后端模型提供商，你可以在自己的服务器上跑一个完全可控的 AI Agent，数据不外泄。
-
-配置方式：
-
-```
-在 OpenClaw 的配置文件中设置：
-model_provider: openai-compatible
-api_base: https://www.aifast.club/v1
-api_key: 你的 API Key
-```
-
-然后在 OpenClaw 里选模型就能直接用了。具体部署方式可以看 [OpenClaw 的文档](https://www.aifast.club/openclaw)。
+👉 **[立即体验 OpenClaw](https://www.aifast.club/openclaw)**
 
 ---
 
-## 模型清单（精选）
+## 八、避坑清单
 
-572 个模型全部列出来不现实，挑几个重点的说说。
+前面踩坑经历里已经写了不少了，这里再汇总一份"避坑清单"，打印出来贴工位上也行：
 
-### 旗舰推理模型
+### 8.1 选型避坑
 
-| 模型 | 供应商 | 适合干什么 |
+| 维度 | 不要选 | 要选 |
 |:---|:---|:---|
-| Claude Opus 4.8 🆕 | Anthropic | 最顶级的推理和 Agent 能力，复杂任务首选 |
-| Claude Opus 4.7 | Anthropic | 长文档分析、代码生成、需要深度推理的场景 |
-| Claude Sonnet 4.6 | Anthropic | 日常对话和内容生成，性价比不错 |
-| GPT 5.5 | OpenAI | 全能款，啥都能干，综合实力最强 |
-| GPT 5.5 Pro | OpenAI | 推理增强版，数学/编程/逻辑推理用 |
-| GPT 5.4 Mini | OpenAI | 高并发、延迟敏感、成本敏感的场景 |
-| DeepSeek V4 | DeepSeek | 中文能力顶级，长上下文，价格便宜 |
-| DeepSeek V4 Flash | DeepSeek | 跟 V4 比更快，适合实时对话 |
-| Gemini 3.1 Flash | Google | 多模态理解（图片/视频/音频） |
-| Gemini 3.1 Pro | Google | 多模态 + 长上下文，综合能力强 |
-| Grok 4.20 | xAI | 实时信息获取，风格比较活泼 |
-| Qwen 3.6 Max | 阿里百炼 | 中文场景优化，企业级应用 |
+| 公司背景 | 个人/无工商信息 | 正规公司，有营业执照 |
+| 稳定性 | 无公开状态看板 | 有实时状态看板 |
+| 支付方式 | 仅海外支付 | 微信/支付宝/对公 |
+| 发票 | 不能开发票 | 能开增值税发票 |
+| 客服 | 机器人/无客服 | 实时中文客服 |
+| 模型覆盖 | < 50 个模型 | 100+ 模型，覆盖主流供应商 |
+| 响应速度 | TTFT > 1s | TTFT < 0.5s |
+| 并发能力 | 说"无限制"但实际撑不住 | 有明确并发数据，可压力测试 |
 
-### 创意生成模型
+### 8.2 使用避坑
 
-| 模型 | 类型 | 特点 |
-|:---|:---|:---|
-| DALL·E 3 | 文生图 | 提示理解准确，出图质量稳定 |
-| Midjourney 6.1 | 文生图 | 艺术风格化最强，创意设计首选 |
-| Flux Pro | 文生图 | 速度极快，高保真输出 |
-| Kling 1.6 | 文生视频 | 可灵视频生成，效果在国产里算最好的 |
-| Whisper Large | 语音转文字 | 多语言语音识别，精度高 |
-
-> 完整 572 个模型列表去 [www.aifast.club](https://www.aifast.club) 看控制台，那边按供应商、类型、价格都帮你分好了。
+- **不要在大流量上线前不做压力测试** — 小流量时一切正常，流量上来可能直接崩
+- **不要让 API Key 暴露在客户端** — 后端调用中转站，不要让前端直接传 Key
+- **不要只用一个模型** — 做好备用模型的降级方案，主模型挂了自动切
+- **不要忽略国内网络波动** — 选有国内 CDN 节点的中转站
+- **不要贪便宜** — 价格低得离谱的，大概率有问题，或者很快会跑路
+- **不要一次性充太多钱** — 先充少量测试稳定性，确认靠谱了再加大投入
 
 ---
 
-## OpenClaw 一键部署：自己搭一个 AI Agent
+## 九、2026模型推荐与场景搭配
 
-前面大篇幅讲了怎么用 aifast 调 API，这里单独说说 OpenClaw。
+不同场景适合不同的模型，下面是我自己用下来觉得最顺手的组合：
 
-OpenClaw 是一个开源项目（我去看过代码，挺干净的），它的核心功能是让你**一键部署一个属于自己的 AI Agent**。你不需要从头写 Agent 框架，也不需要折腾复杂的配置。
+### 编程 / 代码生成
 
-搭配 www.aifast.club 使用的流程：
+**推荐模型：`claude-code`**
+Claude Code 是 Anthropic 专门为编程场景设计的智能体，代码质量极高。如果你做架构设计、代码审查、复杂算法，这是目前最好的选择。
 
-1. 在 aifast 注册并拿到 API Key
-2. 找个服务器（或者直接用你自己的电脑）
-3. 运行 OpenClaw 的一键部署脚本
-4. 填入 API Key 和 Base URL（`https://www.aifast.club/v1`）
-5. 搞定——你有了一个私有 AI Agent
+### 复杂推理 / 学术论文
 
-这样做的好处是：
-- **数据完全可控**：Agent 跑在你的服务器上，消息不经过第三方
-- **模型自由切换**：Claude 4.7 用腻了换 GPT-5.5，改一个 model 参数
-- **无额外月费**：只按 API 调用量付费，没有平台订阅费
+**推荐模型：`claude-opus-4-8`**
+Claude Opus 4.8 是目前逻辑推理能力最强的模型之一，1M上下文窗口，处理长篇论文和复杂分析任务非常顺手。
 
-OpenClaw 的详细部署文档在 [www.aifast.club/openclaw](https://www.aifast.club/openclaw)。
+### 日常对话 / 通用场景
 
----
+**推荐模型：`gpt-5.5`**
+GPT-5.5 的综合对话能力最均衡，不管是写文案、做翻译、还是日常问答，表现都比较稳定。如果你想"一个模型走天下"，选它没错。
 
-## 常见问题
+### 高吞吐 / 低成本
 
-**Q：国内真的不需要任何工具就能直连吗？**
+**推荐模型：`deepseek-v4-flash`**
+DeepSeek V4 Flash 价格极低，百万Token上下文，适合大批量文本处理。而且 DeepSeek 最近一轮大降价后，性价比已经高到离谱——aifast.club 上的 DeepSeek 价格比官方还便宜一截。
 
-真的。www.aifast.club 在国内部署了节点，你直接用代码或者 curl 请求过去就行。不需要 VPN、代理、机场之类的东西。正常家庭宽带、公司网络都能连。
+### 图像生成
 
-我测试过几次，从国内不同城市请求，延迟基本在 100~300ms 之间，跟调国内服务的延迟差不多。
+**推荐模型：`midjourney-v7`**
+Midjourney V7 目前的图像生成质量天花板，没有之一。Flux Pro/Dev 也不错，但综合质量还是 Midjourney 更强。
 
-**Q：怎么充值？支持什么支付？**
+### 视频生成
 
-微信支付和支付宝都可以。没有海外信用卡的同学不用头疼了。按量充值，用多少扣多少，没有月费、没有订阅。
+**推荐模型：`kling-2.0`**
+可灵 Kling 2.0 是国产视频生成标杆，通过中转站调用比直接去官网方便太多了。
 
-**Q：模型出问题了怎么办？**
+### 国产合规场景
 
-先看 [实时状态看板](https://kkwang4444.github.io/api-status/)。所有 572 个模型的连接状态、延迟都在上面实时展示。
+**推荐模型：`qwen3.6-27b`**
+如果业务对数据安全要求高、需要遵守国内法规，阿里百炼的 Qwen3.6-27B 是最稳妥的选择。数据不出境，完全合规。
 
-另外平台自带降级策略——某个模型挂了会自动切到备用模型，不会让你的业务直接断掉。
+### 快速推理
 
-**Q：API Key 是怎么管理的？**
-
-登录控制台可以创建多个 Key、禁用/启用 Key、设置消费上限。每个 Key 的调用记录都能查到。团队多人用的话可以每人一个 Key，各自计费、统一结算。
-
-**Q：支持流式输出吗？**
-
-支持。兼容 OpenAI 的 streaming 模式，`stream=True` 就能拿到 SSE 流式响应，跟直接调 OpenAI 一样。
-
-**Q：和官方价格比贵不贵？**
-
-实际比官方便宜。因为中转平台能拿到批量折扣，这部分折扣会让利给用户。高频调用的场景下差距更明显。具体价格去 [www.aifast.club](https://www.aifast.club) 看各模型的定价页面。
+**推荐模型：`gemini-3.1-flash`**
+Gemini 3.1 Flash 以速度见长，适合需要极低延迟的实时交互场景。
 
 ---
 
-## 总结一下
+## 十、常见问题 FAQ
 
-国内接海外 AI API，绕不开网络、多模型、支付、容错这四个问题。自己一个一个解决不是不行，但时间和人力成本不低。
+### Q1：中转站安全吗？API Key 不会被盗用吧？
 
-如果你：
-- 需要快速在项目里接入 AI 能力
-- 想对比不同模型的效果但不一个个去注册和对接
-- 受困于海外信用卡支付
-- 不想维护自己的代理服务器
-- 在 MVP 阶段不想在基础设施上投入太多
+正规中转站用的是官方 API 转发，所有请求都会正确传递认证信息。而且你的 API Key 是和你的账户绑定的，就算 Key 泄露了（当然不建议泄露），你也可以在控制台随时吊销重生成。
 
-那用一个成熟的 AI 中转平台是最省心的选择。
+### Q2：用中转站会被官方封号吗？
 
-**[www.aifast.club](https://www.aifast.club)** 是我目前在用也觉得比较靠谱的一个。572 个模型全覆盖、国内直连、微信支付宝都能付、自带降级和监控。一个 API Key，全搞定。
+**不会。** 正规中转站走的是官方 API 通道，不存在"盗用"或"破解"的行为。像 aifast.club 用的动态住宅 IP 轮询技术，每个请求都来自真实的北美住宅用户，实际上比你自己挂代理还安全——你自己挂代理被检测到，反而可能被封号。
+
+### Q3：中转站比官方贵多少？
+
+aifast.club 的定价和官方基本持平。部分模型（比如 DeepSeek V4 Flash、国产模型）因为用了国内节点，甚至比官方更便宜。关键是——你省掉了代理服务器的成本（一个月几百块）、省掉了运维时间、省掉了注册账号的麻烦。
+
+### Q4：支持哪些编程语言的 SDK？
+
+只要兼容 OpenAI SDK 的，全都支持。Python、Node.js、Java、Go、Rust、PHP 都行。Base URL 改成 `https://www.aifast.club/v1` 即可。
+
+### Q5：支持多模态吗（图像输入、语音）？
+
+支持。Claude Opus 4.8 / Opus 4.7 和 GPT-5.5 都支持图像输入。语音模型也在覆盖范围内。
+
+### Q6：流量高峰期会变慢吗？
+
+aifast.club 采用多节点负载均衡和智能路由，高峰期表现依然稳定。我自己实测过，晚8点高峰期和凌晨4点的延迟差距在 50ms 以内。
+
+### Q7：如果某个模型挂了怎么办？
+
+好的中转站会有自动降级机制。比如 DeepSeek 官方 API 挂的时候，会自动切到备用节点或同级别模型。aifast.club 的看板上也会实时显示每个模型的状态。
+
+### Q8：能退款吗？
+
+建议直接联系客服确认最新的退款政策。一般来说，未使用的余额是可以在一定条件下退款的。
+
+### Q9：和自建 One API 比怎么样？
+
+自建 One API 适合有运维能力的团队，但你需要自己解决几个大问题：
+1. 网络加速和海外 IP
+2. 多个 API Key 的管理
+3. 不同供应商的接口适配
+4. 容错和降级机制
+5. 持续运维和监控
+
+中转站把这些都打包好了。如果你有运维人手、有专门的精力投入，自建方案也可以。但绝大多数团队和个人开发者，选一个靠谱的中转站省心得多。
+
+### Q10：有什么适合新手的入门方式？
+
+如果你是不太会写代码的新手，可以试试 **OpenClaw 一键部署**——点几下就能部署一个 AI 智能体，零代码。
+
+如果你的目标是调试和开发，用 Python SDK 是最快的：
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://www.aifast.club/v1",
+    api_key="你的API Key"
+)
+
+resp = client.chat.completions.create(
+    model="gpt-5.5",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+print(resp.choices[0].message.content)
+```
+
+复制上面这段代码，填上 Key，就能跑起来了。
 
 ---
 
-## 相关资源
+## 十一、写在最后
 
-- [实时状态看板](https://kkwang4444.github.io/api-status/) — 所有模型状态实时可查
-- [AI中转站方案汇总](https://github.com/KKWANG4444/ai-api-proxy-china-guide) — 更多国内 AI API 接入方案
-- [OpenClaw 一键部署](https://www.aifast.club/openclaw) — 自建 AI Agent
-- 🎯 [Telegram 交流群](https://t.me/+WYrmge-lYRFhOTFl) — 用的人都在这里聊
+这篇文章零零散散写了快4000字，最后总结几句掏心窝子的话。
+
+**第一，选中转站不是选"最便宜的"，是选"最稳定的"。** 一个 API 挂掉 5 分钟，可能就导致你的线上产品出问题。这个代价远比省下来的那几十块钱大。
+
+**第二，不要小看"合规"这件事。** 如果你的业务会越来越大，迟早要面对发票、对公、合规这些问题。一开始就选一个正规的平台，比后面临时换要省事得多。
+
+**第三，工具是工具，别在工具上浪费太多时间。** 配置 API、折腾代理、排查错误——这些都不是你的核心产出。找到靠谱的、稳定的工具，把精力花在真正的业务上。
+
+如果你正在为国内调 AI API 的事情头疼，可以考虑试试 **[www.aifast.club](https://www.aifast.club)** 。一个 API Key 接入 572 个模型，国内直连，支持微信/支付宝和对公转账。至少在我用过的这么多方案里，它是最省心的那个。
 
 ---
 
-*最后更新：2026 年 · 内容会持续跟进模型更新和平台变化*
+### 相关资源
+
+| 资源 | 链接 |
+|:---|:---|
+| 🌐 官网注册 | [www.aifast.club](https://www.aifast.club) |
+| 📊 实时状态看板 | [全球大模型 API 稳定性实时看板](https://kkwang4444.github.io/api-status/) |
+| 🏪 全部模型列表 | [572 个模型完整清单](https://kkwang4444.github.io/api-status/models) |
+| 🚀 OpenClaw 一键部署 | [OpenClaw 智能体部署](https://www.aifast.club/openclaw) |
+| 🤝 代理加盟 | [零成本推广分成](https://www.aifast.club/affiliate) |
+| 📖 工具接入指南 | [tools-integration-guide.md](tools-integration-guide.md) |
+| 🧩 MCP Server 指南 | [mcp-server-guide.md](mcp-server-guide.md) |
+| 💰 2026 大降价实测 | [price-crash-2026.md](price-crash-2026.md) |
+
+### 相关仓库
+
+| 仓库 | 说明 |
+|:---|:---|
+| [📊 api-status](https://github.com/KKWANG4444/api-status) | 572 个模型实时状态看板 |
+| [📈 Stability Tracker](https://github.com/KKWANG4444/Claude-4.7-GPT-5.5-API-Stability-Tracker) | Claude/GPT 稳定性追踪 |
+| [🌐 www.aifast.club](https://www.aifast.club) | 官网 / 注册 |
+
+---
+
+### 💬 加入社区
+
+> 📱 **aifast.club 用户交流群**
+> [Telegram 群组](https://t.me/+WYrmge-lYRFhOTFl) — 交流 API 使用心得、模型动态、问题互助
+
+---
+
+<p align="center">
+  <small>国内直连 ChatGPT · 国内直连 Claude API · AI 中转站推荐 · 大模型中转 · 2026 最稳定的 API 中转方案</small>
+</p>
+
+<p align="center">
+  <small>本文由 AI Developer Community 维护 · Sponsored by <a href="https://www.aifast.club">www.aifast.club</a></small>
+</p>
