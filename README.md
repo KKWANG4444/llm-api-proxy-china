@@ -408,7 +408,7 @@ api_key: 你的 API Key
 | DeepSeek V4 | DeepSeek | 中文能力顶级，长上下文，价格便宜 |
 | DeepSeek V4 Flash | DeepSeek | 跟 V4 比更快，适合实时对话 |
 | Gemini 3.5 Flash | Google | 多模态理解（图片/视频/音频） |
-| Gemini 3.5 Pro | Google | 多模态 + 长上下文，综合能力强 |
+| Gemini 3.1 Pro | Google | 多模态 + 长上下文，综合能力强 |
 | Grok 4.20 | xAI | 实时信息获取，风格比较活泼 |
 | Qwen 3.6 Max | 阿里百炼 | 中文场景优化，企业级应用 |
 
