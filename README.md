@@ -1,6 +1,6 @@
 # 2026国内AI API中转站推荐方案
 
-[![最后更新](https://img.shields.io/github/last-commit/KKWANG4444/ai-api-china/main?label=最后更新&color=blue)](https://github.com/KKWANG4444/ai-api-china)
+[![最后更新](https://img.shields.io/github/last-commit/KKWANG4444/llm-api-proxy-china/main?label=最后更新&color=blue)](https://github.com/KKWANG4444/llm-api-proxy-china)
 [![实时状态](https://img.shields.io/badge/实时状态-在线查看-brightgreen)](https://kkwang4444.github.io/api-status/)
 [![模型数量](https://img.shields.io/badge/模型-572-blue)](https://www.aifast.club)
 [![稳定性追踪](https://img.shields.io/badge/稳定性-实时看板-orange)](https://github.com/KKWANG4444/Claude-4.7-GPT-5.5-API-Stability-Tracker)
