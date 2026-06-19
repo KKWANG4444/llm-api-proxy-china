@@ -225,7 +225,7 @@ client.chat.completions.create(
   │
   ├──▶ OpenAI (GPT-5.5, GPT-5.4, DALL·E 3...)
   ├──▶ Anthropic (Claude Opus 4.8, Sonnet 4.6...)
-  ├──▶ Google (Gemini 3.5 Flash, Gemini 3.0...)
+  ├──▶ Google (Gemini 3.5 Flash, Gemini 3...)
   ├──▶ DeepSeek (DeepSeek V4, DeepSeek V4 Flash...)
   ├──▶ xAI (Grok 4.20...)
   ├──▶ 阿里百炼 (Qwen 3.6, Qwen 3.5...)
