@@ -224,7 +224,7 @@ client.chat.completions.create(
 └─────────────────────────────────────┘
   │
   ├──▶ OpenAI (GPT-5.5, GPT-5.4, DALL·E 3...)
-  ├──▶ Anthropic (Claude Opus 4.8, Sonnet 4.6...)
+  ├──▶ Anthropic (Claude Opus 4.8, Sonnet 5, Sonnet 4.6...)
   ├──▶ Google (Gemini 3.5 Flash, Gemini 3...)
   ├──▶ DeepSeek (DeepSeek V4, DeepSeek V4 Flash...)
   ├──▶ xAI (Grok 4.20...)
@@ -401,7 +401,7 @@ api_key: 你的 API Key
 |:---|:---|:---|
 | Claude Opus 4.8 🆕 | Anthropic | 最顶级的推理和 Agent 能力，复杂任务首选 |
 | Claude Opus 4.7 | Anthropic | 长文档分析、代码生成、需要深度推理的场景 |
-| Claude Sonnet 4.6 | Anthropic | 日常对话和内容生成，性价比不错 |
+| Claude Sonnet 5 🆕 | Anthropic | 最 Agentic 的 Sonnet，性能逼近 Opus 4.8，首发价 $2/$10 每百万 Token |
 | GPT 5.5 | OpenAI | 全能款，啥都能干，综合实力最强 |
 | GPT 5.5 Pro | OpenAI | 推理增强版，数学/编程/逻辑推理用 |
 | GPT 5.4 Mini | OpenAI | 高并发、延迟敏感、成本敏感的场景 |
