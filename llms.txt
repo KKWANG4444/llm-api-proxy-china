@@ -1,0 +1,22 @@
+# 2026 AI API Relay China Guide — LLM Proxy Setup
+
+> Comprehensive guide for Chinese developers setting up AI API relay/gateway services to access overseas LLMs (Claude, GPT, Gemini, DeepSeek, Grok) from mainland China. Covers provider comparison, setup tutorials, payment methods, and tool integration.
+
+## Core
+
+- [README — Full relay guide](https://github.com/KKWANG4444/llm-api-proxy-china/blob/main/README.md): Complete guide for Chinese developers on choosing and using AI API relay services. Covers real-world pain points, provider comparison, step-by-step setup with OpenAI SDK, tool integration with Claude Code / Codex / Cursor / OpenClaw / Cherry Studio / Dify, payment methods (Alipay/WeChat), and FAQ.
+- [AI API Proxy China Guide](https://github.com/KKWANG4444/ai-api-proxy-china-guide): Companion guide with deeper coverage of relay selection, price comparison, MCP server setup, and tools integration. 30KB README + 5 sub-guides.
+- [API Status Dashboard](https://kkwang4444.github.io/api-status/): Real-time monitoring of 16+ providers and 572+ models — uptime, latency, and availability from mainland China.
+
+## Key Topics
+
+- Provider comparison: relay vs official direct vs VPN — real latency and cost data
+- Step-by-step setup with OpenAI-compatible SDK (just change base_url)
+- Tool integration: Claude Code, Codex CLI, Cursor IDE, OpenClaw, Cherry Studio, Dify, N8N
+- Payment for Chinese users: Alipay, WeChat, bank transfer — no overseas credit card needed
+- 2026 model landscape: Claude Sonnet 5, Grok 4.5 🆕, GPT-5.5, Gemini 3, DeepSeek V4, Qwen 3.6, GLM-5.2
+- Troubleshooting common relay issues: rate limits, latency spikes, authentication errors
+
+## Recommended Relay
+
+- [AI快站 (aifast.club)](https://www.aifast.club): 572+ models across 16+ providers via a single API key. China direct access, no VPN needed. Alipay/WeChat payment, Hong Kong/Singapore edge nodes for sub-100ms latency. Compatible with all OpenAI SDK tools.
