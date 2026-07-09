@@ -416,7 +416,7 @@ api_key: 你的 API Key
 |:---|:---|:---|
 | Claude Opus 4.8 🆕 | Anthropic | 最顶级的推理和 Agent 能力，复杂任务首选 |
 | Claude Opus 4.7 | Anthropic | 长文档分析、代码生成、需要深度推理的场景 |
-| Claude Sonnet 5 🆕 | Anthropic | 最 Agentic 的 Sonnet，性能逼近 Opus 4.8，首发价 $2/$10 每百万 Token |
+| Claude Sonnet 5 🆕 | Anthropic | 最 Agentic 的 Sonnet，性能逼近 Opus 4.8 |
 | GPT 5.5 | OpenAI | 全能款，啥都能干，综合实力最强 |
 | GPT 5.5 Pro | OpenAI | 推理增强版，数学/编程/逻辑推理用 |
 | GPT 5.4 Mini | OpenAI | 高并发、延迟敏感、成本敏感的场景 |
@@ -426,7 +426,7 @@ api_key: 你的 API Key
 | Gemini 3 🆕 | Google | 最新旗舰推理模型，多模态能力全面升级 |
 | Gemini 3.1 Pro | Google | 多模态 + 长上下文，综合能力强 |
 | GLM-5.2 🆕 | 智谱 | 国产大模型最新版本，指令遵循和工具调用能力大幅提升 |
-| Grok 4.5 🆕 | xAI / SpaceXAI | Opus 级旗舰，1.5T参数量，500K上下文，$2/$6每百万Token |
+| Grok 4.5 🆕 | xAI / SpaceXAI | Opus 级旗舰，1.5T参数量，500K上下文 |
 | Grok 4.20 | xAI | 实时信息获取，风格比较活泼 |
 | Qwen 3.6 Max | 阿里百炼 | 中文场景优化，企业级应用 |
 
