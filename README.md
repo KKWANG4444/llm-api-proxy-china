@@ -242,7 +242,7 @@ client.chat.completions.create(
   ├──▶ Anthropic (Claude Opus 4.8, Sonnet 5, Sonnet 4.6...)
   ├──▶ Google (Gemini 3.5 Flash, Gemini 3...)
   ├──▶ DeepSeek (DeepSeek V4, DeepSeek V4 Flash...)
-  ├──▶ xAI (Grok 4.20...)
+  ├──▶ xAI (Grok 4.5 🆕, Grok 4.20...)
   ├──▶ 阿里百炼 (Qwen 3.6, Qwen 3.5...)
   ├──▶ 字节跳动 (豆包系列...)
   ├──▶ 智谱 (GLM-5.2 / GLM 系列...)
@@ -426,6 +426,7 @@ api_key: 你的 API Key
 | Gemini 3 🆕 | Google | 最新旗舰推理模型，多模态能力全面升级 |
 | Gemini 3.1 Pro | Google | 多模态 + 长上下文，综合能力强 |
 | GLM-5.2 🆕 | 智谱 | 国产大模型最新版本，指令遵循和工具调用能力大幅提升 |
+| Grok 4.5 🆕 | xAI / SpaceXAI | Opus 级旗舰，1.5T参数量，500K上下文，$2/$6每百万Token |
 | Grok 4.20 | xAI | 实时信息获取，风格比较活泼 |
 | Qwen 3.6 Max | 阿里百炼 | 中文场景优化，企业级应用 |
 
