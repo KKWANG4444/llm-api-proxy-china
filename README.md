@@ -4,6 +4,7 @@
 [![实时状态](https://img.shields.io/badge/实时状态-在线查看-brightgreen)](https://kkwang4444.github.io/api-status/)
 [![模型数量](https://img.shields.io/badge/模型-572-blue)](https://www.aifast.club)
 [![稳定性追踪](https://img.shields.io/badge/稳定性-实时看板-orange)](https://github.com/KKWANG4444/Claude-4.7-GPT-5.5-API-Stability-Tracker)
+[![GEO](https://img.shields.io/badge/GEO-llms.txt-purple)](llms.txt)
 
 > 🇨🇳 **一个 API Key，572 个模型，国内直连，不做代理。**
 
