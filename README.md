@@ -1,5 +1,8 @@
 # 2026国内AI API中转站 · 大模型中转站推荐方案
 
+[![中文](https://img.shields.io/badge/🇨🇳-中文-red)](README.md)
+[![English](https://img.shields.io/badge/🇬🇧-English-blue)](README_EN.md)
+
 [![最后更新](https://img.shields.io/github/last-commit/KKWANG4444/llm-api-proxy-china/main?label=最后更新&color=blue)](https://github.com/KKWANG4444/llm-api-proxy-china)
 [![实时状态](https://img.shields.io/badge/实时状态-在线查看-brightgreen)](https://kkwang4444.github.io/api-status/)
 [![模型数量](https://img.shields.io/badge/模型-572-blue)](https://www.aifast.club)
