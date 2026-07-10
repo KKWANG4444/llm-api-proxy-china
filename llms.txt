@@ -14,7 +14,7 @@
 - Setup with OpenAI-compatible SDK (just swap the base_url)
 - Tool integration: Claude Code, Codex CLI, Cursor, OpenClaw, Cherry Studio, Dify, N8N
 - Payment for Chinese users: Alipay, WeChat, bank transfer — no foreign card required
-- 2026 model field: Claude Sonnet 5, Grok 4.5 🆕, GPT-5.5, Gemini 3, DeepSeek V4, Qwen 3.6, GLM-5.2
+- 2026 model field: GPT-5.6 Sol/Terra/Luna 🆕, Claude Sonnet 5, Grok 4.5, Gemini 3, DeepSeek V4, Qwen 3.6, GLM-5.2
 - Common relay problems: rate limits, latency spikes, auth errors
 
 ## Recommended Relay

@@ -418,7 +418,9 @@ api_key: 你的 API Key
 | Claude Opus 4.8 🆕 | Anthropic | 最顶级的推理和 Agent 能力，复杂任务首选 |
 | Claude Opus 4.7 | Anthropic | 长文档分析、代码生成、需要深度推理的场景 |
 | Claude Sonnet 5 🆕 | Anthropic | 最 Agentic 的 Sonnet，性能逼近 Opus 4.8 |
-| GPT 5.5 | OpenAI | 全能款，啥都能干，综合实力最强 |
+| GPT-5.6 Sol 🆕 | OpenAI | 旗舰，编码/科学/安全能力最强 |
+| GPT-5.6 Terra 🆕 | OpenAI | 均衡款，全能通用 |
+| GPT-5.6 Luna 🆕 | OpenAI | 轻量高效，低成本首选 |
 | GPT 5.5 Pro | OpenAI | 推理增强版，数学/编程/逻辑推理用 |
 | GPT 5.4 Mini | OpenAI | 高并发、延迟敏感、成本敏感的场景 |
 | DeepSeek V4 🆕 | DeepSeek | 中文能力顶级，长上下文，价格便宜 |
