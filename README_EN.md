@@ -13,8 +13,8 @@
 
 | Problem | Solution |
 |:---|:---|
-| OpenAI blocks Chinese IPs | Gateway routes through residential proxies |
-| Anthropic Shield-v2 | Multi-node IP rotation bypasses detection |
+| OpenAI direct access may be limited on some mainland China networks | Gateway routes through residential proxies |
+| Anthropic regional/risk controls | Multi-node routing can improve connection reliability |
 | DeepSeek 503 errors | Automatic failover to healthy nodes |
 | 16+ separate accounts | One API key for all providers |
 | Payment in foreign currency | Pay in CNY via Alipay/WeChat |
@@ -116,7 +116,7 @@ response = client.chat.completions.create(
 
 - **[China AI API Proxy Guide](https://github.com/KKWANG4444/ai-api-proxy-china-guide)** — Complete guide with pitfalls
 - **[API Status Monitor](https://kkwang4444.github.io/api-status/)** — Live 572-model dashboard
-- **[Stability Tracker](https://github.com/KKWANG4444/stability-tracker)** — 6-month stability data
+- **[Stability Tracker](https://github.com/KKWANG4444/Claude-4.7-GPT-5.5-API-Stability-Tracker)** — 6-month stability data
 - **[Gateway: AIFast Club](https://www.aifast.club)** — One key for 572 models
 
 ## License

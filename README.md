@@ -51,7 +51,7 @@
 
 今年年初团队要做一个 AI 客服产品，技术选型的时候我花了整整一周研究各个平台的 API。
 
-OpenAI 的 GPT-5.5 很强对吧？但国内直接调不了，得搭代理。Claude Opus 4.8/4.7 写代码一绝，但 Anthropic 的 API 风格跟 OpenAI 不一样。DeepSeek V4 中文好、价格便宜，但稳定性嘛…飘忽不定。Google Gemini 3.5 Flash 多模态牛，又是一个独立的 SDK。
+OpenAI 的 GPT-5.5 很强，但在部分国内网络环境下直连可能受限。Claude Opus 4.8/4.7 写代码一绝，但 Anthropic 的 API 风格跟 OpenAI 不一样。DeepSeek V4 中文好、价格便宜，但稳定性嘛…飘忽不定。Google Gemini 3.5 Flash 多模态牛，又是一个独立的 SDK。
 
 你想在 MVP 阶段快速试错，结果光是在各个平台注册账号、研究 API 文档、写适配代码，就已经花了一周。一周啊，真正的业务代码一行没写。
 
