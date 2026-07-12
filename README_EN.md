@@ -46,9 +46,9 @@ response = client.chat.completions.create(
 
 | Model | Provider | Description |
 |:---|:---|:---|
-| OpenAI models 🆕 | OpenAI | **Flagship** — Best coding/science/reasoning |
-| OpenAI models 🆕 | OpenAI | Balanced all-rounder |
-| OpenAI models 🆕 | OpenAI | Lightweight, cost-efficient |
+| GPT-5.6 Sol | OpenAI | Listed in the AIFast marketplace; complex reasoning and coding |
+| GPT-5.6 Terra | OpenAI | Listed in the AIFast marketplace; balanced general use |
+| GPT-5.6 Luna | OpenAI | Listed in the AIFast marketplace; lightweight workloads |
 | Claude Sonnet 5 🆕 | Anthropic | Fastest Claude, 200K context |
 | Claude Opus 4.8 | Anthropic | Top reasoning model |
 | Grok 4.5 🆕 | xAI | Opus-class, 1.5T params, 500K context |
@@ -74,28 +74,28 @@ response = client.chat.completions.create(
 ## Full Model List by Provider
 
 ### OpenAI — 103 models
-`gpt-5.5`, `gpt-5.5`, `gpt-5.5`, `gpt-5.5-pro`, `gpt-5.5`, `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-image-2`, `gpt-4.1`, `gpt-4o`, `o4`, `o4-mini`, `o3`, `o3-mini`, etc.
+`gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`, `gpt-5.5-pro`, `gpt-5.5`, `gpt-5.4-mini`, `gpt-5.4-nano`, `gpt-image-2`, `gpt-4.1`, `gpt-4o`, `o4`, `o4-mini`, `o3`, `o3-mini`, etc.
 
 ### Anthropic — 20 models
 `claude-sonnet-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-4-6`, `claude-code`, `claude-3-5-sonnet`, etc.
 
 ### xAI (Grok) — 26 models
-`grok-4-5`, `grok-4-2-reasoning`, `grok-4-2-non-reasoning`, `grok-videos`, `grok-3`, `grok-3-mini`, etc.
+`grok-4.5`, `grok-4-20-reasoning`, `grok-4-20-non-reasoning`, `grok-videos`, `grok-3`, `grok-3-mini`, etc.
 
 ### Google — 55 models
-`gemini-3.1-flash`, `gemini-3`, `gemini-2.5-pro`, `gemini-3.1-flash-tts-preview`, etc.
+`gemini-3.1-flash-preview`, `gemini-3`, `gemini-2.5-pro`, `gemini-3.1-flash-tts-preview`, etc.
 
 ### DeepSeek — 28 models
 `deepseek-v4-pro`, `deepseek-v4-flash`, `deepseek-r1`, etc.
 
 ### Alibaba (Qwen) — 90 models
-`qwen3.6-27b`, `qwen-max`, `qwen-turbo`, etc.
+`qwen3.7-max`, `qwen-max`, `qwen-turbo`, etc.
 
 ### ByteDance (Doubao) — 21 models
-`doubao-seed-2-0`, `doubao-pro`, `doubao-lite`, etc.
+`doubao-seed-2-1-pro-260628`, `doubao-seed-2-1-turbo-260628`, `doubao-seed-2-1-pro-260628`, `doubao-seed-2-0-lite-260428`, etc.
 
 ### Zhipu (GLM) — 17+ models
-`glm-5`, `glm-5-flash`, `glm-5.2`, etc.
+`glm-5`, `glm-5-turbo`, `glm-5.2`, etc.
 
 ## Tool Integration
 
