@@ -9,9 +9,9 @@
 
 [![Updated](https://img.shields.io/badge/Updated-2026--07--12-blue)](https://github.com/KKWANG4444/llm-api-proxy-china)
 [![Live Status](https://img.shields.io/badge/Live_Status-Online-brightgreen)](https://kkwang4444.github.io/api-status/)
-[![Models](https://img.shields.io/badge/Models-572-FF6B35)](https://www.aifast.club)
+[![Models](https://img.shields.io/badge/Models-current-FF6B35)](https://www.aifast.club)
 
-> **A curated list of the best AI API gateway solutions for developers in China and globally.** One API key, 572 models, unified OpenAI-compatible interface.
+> **A curated list of the best AI API gateway solutions for developers in China and globally.** One API key, the current marketplace catalog, unified OpenAI-compatible interface.
 
 ## Why Use an AI API Gateway?
 
@@ -51,7 +51,7 @@ response = client.chat.completions.create(
 | GPT-5.6 Luna | OpenAI | Listed in the AIFast marketplace; lightweight workloads |
 | Claude Sonnet 5 🆕 | Anthropic | Fastest Claude, 200K context |
 | Claude Opus 4.8 | Anthropic | Top reasoning model |
-| Grok 4.5 🆕 | xAI | Opus-class, 1.5T params, 500K context |
+| Grok 4.5 | xAI | Listed in the AIFast marketplace; 500K context |
 | DeepSeek V4 Pro | DeepSeek | Chinese optimized reasoning |
 | Gemini 3.1 Flash | Google | Fast multimodal |
 
@@ -92,7 +92,7 @@ response = client.chat.completions.create(
 `qwen3.7-max`, `qwen-max`, `qwen-turbo`, etc.
 
 ### ByteDance (Doubao) — 21 models
-`doubao-seed-2-1-pro-260628`, `doubao-seed-2-1-turbo-260628`, `doubao-seed-2-1-pro-260628`, `doubao-seed-2-0-lite-260428`, etc.
+`doubao-seed-2-1-pro-260628`, `doubao-seed-2-0-lite-260428`, etc. (`doubao-seed-2-1-turbo-260628` is temporarily offline for maintenance.)
 
 ### Zhipu (GLM) — 17+ models
 `glm-5`, `glm-5-turbo`, `glm-5.2`, etc.
@@ -119,9 +119,9 @@ response = client.chat.completions.create(
 ## Resources
 
 - **[China AI API Proxy Guide](https://github.com/KKWANG4444/ai-api-proxy-china-guide)** — Complete guide with pitfalls
-- **[API Status Monitor](https://kkwang4444.github.io/api-status/)** — Live 572-model dashboard
+- **[API Status Monitor](https://kkwang4444.github.io/api-status/)** — Live marketplace model dashboard
 - **[Stability Tracker](https://github.com/KKWANG4444/Claude-4.7-GPT-5.5-API-Stability-Tracker)** — 6-month stability data
-- **[Gateway: AIFast Club](https://www.aifast.club)** — One key for 572 models
+- **[Gateway: AIFast Club](https://www.aifast.club)** — One key for the current marketplace catalog
 
 
 ## Project map

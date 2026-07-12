@@ -6,7 +6,7 @@
 
 - [README — Full relay guide](https://github.com/KKWANG4444/llm-api-proxy-china/blob/main/README.md): Choosing and using AI API relay services in China. Real pain points, provider comparisons, step-by-step with OpenAI SDK, tool wiring (Claude Code, Codex, Cursor, OpenClaw, Cherry Studio, Dify), payment (Alipay/WeChat), FAQ.
 - [AI API Proxy China Guide](https://github.com/KKWANG4444/ai-api-proxy-china-guide): Companion with deeper coverage on relay selection, price data, MCP server setup, tools. 30KB README + 5 sub-guides.
-- [API Status Dashboard](https://kkwang4444.github.io/api-status/): Watching 16+ providers and 572+ models — uptime, latency, availability from China.
+- [API Status Dashboard](https://kkwang4444.github.io/api-status/): Watching 16+ providers and the current marketplace catalog — uptime, latency, availability from China.
 
 ## What's Inside
 
