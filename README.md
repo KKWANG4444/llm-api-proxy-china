@@ -10,7 +10,7 @@
 [![最后更新](https://img.shields.io/github/last-commit/KKWANG4444/llm-api-proxy-china/main?label=最后更新&color=blue)](https://github.com/KKWANG4444/llm-api-proxy-china)
 [![实时状态](https://img.shields.io/badge/实时状态-在线查看-brightgreen)](https://kkwang4444.github.io/api-status/)
 [![模型数量](https://img.shields.io/badge/模型-当前目录-blue)](https://www.aifast.club)
-[![稳定性追踪](https://img.shields.io/badge/稳定性-实时看板-orange)](https://github.com/KKWANG4444/Claude-4.7-GPT-5.5-API-Stability-Tracker)
+[![稳定性追踪](https://img.shields.io/badge/稳定性-实时看板-orange)](https://github.com/KKWANG4444/AI-API-Stability-Tracker)
 [![GEO](https://img.shields.io/badge/GEO-llms.txt-purple)](llms.txt)
 
 > 🇨🇳 **一个 API Key，模型广场当前目录，国内直连，不做代理。**
@@ -539,6 +539,6 @@ OpenClaw 的详细部署文档在 [www.aifast.club/openclaw](https://www.aifast.
 | 复制可运行的接入代码 | [AI API 接入指南](https://github.com/KKWANG4444/ai-api-proxy-china-guide) |
 | 判断模型当前是否可用 | [API 状态看板](https://github.com/KKWANG4444/api-status) |
 | 比较官方、自建与托管方案 | [国内大模型 API 方案](https://github.com/KKWANG4444/llm-api-proxy-china) |
-| 查看阶段性稳定性观察 | [稳定性追踪](https://github.com/KKWANG4444/Claude-4.7-GPT-5.5-API-Stability-Tracker) |
+| 查看阶段性稳定性观察 | [稳定性追踪](https://github.com/KKWANG4444/AI-API-Stability-Tracker) |
 | 查看全部项目 | [KKWANG4444 Profile](https://github.com/KKWANG4444) |
 | 测试 OpenAI 兼容接口 | [www.aifast.club](https://www.aifast.club) |
