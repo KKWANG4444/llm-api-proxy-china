@@ -3,7 +3,7 @@
 [![中文](https://img.shields.io/badge/🇨🇳-中文-red)](README.md)
 [![English](https://img.shields.io/badge/🇬🇧-English-blue)](README_EN.md)
 
-[![Updated](https://img.shields.io/badge/Updated-2026--07--10-blue)](https://github.com/KKWANG4444/llm-api-proxy-china)
+[![Updated](https://img.shields.io/badge/Updated-2026--07--12-blue)](https://github.com/KKWANG4444/llm-api-proxy-china)
 [![Live Status](https://img.shields.io/badge/Live_Status-Online-brightgreen)](https://kkwang4444.github.io/api-status/)
 [![Models](https://img.shields.io/badge/Models-572-FF6B35)](https://www.aifast.club)
 
