@@ -422,10 +422,10 @@ api_key: 你的 API Key
 | DeepSeek V4 🆕 | DeepSeek | 中文能力顶级，长上下文，价格便宜 |
 | DeepSeek V4 Flash | DeepSeek | 跟 V4 比更快，适合实时对话 |
 | Gemini 3.5 Flash 🆕 | Google | 多模态理解（图片/视频/音频），性价比极高 |
-| Gemini 3 🆕 | Google | 最新旗舰推理模型，多模态能力全面升级 |
+| Gemini 3 | Google | Gemini 3 系列；Google 官方目录已有 Gemini 3.5 Flash 等更新型号 |
 | Gemini 3.1 Pro | Google | 多模态 + 长上下文，综合能力强 |
-| GLM-5.2 🆕 | 智谱 | 国产大模型最新版本，指令遵循和工具调用能力大幅提升 |
-| Grok 4.5 🆕 | xAI / SpaceXAI | Opus 级旗舰，1.5T参数量，500K上下文 |
+| GLM-5.2 | 智谱 | 智谱官方型号，面向通用与 Agent 场景 |
+| Grok 4.5 | xAI / SpaceXAI | xAI 官方型号，500K 上下文；官方目录同时列有 Grok 4.3、Grok 4.20 系列 |
 | Grok 4.2 | xAI | 实时信息获取，风格比较活泼 |
 | Qwen 3.6 Max | 阿里百炼 | 中文场景优化，企业级应用 |
 
@@ -530,7 +530,7 @@ OpenClaw 的详细部署文档在 [www.aifast.club/openclaw](https://www.aifast.
 
 ---
 
-*最后更新：2026 年 6 月 · 模型数已更新至 572+，新增 DeepSeek V4、Gemini 3 系列、GLM-5.2 等最新模型*
+*模型名称核对：2026 年 7 月 · 平台实际开放型号以控制台为准；厂商发布不等于平台已接入*
 
 ## 核心项目导航
 
