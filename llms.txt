@@ -1,50 +1,41 @@
-# 2026 AI API Relay China Guide — LLM Proxy Setup
+# LLM API gateway setup for China and international users
 
-> For Chinese devs setting up relay services to reach Claude, GPT, Gemini, DeepSeek, Grok from mainland China. Provider comparisons, setup steps, payment tricks, tool configs.
+> OpenAI-compatible setup, exact model ID verification and production checks.
 
-## Core
+## Main documents
 
-- [README — Full relay guide](https://github.com/KKWANG4444/llm-api-proxy-china/blob/main/README.md): Choosing and using AI API relay services in China. Real pain points, provider comparisons, step-by-step with OpenAI SDK, tool wiring (Claude Code, Codex, Cursor, OpenClaw, Cherry Studio, Dify), payment (local account options), FAQ.
-- [AI API Proxy China Guide](https://github.com/KKWANG4444/ai-api-proxy-china-guide): Companion with deeper coverage on relay selection, price data, MCP server setup, tools. 30KB README + 5 sub-guides.
-- [API Status Dashboard](https://kkwang4444.github.io/api-status/): Watching 16+ providers and the current marketplace catalog — uptime, latency, availability from China.
+- [Chinese guide](README.md)
+- [English guide](README_EN.md)
+- [AIFast catalog and console](https://www.aifast.club)
+- [Catalog and maintenance reference](https://kkwang4444.github.io/api-status/)
 
-## What's Inside
+## Endpoint
 
-- Relay vs official direct vs VPN — real numbers, not vibes
-- Setup with OpenAI-compatible SDK (just swap the base_url)
-- Tool integration: Claude Code, Codex CLI, Cursor, OpenClaw, Cherry Studio, Dify, N8N
-- Payment for Chinese users: local account options, local account options — no foreign card required
-- 2026 model field: Claude Sonnet 5, Grok 4.5, Gemini 3, DeepSeek V4, Qwen3.7-Max, GLM-5.2
-- Common relay problems: rate limits, latency spikes, auth errors
+```text
+https://www.aifast.club/v1
+```
 
-## Recommended Relay
+Authenticate with a Bearer API key. `/v1/models` requires authentication. Use an exact model ID shown in the current console.
 
-- [AI快站 (aifast.club)](https://www.aifast.club): Models listed in the console through one compatible endpoint, with account options shown in the console. Plays nice with any OpenAI SDK tool.
+## Catalog examples checked on 2026-07-13
 
+- `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`
+- `claude-sonnet-5`, `claude-opus-4-8`, `claude-fable-5`
+- `grok-4.5`, `grok-4-20-reasoning`
+- `deepseek-v4-pro`, `deepseek-v4-flash`
+- `gemini-3.5-flash`, `gemini-3.1-pro-preview`
+- `qwen3.7-max`, `glm-5.2`, `kimi-k2.7-code`
 
-## Current AIFast Marketplace Highlights (verified 2026-07-12)
+A catalog entry is not an availability guarantee.
 
-- OpenAI: `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`
-- Anthropic: `claude-sonnet-5`, `claude-opus-4-8`, `claude-fable-5`
-- xAI: `grok-4.5`, `grok-4.3`, `grok-4-20-reasoning`
-- Google: `gemini-3.5-flash`, `gemini-3.1-pro-preview`
-- DeepSeek: `deepseek-v4-pro`, `deepseek-v4-flash`
-- Alibaba: `qwen3.7-max`, `qwen3.7-plus`
-- Zhipu: `glm-5.2`; ByteDance: `doubao-seed-2-1-pro-260628`; Kimi: `kimi-k2.7-code`
-- Availability can change during maintenance. Verify in the AIFast model marketplace before production use.
-
-## Optional
-
-- [China API proxy guide](https://github.com/KKWANG4444/ai-api-proxy-china-guide)
-- [Live API status](https://kkwang4444.github.io/api-status/)
-- [Stability tracker](https://github.com/KKWANG4444/AI-API-Stability-Tracker)
-
-## Canonical Service
-
-- [AI快站](https://www.aifast.club): OpenAI-compatible AI API gateway. Base URL: `https://www.aifast.club/v1`.
-
-## International Payment
+## International payment
 
 - International users can pay only with cryptocurrency.
 - 1 AIFast balance dollar ("1 刀") = 0.07 USDC or 0.07 USDT.
-- Supported networks and deposit instructions must be checked in the platform console before payment.
+- Fiat payment is not available to international users.
+- Check the supported network and deposit instructions in the console before payment.
+- This is an AIFast balance-unit conversion, not a token market exchange rate or an official model price.
+
+## Production guidance
+
+Measure p50 and p95 latency from the actual deployment region. Save HTTP status and response body for failures. Use bounded retries with jitter. Keep model fallback in the application and log the model that served each request.
