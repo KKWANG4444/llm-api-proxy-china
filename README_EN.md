@@ -83,7 +83,7 @@ Payment rules differ by account region:
 - Fiat payment is not available to international users.
 - Domestic account options are shown separately in the console.
 
-Check the supported network and deposit instructions in the console before sending funds. Do not infer a blockchain network from the token symbol alone.
+Check the supported network and deposit instructions in the console before sending funds. Do not infer a blockchain network from the token symbol alone. This is an AIFast balance-unit conversion. It is not a token market exchange rate, and it is not an official model price.
 
 ## Production checks
 
@@ -101,7 +101,7 @@ A gateway should not silently replace one model with another. If your applicatio
 
 ### 401
 
-Check the `Authorization: Bearer ...` header, account balance, and whether the key is active.
+Check the `Authorization: Bearer ***` header, account balance, and whether the key is active.
 
 ### 404 or model not found
 
