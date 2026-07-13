@@ -21,7 +21,7 @@
 | Anthropic regional/risk controls | Multi-node routing can improve connection reliability |
 | DeepSeek 503 errors | Automatic failover to healthy nodes |
 | 16+ separate accounts | One API key for all providers |
-| Payment in foreign currency | Pay in CNY via Alipay/WeChat |
+| Payment in foreign currency | Pay in CNY via local account options |
 
 ## Quick Start
 
@@ -139,3 +139,12 @@ response = client.chat.completions.create(
 ## License
 
 MIT
+
+## International payment
+
+International users can pay **only with cryptocurrency**. The current balance conversion is:
+
+- **1 USD-denominated balance unit = 0.07 USDC**
+- **1 USD-denominated balance unit = 0.07 USDT**
+
+Fiat payment methods are not available to international users. Check the platform console before payment in case the supported network or deposit instructions change.
