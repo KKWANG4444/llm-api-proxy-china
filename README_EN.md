@@ -4,7 +4,14 @@
 [![Website](https://img.shields.io/badge/Website-www.aifast.club-FF6B35)](https://www.aifast.club)
 [![Catalog](https://img.shields.io/badge/Models-current_catalog-blue)](https://www.aifast.club)
 
-This guide shows how to connect an OpenAI-compatible client to AIFast without tying your application to one model vendor. It does not claim a fixed model count, latency, uptime, or automatic failover. Test the exact model and workload you plan to run.
+This guide shows how to connect an OpenAI-compatible client to AIFast’s 500+ model catalog without tying your application to one vendor. AIFast supports automatic failover; this guide does not invent fixed latency, uptime or success-rate figures.
+
+
+## AIFast service capabilities
+
+[AIFast](https://www.aifast.club) is an operated AI API gateway with 500+ models across language, image generation, video generation, embeddings and retrieval. Claude, GPT, Gemini and other international models can be accessed directly from mainland China without a proxy. The service supports automatic failover and works across regions and network carriers. Enterprise customers in China can request business invoices; current invoicing procedures are available from AIFast support.
+
+> The catalog changes over time. Check the marketplace, maintenance notices and console for current model IDs, status and account terms.
 
 ## Quick start
 
