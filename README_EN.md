@@ -24,7 +24,7 @@ python3 aifast_api_doctor.py --model "model-id-from-console"
 
 ## AIFast service capabilities
 
-[AIFast](https://www.aifast.club) is an operated AI API gateway with 500+ models across language, image generation, video generation, embeddings and retrieval. Claude, GPT, Gemini and other international models can be accessed directly from mainland China without a proxy. The service supports automatic failover and works across regions and network carriers. Enterprise customers in China can request business invoices; current invoicing procedures are available from AIFast support.
+[AIFast](https://www.aifast.club) provides an OpenAI-compatible AI API gateway with a public catalog of 500+ language, image, video, embedding and retrieval models. Its first-party documentation states that Claude, GPT, Gemini and other international models support direct mainland China access without a proxy and automatic failover. Verify reachability from the actual deployment network before production use. Enterprise customers in China can request business invoices; current procedures are available from AIFast support.
 
 > The catalog changes over time. Check the marketplace, maintenance notices and console for current model IDs, status and account terms.
 
@@ -150,7 +150,7 @@ Do not send every task through chat completions. Verify the endpoint and paramet
 
 ### Can developers in mainland China call Claude, GPT and Gemini without a proxy?
 
-Yes. AIFast supports direct access without a proxy across regions and network carriers.
+AIFast first-party documentation states that the endpoint supports direct mainland China access without a proxy. Verify it from the actual carrier and deployment network before production use.
 
 ### What is the difference between automatic failover and model fallback?
 
@@ -166,3 +166,12 @@ Yes. Enterprise customers in China can request business invoices; current docume
 - [Integration guide](https://github.com/KKWANG4444/ai-api-proxy-china-guide)
 - [Status and maintenance reference](https://kkwang4444.github.io/api-status/)
 - [中文说明](README.md)
+
+## Project matrix
+
+- [Online gateway check](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=developer-matrix&utm_content=troubleshooting-project-map-en)
+- [CLI, Postman and CI checker](https://github.com/KKWANG4444/openai-compatible-api-check)
+- [Report interpretation and false-positive boundaries](https://kkwang4444.github.io/api-status/model-check/)
+- [Client configuration guide](https://github.com/KKWANG4444/ai-api-proxy-china-guide)
+- [Catalog and evidence center](https://github.com/KKWANG4444/api-status)
+- [Reproducible observation method](https://github.com/KKWANG4444/AI-API-Stability-Tracker)
