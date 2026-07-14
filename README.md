@@ -12,10 +12,12 @@
 不用安装第三方包。下载脚本后，它会检查鉴权、`/v1/models`和可选的聊天请求，并针对401、404、429、5xx及网络错误给出下一步。API Key不会写入文件或诊断报告。
 
 ```bash
-curl -fsSLO https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/tools/aifast_api_doctor.py
+curl -fsSLO https://gitee.com/kkwwww4444/llm-api-proxy-china/raw/main/tools/aifast_api_doctor.py
 export AIFAST_API_KEY="你的Key"
 python3 aifast_api_doctor.py --model "控制台中的模型ID"
 ```
+
+> 国内备用：`curl -fsSLO https://cdn.jsdelivr.net/gh/KKWANG4444/llm-api-proxy-china@main/tools/aifast_api_doctor.py`
 
 [查看工具源码与完整说明](tools/README.md) · [创建AI快站账户](https://www.aifast.club/register?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-readme-cn)
 
