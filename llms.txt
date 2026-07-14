@@ -21,6 +21,7 @@ The catalog changes over time. Check the marketplace, maintenance notices and co
 
 ## Main documents
 
+- [AIFast Developer Hub](https://github.com/KKWANG4444/aifast-developer-hub)
 - [Chinese guide](README.md)
 - [English guide](README_EN.md)
 - [AIFast catalog and console](https://www.aifast.club)
