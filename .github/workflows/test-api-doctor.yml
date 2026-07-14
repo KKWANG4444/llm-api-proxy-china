@@ -1,0 +1,29 @@
+name: Test API Doctor
+
+on:
+  push:
+    paths:
+      - "tools/aifast_api_doctor.py"
+      - "tests/test_aifast_api_doctor.py"
+      - ".github/workflows/test-api-doctor.yml"
+  pull_request:
+    paths:
+      - "tools/aifast_api_doctor.py"
+      - "tests/test_aifast_api_doctor.py"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.12", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install pytest
+      - run: python -m pytest tests/test_aifast_api_doctor.py -q

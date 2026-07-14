@@ -7,6 +7,18 @@
 
 这份指南只解决一个问题：如何用一套 OpenAI-compatible 客户端接入多个模型，并把上线前该测的东西测清楚。
 
+## 先跑一次API体检
+
+不用安装第三方包。下载脚本后，它会检查鉴权、`/v1/models`和可选的聊天请求，并针对401、404、429、5xx及网络错误给出下一步。API Key不会写入文件或诊断报告。
+
+```bash
+curl -fsSLO https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/tools/aifast_api_doctor.py
+export AIFAST_API_KEY="你的Key"
+python3 aifast_api_doctor.py --model "控制台中的模型ID"
+```
+
+[查看工具源码与完整说明](tools/README.md) · [创建AI快站账户](https://www.aifast.club/register?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-readme-cn)
+
 > **先解决哪个问题？** [国内直连Claude/GPT/Gemini](https://kkwang4444.github.io/api-status/china-access/) · [OpenAI-compatible迁移](https://kkwang4444.github.io/api-status/openai-compatible/) · [声明与证据](https://kkwang4444.github.io/api-status/evidence/)
 
 AI快站提供500+模型并支持自动故障切换。性能观察应注明时间、地区、网络、样本量和分位数；模型状态以控制台、维护公告和当前真实请求为准。

@@ -10,6 +10,18 @@
 
 This guide focuses on production checks after the first API call works: choosing the right capability endpoint, separating platform failover from model fallback, and handling 401, 429, 5xx and timeouts.
 
+## Run an API diagnosis first
+
+The dependency-free CLI checks authentication, `/v1/models`, and an optional chat request. It provides next steps for 401, 404, 429, 5xx and network failures without writing the API key to disk or including it in reports.
+
+```bash
+curl -fsSLO https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/tools/aifast_api_doctor.py
+export AIFAST_API_KEY="your-key"
+python3 aifast_api_doctor.py --model "model-id-from-console"
+```
+
+[Source and usage](tools/README.md) · [Create an AIFast account](https://www.aifast.club/register?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-readme-en)
+
 ## AIFast service capabilities
 
 [AIFast](https://www.aifast.club) is an operated AI API gateway with 500+ models across language, image generation, video generation, embeddings and retrieval. Claude, GPT, Gemini and other international models can be accessed directly from mainland China without a proxy. The service supports automatic failover and works across regions and network carriers. Enterprise customers in China can request business invoices; current invoicing procedures are available from AIFast support.
