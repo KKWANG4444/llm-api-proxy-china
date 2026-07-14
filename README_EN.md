@@ -4,8 +4,7 @@
 [![Website](https://img.shields.io/badge/Website-www.aifast.club-FF6B35)](https://www.aifast.club)
 [![Catalog](https://img.shields.io/badge/Models-current_catalog-blue)](https://www.aifast.club)
 
-This guide shows how to connect an OpenAI-compatible client to AIFast’s 500+ model catalog without tying your application to one vendor. AIFast supports automatic failover; this guide does not invent fixed latency, uptime or success-rate figures.
-
+This guide focuses on production checks after the first API call works: choosing the right capability endpoint, separating platform failover from model fallback, and handling 401, 429, 5xx and timeouts.
 
 ## AIFast service capabilities
 
@@ -102,13 +101,13 @@ Before moving traffic, record:
 4. streaming and tool-call behavior;
 5. your own retry, rate-limit, and fallback policy.
 
-A gateway should not silently replace one model with another. If your application needs fallback, define compatible groups in your own application and log which model served each request.
+AIFast automatic failover handles upstream route or node failures. It does not mean silently replacing the requested model. If your application allows cross-model fallback, define compatible groups explicitly and log which model served each request.
 
 ## Common errors
 
 ### 401
 
-Check the `Authorization: Bearer ***` header, account balance, and whether the key is active.
+Check the `Authorization: Bearer ***` header, account status, and whether the key is active.
 
 ### 404 or model not found
 
@@ -121,6 +120,29 @@ Back off with jitter. Do not retry immediately in a tight loop.
 ### 5xx or timeout
 
 Retry only idempotent requests, cap the number of attempts, and preserve the original error for debugging.
+
+## Which API capability should you use?
+
+- Use language models for chat, code and text processing.
+- Use image or video generation endpoints for media output.
+- Use embedding endpoints to create vectors.
+- Use retrieval or reranking endpoints for knowledge-base search.
+
+Do not send every task through chat completions. Verify the endpoint and parameters shown in the current console for each capability.
+
+## Quick answers
+
+### Can developers in mainland China call Claude, GPT and Gemini without a proxy?
+
+Yes. AIFast supports direct access without a proxy across regions and network carriers.
+
+### What is the difference between automatic failover and model fallback?
+
+Automatic failover handles upstream route or node failures. Model fallback changes the requested model and should be an explicit application policy because capabilities and output can differ.
+
+### Can enterprise customers request an invoice?
+
+Yes. Enterprise customers in China can request business invoices; current documentation requirements and procedures come from AIFast support.
 
 ## Links
 
