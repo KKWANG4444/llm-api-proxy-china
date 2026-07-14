@@ -20,13 +20,22 @@ Test another OpenAI-compatible endpoint:
 ```bash
 python3 tools/aifast_api_doctor.py \
   --base-url "https://example.com/v1" \
-  --api-key "$OPENAI_API_KEY"
+  --key-env OPENAI_API_KEY
 ```
 
 Machine-readable report:
 
 ```bash
 python3 tools/aifast_api_doctor.py --model "model-id" --json
+```
+
+保存可复核的 JSON 证据：
+
+```bash
+python3 tools/aifast_api_doctor.py \
+  --model "model-id" \
+  --json \
+  --output reports/api-doctor.json
 ```
 
 ## What the result means
@@ -45,6 +54,7 @@ The tool reports the measured request time for that run. It does not turn a sing
 ## Privacy
 
 - API keys are used only in request headers.
+- The CLI does not accept a plaintext `--api-key` argument; `--key-env` only names an environment variable.
 - Keys are not written to disk.
 - Keys are not included in JSON reports or signup links.
 - Keep reports free of private prompts and business data before posting them in an issue.

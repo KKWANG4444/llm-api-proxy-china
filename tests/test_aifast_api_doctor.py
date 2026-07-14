@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import os
 import subprocess
 import sys
 import threading
@@ -27,6 +28,7 @@ class FakeAPI(BaseHTTPRequestHandler):
         data = json.dumps(payload).encode()
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
+        self.send_header("X-Request-Id", "req-test-123")
         self.end_headers()
         self.wfile.write(data)
 
@@ -52,7 +54,12 @@ class FakeAPI(BaseHTTPRequestHandler):
         if body.get("model") != "demo-model":
             self.send_json(404, {"error": {"message": "model missing"}})
             return
-        self.send_json(200, {"choices": [{"message": {"content": "pong"}}]})
+        content = "test-key" if self.mode == "secret_echo" else "pong"
+        self.send_json(200, {
+            "model": "demo-model",
+            "choices": [{"message": {"content": content}}],
+            "usage": {"prompt_tokens": 4, "completion_tokens": 1, "total_tokens": 5},
+        })
 
 
 class Server:
@@ -71,6 +78,11 @@ def test_normalize_base_url():
     m = load_module()
     assert m.normalize_base_url("https://example.com/") == "https://example.com/v1"
     assert m.normalize_base_url("https://example.com/v1/") == "https://example.com/v1"
+    try:
+        m.normalize_base_url("http://example.com/v1")
+        assert False, "public HTTP URL should fail"
+    except ValueError:
+        pass
 
 
 def test_redacts_api_keys():
@@ -91,15 +103,19 @@ def test_conversion_url_is_attributed_without_secrets():
 def test_successful_models_and_chat_diagnosis():
     with Server() as base:
         proc = subprocess.run(
-            [sys.executable, str(SCRIPT), "--base-url", base, "--api-key", "test-key", "--model", "demo-model", "--json"],
+            [sys.executable, str(SCRIPT), "--base-url", base, "--model", "demo-model", "--json"],
             text=True,
             capture_output=True,
+            env={**os.environ, "AIFAST_API_KEY": "test-key"},
         )
     assert proc.returncode == 0, proc.stderr
     report = json.loads(proc.stdout)
     assert report["models"]["status"] == 200
     assert report["chat"]["status"] == 200
-    assert report["chat"]["content"] == "pong"
+    assert report["chat"]["content_matches_expected"] is True
+    assert report["chat"]["response_model"] == "demo-model"
+    assert report["chat"]["request_id"] == "req-test-123"
+    assert report["chat"]["usage"]["total_tokens"] == 5
     assert "utm_source=github" in report["signup_url"]
     assert "test-key" not in proc.stdout
 
@@ -107,9 +123,10 @@ def test_successful_models_and_chat_diagnosis():
 def test_auth_error_returns_actionable_nonzero_result():
     with Server() as base:
         proc = subprocess.run(
-            [sys.executable, str(SCRIPT), "--base-url", base, "--api-key", "wrong", "--json"],
+            [sys.executable, str(SCRIPT), "--base-url", base, "--json"],
             text=True,
             capture_output=True,
+            env={**os.environ, "AIFAST_API_KEY": "wrong"},
         )
     assert proc.returncode == 2
     report = json.loads(proc.stdout)
@@ -123,6 +140,7 @@ def test_missing_key_is_reported_without_network_call():
         [sys.executable, str(SCRIPT), "--base-url", "http://127.0.0.1:1/v1", "--json"],
         text=True,
         capture_output=True,
+        env={key: value for key, value in os.environ.items() if key not in {"AIFAST_API_KEY", "OPENAI_API_KEY"}},
     )
     assert proc.returncode == 2
     report = json.loads(proc.stdout)
@@ -134,9 +152,10 @@ def test_rate_limit_has_retry_advice():
     try:
         with Server() as base:
             proc = subprocess.run(
-                [sys.executable, str(SCRIPT), "--base-url", base, "--api-key", "test-key", "--json"],
+                [sys.executable, str(SCRIPT), "--base-url", base, "--json"],
                 text=True,
                 capture_output=True,
+                env={**os.environ, "AIFAST_API_KEY": "test-key"},
             )
     finally:
         FakeAPI.mode = "ok"
@@ -144,3 +163,30 @@ def test_rate_limit_has_retry_advice():
     report = json.loads(proc.stdout)
     assert report["models"]["status"] == 429
     assert "retry" in report["models"]["advice"].lower()
+
+
+def test_upstream_secret_echo_is_redacted_and_fails_expected_output():
+    FakeAPI.mode = "secret_echo"
+    try:
+        with Server() as base:
+            proc = subprocess.run(
+                [sys.executable, str(SCRIPT), "--base-url", base, "--model", "demo-model", "--json"],
+                text=True,
+                capture_output=True,
+                env={**os.environ, "AIFAST_API_KEY": "test-key"},
+            )
+    finally:
+        FakeAPI.mode = "ok"
+    assert proc.returncode == 2
+    assert "test-key" not in proc.stdout
+    assert "[REDACTED]" in proc.stdout
+
+
+def test_plaintext_api_key_option_is_not_supported():
+    proc = subprocess.run(
+        [sys.executable, str(SCRIPT), "--api-key", "must-not-be-accepted"],
+        text=True,
+        capture_output=True,
+    )
+    assert proc.returncode == 2
+    assert "unrecognized arguments" in proc.stderr

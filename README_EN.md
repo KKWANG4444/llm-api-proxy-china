@@ -51,7 +51,7 @@ The `/v1/models` endpoint requires authentication. A public catalog entry alone 
 
 ## Model IDs verified in the public catalog
 
-The following examples were checked against the public AIFast configuration on 2026-07-13:
+The following examples were checked against the public AIFast configuration on 2026-07-15:
 
 | Provider | Example IDs |
 |:---|:---|
@@ -96,16 +96,11 @@ If this fails, save the HTTP status and response body before changing several se
 
 Codex supports custom providers through its configuration. The exact keys can change between releases, so use the current OpenAI Codex configuration reference rather than copying an old environment-variable name.
 
-## Payment
+## Reproducible diagnostic report
 
-Payment rules differ by account region:
+Run `python3 tools/aifast_api_doctor.py --model MODEL --json --output reports/api-doctor.json`. The tool reads the key from an environment variable, does not accept a plaintext `--api-key` argument, and records timestamp, status, latency, request ID, response model and visible usage fields.
 
-- International users can pay only with cryptocurrency.
-- **1 AIFast balance dollar ("1 刀") = 0.07 USDC or 0.07 USDT.**
-- Fiat payment is not available to international users.
-- Domestic account options are shown separately in the console.
-
-Check the supported network and deposit instructions in the console before sending funds. Do not infer a blockchain network from the token symbol alone. This is an AIFast balance-unit conversion. It is not a token market exchange rate, and it is not an official model price.
+Account, pricing and transaction rules can change. Verify them in the current console; this technical repository does not duplicate volatile conversion instructions.
 
 ## Production checks
 
