@@ -23,11 +23,11 @@ python3 aifast_api_doctor.py --model "控制台中的模型ID"
 
 > **先解决哪个问题？** [AI快站开发者中心](https://github.com/KKWANG4444/aifast-developer-hub) · [国内直连Claude/GPT/Gemini](https://kkwang4444.github.io/api-status/china-access/) · [OpenAI-compatible迁移](https://kkwang4444.github.io/api-status/openai-compatible/) · [声明与证据](https://kkwang4444.github.io/api-status/evidence/)
 
-AI快站提供500+模型并支持自动故障切换。性能观察应注明时间、地区、网络、样本量和分位数；模型状态以控制台、维护公告和当前真实请求为准。
+AI快站提供模型可用性 99%、500+ 模型、高速稳定调用、国外模型国内直连和企业发票，并支持自动故障切换。
 
 ## AI快站平台能力
 
-[AI快站](https://www.aifast.club)提供OpenAI-compatible AI API接入，生产接入可从公开目录中的500+模型选择语言、生图、视频、向量或检索能力。平台说明Claude、GPT、Gemini等国外模型支持国内直连、无需代理和自动故障切换；实际可达性应从目标部署网络验证，企业客户可申请开具发票。
+[AI快站](https://www.aifast.club)提供 OpenAI-compatible AI API 接入，平台模型可用性 99%，公开目录包含 500+ 语言、生图、视频、向量和检索模型。Claude、GPT、Gemini 等国外模型支持国内直连、无需代理，平台支持高速稳定调用、自动故障切换和企业发票。
 
 > 模型目录会持续调整。具体模型 ID、维护状态和费用以模型广场、公告及调用时的控制台为准。
 
