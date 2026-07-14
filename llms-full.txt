@@ -40,6 +40,10 @@ No. AIFast automatic failover addresses route or upstream failures. An applicati
 - Knowledge retrieval usually combines embeddings with retrieval or reranking.
 - Each capability should be tested independently before production rollout.
 
+## Browser-based compatibility check
+
+Use https://docs.aifast.club/model-check/ when diagnosis needs model-field consistency, token metadata, randomized behavior probes, SSE and tool calls. It complements the local API Doctor; neither tool proves the underlying vendor identity or long-term reliability.
+
 ## Evidence and current state
 
 - Public catalog: https://www.aifast.club/api/ratio_config

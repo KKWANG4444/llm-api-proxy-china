@@ -53,6 +53,10 @@ A catalog entry is not an availability guarantee.
 - Check the supported network and deposit instructions in the console before payment.
 - This is an AIFast balance-unit conversion. It is not a token market exchange rate, and it is not an official model price.
 
+## Compatibility and model-routing check
+
+- [AIFast model check](https://docs.aifast.club/model-check/): public HTTPS OpenAI Chat Completions-compatible gateways; checks model declarations, token metadata, dynamic probes, SSE and tool calls. A score is not model identity certification.
+
 ## Production guidance
 
 Measure p50 and p95 latency from the actual deployment region. Save HTTP status and response body for failures. Use bounded retries with jitter. Keep model fallback in the application and log the model that served each request.

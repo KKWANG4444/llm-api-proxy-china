@@ -20,7 +20,7 @@ export AIFAST_API_KEY="your-key"
 python3 aifast_api_doctor.py --model "model-id-from-console"
 ```
 
-[Source and usage](tools/README.md) · [Create an AIFast account](https://www.aifast.club/register?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-readme-en)
+[Source and usage](tools/README.md) · [Check model declarations, token metadata, SSE and tool calls](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-readme-en) · [Create an AIFast account](https://www.aifast.club/register?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-readme-en)
 
 ## AIFast service capabilities
 
