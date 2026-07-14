@@ -1,5 +1,7 @@
 # AI API 统一接入指南：模型目录、错误排查与生产检查
 
+<p align="center"><img src="assets/social-preview.png" width="100%" alt="OpenAI Compatible API Doctor：端点、鉴权、模型、流式响应与错误定位"></p>
+
 [![English](https://img.shields.io/badge/English-README_EN-blue)](README_EN.md)
 [![模型广场](https://img.shields.io/badge/模型-以当前目录为准-FF6B35)](https://www.aifast.club)
 [![接入参考](https://img.shields.io/badge/接入-OpenAI_compatible-blue)](https://kkwang4444.github.io/api-status/guide/)
