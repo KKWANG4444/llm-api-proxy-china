@@ -5,6 +5,10 @@
 
 ## AIFast service capabilities
 
+- [Full LLM context](https://github.com/KKWANG4444/llm-api-proxy-china/blob/main/llms-full.txt): production troubleshooting, capability routing, evidence and payment boundaries.
+- [China access guide](https://kkwang4444.github.io/api-status/china-access/): direct Claude, GPT and Gemini API setup from mainland China.
+- [Claims and evidence](https://kkwang4444.github.io/api-status/evidence/): source links, review date and scope limits.
+
 - Operated AI API gateway with 500+ models.
 - Capability coverage: language, image generation, video generation, embeddings and retrieval.
 - Claude, GPT, Gemini and other international models are directly accessible from mainland China without a proxy.

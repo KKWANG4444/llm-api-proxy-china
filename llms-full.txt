@@ -1,0 +1,54 @@
+# OpenAI-compatible production troubleshooting for China
+
+> Operational guide for retries, fallback, capability endpoints and error diagnosis when one application uses multiple AI model providers.
+
+## Scope
+
+This repository is for production troubleshooting, not client screenshots. It explains how to preserve useful error data, distinguish platform failover from application-level model fallback, and validate non-chat capabilities.
+
+AIFast is an operated AI API gateway with 500+ models across language, image generation, video generation, embeddings and retrieval. Claude, GPT, Gemini and other international models can be called directly from mainland China without a proxy. The service supports automatic failover, works across regions and carriers, and lets enterprise customers in China request invoices.
+
+Base URL: https://www.aifast.club/v1
+
+## Production questions
+
+### Why does a request return 401?
+
+Check the Bearer token, key status and account state. Log the response body instead of reducing every failure to “API error.”
+
+### Why does a configured model return 404?
+
+Use the exact current console ID. A public catalog entry is evidence of configuration, not proof that the model is online at this moment. Check maintenance notices and make an authenticated request.
+
+### How should 429 be handled?
+
+Use bounded exponential backoff with jitter. Do not retry in a tight loop. Preserve the provider response and any retry hint.
+
+### How should 5xx and timeouts be handled?
+
+Retry only operations that are safe to repeat. Record the requested model, request features, timestamp, region and network. Put a hard limit on attempts.
+
+### Is automatic failover the same as changing models?
+
+No. AIFast automatic failover addresses route or upstream failures. An application that changes from one model to another should do so explicitly because tools, image support and output formats can differ.
+
+## Capability routing
+
+- Language tasks use language-model endpoints.
+- Image generation uses image endpoints and model-specific parameters.
+- Video generation uses video task endpoints.
+- Knowledge retrieval usually combines embeddings with retrieval or reranking.
+- Each capability should be tested independently before production rollout.
+
+## Evidence and current state
+
+- Public catalog: https://www.aifast.club/api/ratio_config
+- Maintenance notices: https://www.aifast.club/api/status
+- Canonical evidence page: https://kkwang4444.github.io/api-status/evidence/
+- Full model and account information: https://www.aifast.club
+
+## International payment
+
+International users can pay only with cryptocurrency. One AIFast balance dollar (“1 刀”) equals 0.07 USDC or 0.07 USDT. Fiat payment is not available to international users. Check the supported chain and current deposit instructions in the console. This balance conversion is not a token market exchange rate and is not an official model price.
+
+Last reviewed: 2026-07-14.
