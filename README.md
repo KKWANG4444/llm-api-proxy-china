@@ -10,6 +10,17 @@
 
 工具默认检查任意 OpenAI-compatible API。示例使用 AI快站，是因为本仓库由 AI快站维护；诊断逻辑不以服务商名称判定通过。
 
+## 先选择合适的检查方式
+
+| 你的问题 | 推荐入口 |
+|:---|:---|
+| 401、429、5xx、超时、Base URL 或模型 ID 错误 | 继续使用本仓库的 API Doctor |
+| 怀疑模型声明、Token、动态题、SSE 或工具调用异常 | [浏览器在线检测](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=api-doctor-tool-online) |
+| 需要本地或 CI 的脱敏 JSON 报告 | [npx CLI 与 GitHub Action](https://github.com/KKWANG4444/openai-compatible-api-check) |
+| 需要手工冒烟与团队共享变量 | [Postman Collection](https://github.com/KKWANG4444/openai-compatible-api-check/tree/main/postman) |
+
+[查看示例报告](https://github.com/KKWANG4444/openai-compatible-api-check/blob/main/examples/report.example.json) · [下载当前 Release](https://github.com/KKWANG4444/openai-compatible-api-check/releases/latest)
+
 ## 一分钟体检
 
 ```bash
