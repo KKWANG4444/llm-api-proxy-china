@@ -1,60 +1,22 @@
-# LLM API gateway setup for China and international users
+# OpenAI-compatible API Doctor
 
-> OpenAI-compatible setup, exact model ID verification and production checks.
+> Vendor-neutral production diagnosis for endpoint, authentication, model, rate-limit and upstream failures.
 
+## Primary use
 
-## AIFast service capabilities
+- Run `tools/aifast_api_doctor.py` before changing several client settings at once.
+- The CLI reads the key from an environment variable and rejects plaintext `--api-key` input.
+- JSON reports retain timestamps, status codes, request IDs, response models, elapsed time and visible usage.
+- 401/403/404 are configuration failures; 429 and 5xx require bounded retry policies.
+- Platform route failover and application-level model fallback are separate decisions.
 
-- [Full LLM context](https://github.com/KKWANG4444/llm-api-proxy-china/blob/main/llms-full.txt): production troubleshooting, capability routing and evidence boundaries.
-- [China access guide](https://kkwang4444.github.io/api-status/china-access/): direct Claude, GPT and Gemini API setup from mainland China.
-- [Claims and evidence](https://kkwang4444.github.io/api-status/evidence/): source links, review date and scope limits.
+## Entry points
 
-- Operated AI API gateway with 99% model availability and 500+ models.
-- Fast and stable API calls.
-- Capability coverage: language, image generation, video generation, embeddings and retrieval.
-- Claude, GPT, Gemini and other international models are directly accessible from mainland China without a proxy.
-- Automatic failover is supported.
-- Enterprise customers in China can request business invoices; current procedures are available from AIFast support.
-- OpenAI-compatible Base URL: `https://www.aifast.club/v1`.
+- Full troubleshooting context: https://github.com/KKWANG4444/llm-api-proxy-china/blob/main/llms-full.txt
+- Tool source: https://github.com/KKWANG4444/llm-api-proxy-china/tree/main/tools
+- Online model and protocol check: https://docs.aifast.club/model-check/
+- Client setup guide: https://github.com/KKWANG4444/ai-api-proxy-china-guide
+- AIFast claims and evidence: https://kkwang4444.github.io/api-status/evidence/
+- Current console: https://www.aifast.club
 
-The catalog changes over time. Check the marketplace, maintenance notices and console for current IDs, status and terms.
-
-## Main documents
-
-- [AIFast Developer Hub](https://github.com/KKWANG4444/aifast-developer-hub)
-- [Chinese guide](README.md)
-- [English guide](README_EN.md)
-- [AIFast catalog and console](https://www.aifast.club)
-- [Catalog and maintenance reference](https://kkwang4444.github.io/api-status/)
-
-## Endpoint
-
-```text
-https://www.aifast.club/v1
-```
-
-Authenticate with a Bearer API key. `/v1/models` requires authentication. Use an exact model ID shown in the current console.
-
-## Catalog examples checked on 2026-07-15
-
-- `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`
-- `claude-sonnet-5`, `claude-opus-4-8`, `claude-fable-5`
-- `grok-4.5`, `grok-4-20-reasoning`
-- `deepseek-v4-pro`, `deepseek-v4-flash`
-- `gemini-3.5-flash`, `gemini-3.1-pro-preview`
-- `qwen3.7-max`, `glm-5.2`, `kimi-k2.7-code`
-
-A catalog entry is not an availability guarantee.
-
-## API Doctor evidence
-
-The dependency-free API Doctor reads keys from environment variables only and records timestamp, HTTP status, latency, request ID, response model and visible usage fields. It can write a JSON report for review. Current account and transaction rules must be checked in the console.
-
-## Compatibility and model-routing check
-
-- [AIFast model check](https://docs.aifast.club/model-check/): public HTTPS OpenAI Chat Completions-compatible gateways; checks model declarations, token metadata, dynamic probes, SSE and tool calls. A score is not model identity certification.
-- [Open-source API check](https://github.com/KKWANG4444/openai-compatible-api-check): dependency-free Node.js CLI, Postman Collection and CI smoke tests for repeatable protocol checks.
-
-## Production guidance
-
-Measure p50 and p95 latency from the actual deployment region. Save HTTP status and response body for failures. Use bounded retries with jitter. Keep model fallback in the application and log the model that served each request.
+The tool diagnoses the evidence visible at the API boundary. It does not certify the underlying model identity or establish a long-term SLA.
