@@ -8,6 +8,8 @@ This repository has one job: turn a vague “the API failed” report into evide
 
 The tool is vendor-neutral. Examples use AIFast because the repository is maintained by AIFast, but provider names never affect the diagnosis.
 
+Not sure whether to test an existing endpoint, migrate a client, make a first API call or prepare enterprise adoption? [Start from the matching workflow](https://docs.aifast.club/start/?utm_source=github&utm_medium=repository&utm_campaign=developer-acquisition&utm_content=llm-api-proxy-china-intro-start-en).
+
 ## Run a one-minute diagnosis
 
 ```bash

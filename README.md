@@ -14,6 +14,7 @@
 
 | 你的问题 | 推荐入口 |
 |:---|:---|
+| 不确定应先测试、迁移工具、接入模型还是准备企业采购 | [按当前需求开始](https://docs.aifast.club/start/?utm_source=github&utm_medium=repository&utm_campaign=developer-acquisition&utm_content=llm-api-proxy-china-decision-start) |
 | 401、429、5xx、超时、Base URL 或模型 ID 错误 | 继续使用本仓库的 API Doctor |
 | 怀疑模型声明、Token、动态题、SSE 或工具调用异常 | [浏览器在线检测](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=api-doctor-tool-online) |
 | 不确定检测结果意味着什么 | [网站报告判读教程](https://docs.aifast.club/guides/model-check-report-guide/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=api-doctor-report-guide) |
