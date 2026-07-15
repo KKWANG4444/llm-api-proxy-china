@@ -20,3 +20,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: python -m pip install pytest
       - run: python -m pytest tests/test_aifast_api_doctor.py -q
+      - name: Verify website-first funnel
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq 'https://docs.aifast.club/start/' README.md
+          grep -Fq 'https://docs.aifast.club/start/' llms-full.txt
+          ! grep -Fq 'openai-compatible-api-check' llms-full.txt

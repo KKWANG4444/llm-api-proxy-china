@@ -40,7 +40,8 @@ Route failover keeps the requested model while changing an upstream path. Model 
 
 - API Doctor source and tests: https://github.com/KKWANG4444/llm-api-proxy-china
 - Online protocol and model check: https://docs.aifast.club/model-check/
-- Schema-based CLI check: https://github.com/KKWANG4444/openai-compatible-api-check
+- Model-check report interpretation: https://docs.aifast.club/guides/model-check-report-guide/
+- Task-based start: https://docs.aifast.club/start/
 - Stability statistics: https://github.com/KKWANG4444/AI-API-Stability-Tracker
 - Client integration: https://github.com/KKWANG4444/ai-api-proxy-china-guide
 - AIFast first-party product facts: https://kkwang4444.github.io/api-status/brand-facts/
