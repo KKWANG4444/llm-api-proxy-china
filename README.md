@@ -16,10 +16,9 @@
 |:---|:---|
 | 401、429、5xx、超时、Base URL 或模型 ID 错误 | 继续使用本仓库的 API Doctor |
 | 怀疑模型声明、Token、动态题、SSE 或工具调用异常 | [浏览器在线检测](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=api-doctor-tool-online) |
-| 需要本地或 CI 的脱敏 JSON 报告 | [npx CLI 与 GitHub Action](https://github.com/KKWANG4444/openai-compatible-api-check) |
-| 需要手工冒烟与团队共享变量 | [Postman Collection](https://github.com/KKWANG4444/openai-compatible-api-check/tree/main/postman) |
+| 不确定检测结果意味着什么 | [网站报告判读教程](https://docs.aifast.club/guides/model-check-report-guide/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=api-doctor-report-guide) |
 
-[查看示例报告](https://github.com/KKWANG4444/openai-compatible-api-check/blob/main/examples/report.example.json) · [下载当前 Release](https://github.com/KKWANG4444/openai-compatible-api-check/releases/latest)
+[立即在线检测现有接口](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=api-doctor-primary-check)
 
 ## 一分钟体检
 
