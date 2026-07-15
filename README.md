@@ -21,6 +21,8 @@
 
 [立即在线检测现有接口](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=api-doctor-primary-check)
 
+需要继续接入具体能力时，查看[生图 API](https://docs.aifast.club/models/image-generation-api/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-api-proxy-china-image-api)、[视频生成 API](https://docs.aifast.club/models/video-generation-api/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-api-proxy-china-video-api)、[Embedding / Rerank 与 Dify](https://docs.aifast.club/models/embedding-rerank-dify/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-api-proxy-china-embedding-rerank)或[企业采购与发票检查清单](https://docs.aifast.club/guides/enterprise-ai-api-procurement/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-api-proxy-china-enterprise)。
+
 ## 一分钟体检
 
 ```bash
