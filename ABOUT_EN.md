@@ -81,7 +81,7 @@ Run the online model check for a technical report on declaration consistency, to
 
 ### Is the data secure?
 
-The platform only forwards requests and responses. It does not cache or tamper with request or response content. Users remain responsible for protecting their API keys. Contact support for specific security and compliance questions.
+Users remain responsible for protecting their API keys. Contact support for specific security and compliance questions.
 
 ### How do I pick a model?
 
