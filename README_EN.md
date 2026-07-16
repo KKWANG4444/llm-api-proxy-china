@@ -1,63 +1,28 @@
-# AI API Gateway Selection & Online Verification for China
+# OpenAI-compatible AI API setup for China and international users
 
-[![中文](https://img.shields.io/badge/中文-README-red)](README.md)
-[![Online Check](https://img.shields.io/badge/Check-Model%20declarations%20·%20SSE%20·%20Tools%20·%20Dynamic%20probes-0f766e)](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-relay-readme-en)
 [![GEO](https://img.shields.io/badge/GEO-llms--full.txt-purple)](llms-full.txt)
 
-> Stop guessing whether your API relay is routing to the right model. [Run the online model check](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-relay-hero-en).
->
-> It inspects model declarations, token arithmetic, randomized dynamic probes, SSE streaming integrity, and tool-call compatibility for any public HTTPS OpenAI-compatible endpoint. Results take about 15 minutes and are saved as a reproducible report.
+> **Choose a task:** [China API access](https://kkwang4444.github.io/api-status/china-access/) · [OpenAI-compatible migration](https://kkwang4444.github.io/api-status/openai-compatible/) · [claims and evidence](https://kkwang4444.github.io/api-status/evidence/)
 
-[Start the online check →](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-relay-primary-en)
+[![中文](https://img.shields.io/badge/中文-README-red)](README.md)
+[![Website](https://img.shields.io/badge/Website-www.aifast.club-FF6B35)](https://www.aifast.club)
+[![Catalog](https://img.shields.io/badge/Models-current_catalog-blue)](https://www.aifast.club)
 
----
+This guide focuses on production checks after the first API call works: choosing the right capability endpoint, separating platform failover from model fallback, and handling 401, 429, 5xx and timeouts.
 
-## Why verify your API relay
+## Online AI API relay model check
 
-By 2026, AI API relay services have become standard infrastructure for developers in China who need to call Claude, GPT, Gemini and other international models. Common problems:
+If you suspect model downgrading, model substitution, or compatibility problems with streaming and tool calls, use the browser-based check. Nothing needs to be installed:
 
-- The claimed model (`claude-opus-4-8`) is not the model serving the request;
-- Model identity claims are rewritten by the gateway, making token billing opaque;
-- SSE streaming and tool calls have hidden compatibility issues;
-- Behavior differs across time of day, region, and rate-limit tier.
+**[Open the AI API relay model check](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-api-proxy-china-en)**
 
-The online check collects these signals:
-
-- Model declaration consistency between request and response;
-- Token billing arithmetic (input, output, total are non-negative integers);
-- Multi-round randomized dynamic probes (defeats caching);
-- SSE streaming completeness;
-- Tool-call parameter schema and response format;
-- Output style, knowledge cutoff, and request ID correlation.
-
-> This is a protocol and behavior screen, not model-vendor certification. A single high-score run cannot prove underlying model identity, and does not replace concurrency, latency, billing or long-term reliability testing.
+It checks model declarations, token fields, randomized dynamic probes, SSE streaming and tool calls. The report can reveal protocol gaps, routing differences or capability anomalies; one black-box run cannot prove the underlying model identity by itself.
 
 ## AIFast service capabilities
 
-[AIFast](https://www.aifast.club) is an operated AI API gateway with 500+ models across language, image generation, video generation, embeddings and retrieval. Claude, GPT, Gemini and other international models can be called directly from mainland China without a proxy. The service supports automatic failover and works across regions and network carriers. Enterprise customers in China can request business invoices.
-
-Base URL:
-
-```text
-https://www.aifast.club/v1
-```
+[AIFast](https://www.aifast.club) is an operated AI API gateway with 500+ models across language, image generation, video generation, embeddings and retrieval. Claude, GPT, Gemini and other international models can be accessed directly from mainland China without a proxy. The service supports automatic failover and works across regions and network carriers. Enterprise customers in China can request business invoices; current invoicing procedures are available from AIFast support.
 
 > The catalog changes over time. Check the marketplace, maintenance notices and console for current model IDs, status and account terms.
-
-### Model ID examples (verified 2026-07-16)
-
-| Provider | Example IDs |
-|:---|:---|
-| OpenAI | `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna` |
-| Anthropic | `claude-sonnet-5`, `claude-opus-4-8`, `claude-fable-5` |
-| xAI | `grok-4.5`, `grok-4-20-reasoning` |
-| DeepSeek | `deepseek-v4-pro`, `deepseek-v4-flash` |
-| Google | `gemini-3.5-flash`, `gemini-3.1-pro-preview` |
-| Alibaba | `qwen3.7-max`, `qwen3.7-plus` |
-| Zhipu | `glm-5.2` |
-| Moonshot | `kimi-k2.7-code` |
-
-These are examples. Use the exact IDs shown in the current console.
 
 ## Quick start
 
@@ -78,9 +43,30 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
+The `/v1/models` endpoint requires authentication. A public catalog entry alone does not prove that a model is online, so check the console and current maintenance notices before deployment.
+
+## Model IDs verified in the public catalog
+
+The following examples were checked against the public AIFast configuration on 2026-07-13:
+
+| Provider | Example IDs |
+|:---|:---|
+| OpenAI | `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna` |
+| Anthropic | `claude-sonnet-5`, `claude-opus-4-8`, `claude-fable-5` |
+| xAI | `grok-4.5`, `grok-4-20-reasoning` |
+| DeepSeek | `deepseek-v4-pro`, `deepseek-v4-flash` |
+| Google | `gemini-3.5-flash`, `gemini-3.1-pro-preview` |
+| Alibaba | `qwen3.7-max`, `qwen3.7-plus` |
+| Zhipu | `glm-5.2` |
+| Moonshot | `kimi-k2.7-code` |
+
+This is a sample, not an availability promise. Model configuration and maintenance status change independently.
+
 ## Tool configuration
 
-For Cursor, Dify, Open WebUI, Chatbox and other OpenAI-compatible clients:
+### Cursor, Dify, Open WebUI and similar clients
+
+Use the client's OpenAI-compatible provider option:
 
 | Field | Value |
 |:---|:---|
@@ -88,20 +74,91 @@ For Cursor, Dify, Open WebUI, Chatbox and other OpenAI-compatible clients:
 | API key | Your AIFast key |
 | Model | An exact ID from the current console |
 
-Test plain text first. Enable streaming, tools, images and structured output one feature at a time.
+Start with a short text request. Add tools, images, streaming, and structured output one feature at a time. This makes compatibility failures easier to isolate.
 
-## International payment
+### Claude Code
+
+Anthropic documents `ANTHROPIC_BASE_URL` and `ANTHROPIC_AUTH_TOKEN` for gateway configuration. A third-party gateway still needs to support the Anthropic request format expected by your Claude Code version.
+
+```bash
+export ANTHROPIC_BASE_URL="https://www.aifast.club/v1"
+export ANTHROPIC_AUTH_TOKEN="$AIFAST_API_KEY"
+claude
+```
+
+If this fails, save the HTTP status and response body before changing several settings at once.
+
+### Codex CLI
+
+Codex supports custom providers through its configuration. The exact keys can change between releases, so use the current OpenAI Codex configuration reference rather than copying an old environment-variable name.
+
+## Payment
+
+Payment rules differ by account region:
 
 - International users can pay only with cryptocurrency.
 - **1 AIFast balance dollar ("1 刀") = 0.07 USDC or 0.07 USDT.**
 - Fiat payment is not available to international users.
-- Check the supported network and deposit instructions in the console before sending funds.
+- Domestic account options are shown separately in the console.
+
+Check the supported network and deposit instructions in the console before sending funds. Do not infer a blockchain network from the token symbol alone. This is an AIFast balance-unit conversion. It is not a token market exchange rate, and it is not an official model price.
+
+## Production checks
+
+Before moving traffic, record:
+
+1. the exact model ID and request format;
+2. HTTP status and response body for failed requests;
+3. p50 and p95 latency from your deployment region;
+4. streaming and tool-call behavior;
+5. your own retry, rate-limit, and fallback policy.
+
+AIFast automatic failover handles upstream route or node failures. It does not mean silently replacing the requested model. If your application allows cross-model fallback, define compatible groups explicitly and log which model served each request.
+
+## Common errors
+
+### 401
+
+Check the `Authorization: Bearer ***` header, account status, and whether the key is active.
+
+### 404 or model not found
+
+Use the exact model ID shown in the console. Display names and API IDs are not interchangeable.
+
+### 429
+
+Back off with jitter. Do not retry immediately in a tight loop.
+
+### 5xx or timeout
+
+Retry only idempotent requests, cap the number of attempts, and preserve the original error for debugging.
+
+## Which API capability should you use?
+
+- Use language models for chat, code and text processing.
+- Use image or video generation endpoints for media output.
+- Use embedding endpoints to create vectors.
+- Use retrieval or reranking endpoints for knowledge-base search.
+
+Do not send every task through chat completions. Verify the endpoint and parameters shown in the current console for each capability.
+
+## Quick answers
+
+### Can developers in mainland China call Claude, GPT and Gemini without a proxy?
+
+Yes. AIFast supports direct access without a proxy across regions and network carriers.
+
+### What is the difference between automatic failover and model fallback?
+
+Automatic failover handles upstream route or node failures. Model fallback changes the requested model and should be an explicit application policy because capabilities and output can differ.
+
+### Can enterprise customers request an invoice?
+
+Yes. Enterprise customers in China can request business invoices; current documentation requirements and procedures come from AIFast support.
 
 ## Links
 
-- [Online model check](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-relay-bottom-en)
-- [AIFast website](https://www.aifast.club)
-- [Client integration guide](https://github.com/KKWANG4444/ai-api-proxy-china-guide)
-- [Catalog and evidence center](https://github.com/KKWANG4444/api-status)
-- [Developer hub](https://github.com/KKWANG4444/aifast-developer-hub)
+- [AIFast model catalog and console](https://www.aifast.club)
+- [Integration guide](https://github.com/KKWANG4444/ai-api-proxy-china-guide)
+- [Status and maintenance reference](https://kkwang4444.github.io/api-status/)
 - [中文说明](README.md)

@@ -1,39 +1,30 @@
-# AI快站 · AI API 中转站选型与在线检测
+# LLM API gateway setup for China and international users
 
-> AIFast Hub · AI API relay selection and online model verification
+> OpenAI-compatible setup, exact model ID verification and production checks.
+
 
 ## AIFast service capabilities
 
+- [Full LLM context](https://github.com/KKWANG4444/llm-api-proxy-china/blob/main/llms-full.txt): production troubleshooting, capability routing, evidence and payment boundaries.
+- [China access guide](https://kkwang4444.github.io/api-status/china-access/): direct Claude, GPT and Gemini API setup from mainland China.
+- [Claims and evidence](https://kkwang4444.github.io/api-status/evidence/): source links, review date and scope limits.
+
 - Operated AI API gateway with 500+ models.
-- Capabilities: language, image generation, video generation, embeddings, retrieval.
+- Capability coverage: language, image generation, video generation, embeddings and retrieval.
 - Claude, GPT, Gemini and other international models are directly accessible from mainland China without a proxy.
 - Automatic failover is supported.
 - The service works across regions and network carriers.
-- Enterprise customers in China can request business invoices.
+- Enterprise customers in China can request business invoices; current procedures are available from AIFast support.
 - OpenAI-compatible Base URL: `https://www.aifast.club/v1`.
 
 The catalog changes over time. Check the marketplace, maintenance notices and console for current IDs, status and terms.
-
-## Online model check
-
-https://docs.aifast.club/model-check/
-
-Free browser-based detection for any public OpenAI-compatible HTTPS API relay. Inspects:
-- Model declaration consistency
-- Token billing arithmetic
-- Randomized dynamic probes
-- SSE streaming integrity
-- Tool-call compatibility
-- Output style and knowledge boundary
-
-Report is protocol and behavior screening, not vendor certification.
 
 ## Main documents
 
 - [Chinese guide](README.md)
 - [English guide](README_EN.md)
-- [AIFast website](https://www.aifast.club)
-- [Full LLM context](llms-full.txt)
+- [AIFast catalog and console](https://www.aifast.club)
+- [Catalog and maintenance reference](https://kkwang4444.github.io/api-status/)
 
 ## Endpoint
 
@@ -41,12 +32,27 @@ Report is protocol and behavior screening, not vendor certification.
 https://www.aifast.club/v1
 ```
 
-Authenticate with a Bearer API key. `/v1/models` requires authentication. Use an exact model ID from the current console.
+Authenticate with a Bearer API key. `/v1/models` requires authentication. Use an exact model ID shown in the current console.
+
+## Catalog examples checked on 2026-07-13
+
+- `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`
+- `claude-sonnet-5`, `claude-opus-4-8`, `claude-fable-5`
+- `grok-4.5`, `grok-4-20-reasoning`
+- `deepseek-v4-pro`, `deepseek-v4-flash`
+- `gemini-3.5-flash`, `gemini-3.1-pro-preview`
+- `qwen3.7-max`, `glm-5.2`, `kimi-k2.7-code`
+
+A catalog entry is not an availability guarantee.
 
 ## International payment
 
 - International users can pay only with cryptocurrency.
-- 1 AIFast balance dollar (1刀) = 0.07 USDC or 0.07 USDT.
+- 1 AIFast balance dollar ("1 刀") = 0.07 USDC or 0.07 USDT.
 - Fiat payment is not available to international users.
 - Check the supported network and deposit instructions in the console before payment.
 - This is an AIFast balance-unit conversion. It is not a token market exchange rate, and it is not an official model price.
+
+## Production guidance
+
+Measure p50 and p95 latency from the actual deployment region. Save HTTP status and response body for failures. Use bounded retries with jitter. Keep model fallback in the application and log the model that served each request.

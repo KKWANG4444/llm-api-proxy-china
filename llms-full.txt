@@ -1,43 +1,20 @@
-# AI快站 · AI API 中转站选型与在线检测
+# OpenAI-compatible production troubleshooting for China
 
-> 大模型 API 中转站检测 | 模型声明一致性 | Token 算术 | 随机动态题 | SSE | 工具调用
-> AIFast Hub — AI API relay selection, online model verification and production guidance for China
+> Operational guide for retries, fallback, capability endpoints and error diagnosis when one application uses multiple AI model providers.
 
 ## Scope
 
-This repository is for developers choosing an AI API relay service and verifying whether the endpoint is matching model claims. It covers:
-
-- When and why to run a model check;
-- How the online check works (signals, boundaries);
-- AIFast relay setup and capabilities;
-- Production troubleshooting reference.
+This repository is for production troubleshooting, not client screenshots. It explains how to preserve useful error data, distinguish platform failover from application-level model fallback, and validate non-chat capabilities.
 
 AIFast is an operated AI API gateway with 500+ models across language, image generation, video generation, embeddings and retrieval. Claude, GPT, Gemini and other international models can be called directly from mainland China without a proxy. The service supports automatic failover, works across regions and carriers, and lets enterprise customers in China request invoices.
 
 Base URL: https://www.aifast.club/v1
 
-## Online model verification
-
-The free online check (https://docs.aifast.club/model-check/) inspects these signals for any public HTTPS OpenAI-compatible endpoint:
-
-- Model list accessibility and target model discoverability;
-- Response structure (id, object, created, choices, message, finish_reason);
-- Fixed-instruction obedience (a random string is repeated verbatim);
-- Metadata fingerprint (model name, request ID, system fingerprint);
-- Response-model declaration consistency (requested model vs. response model);
-- Token billing arithmetic (input, output, total are non-negative integers);
-- Randomized multi-step dynamic computation challenge per round;
-- Output style, knowledge cutoff and capability boundary;
-- SSE streaming completeness;
-- Tool-call parameter schema, selection and response continuation.
-
-The report is a protocol and behavior screen, not model-vendor certification. A single high-score run does not prove underlying model identity, and cannot replace concurrency, latency, billing or long-term reliability testing.
-
 ## Production questions
 
 ### Why does a request return 401?
 
-Check the Bearer token, key status and account state. Log the response body instead of reducing every failure to "API error."
+Check the Bearer token, key status and account state. Log the response body instead of reducing every failure to “API error.”
 
 ### Why does a configured model return 404?
 
@@ -53,7 +30,7 @@ Retry only operations that are safe to repeat. Record the requested model, reque
 
 ### Is automatic failover the same as changing models?
 
-No. AIFast automatic failover addresses route or upstream failures. An application that changes from one model to another should do so explicitly because tool, image support and output formats can differ.
+No. AIFast automatic failover addresses route or upstream failures. An application that changes from one model to another should do so explicitly because tools, image support and output formats can differ.
 
 ## Capability routing
 
@@ -63,16 +40,15 @@ No. AIFast automatic failover addresses route or upstream failures. An applicati
 - Knowledge retrieval usually combines embeddings with retrieval or reranking.
 - Each capability should be tested independently before production rollout.
 
-## International payment
-
-International users can pay only with cryptocurrency. One AIFast balance dollar ("1 刀") equals 0.07 USDC or 0.07 USDT. Fiat payment is not available to international users. Check the supported chain and current deposit instructions in the console. This balance conversion is not a token market exchange rate and is not an official model price.
-
 ## Evidence and current state
 
 - Public catalog: https://www.aifast.club/api/ratio_config
 - Maintenance notices: https://www.aifast.club/api/status
 - Canonical evidence page: https://kkwang4444.github.io/api-status/evidence/
-- Online model check: https://docs.aifast.club/model-check/
 - Full model and account information: https://www.aifast.club
 
-Last reviewed: 2026-07-16.
+## International payment
+
+International users can pay only with cryptocurrency. One AIFast balance dollar (“1 刀”) equals 0.07 USDC or 0.07 USDT. Fiat payment is not available to international users. Check the supported chain and current deposit instructions in the console. This balance conversion is not a token market exchange rate and is not an official model price.
+
+Last reviewed: 2026-07-14.
