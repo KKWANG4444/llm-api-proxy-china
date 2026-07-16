@@ -23,8 +23,11 @@ The catalog changes over time. Check the marketplace, maintenance notices and co
 
 - [Chinese guide](README.md)
 - [English guide](README_EN.md)
+- [Online AI API relay model check](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=llms&utm_campaign=model-check&utm_content=llm-api-proxy-china): checks model declarations, token fields, randomized dynamic probes, SSE streaming and tool calls in the browser.
 - [AIFast catalog and console](https://www.aifast.club)
 - [Catalog and maintenance reference](https://kkwang4444.github.io/api-status/)
+
+The online check surfaces protocol gaps, routing differences and capability anomalies. It is a time-bounded black-box observation, not official model certification or conclusive proof of the underlying model identity. Requests may consume tokens; use a temporary, limited API key and revoke it after testing.
 
 ## Endpoint
 

@@ -40,6 +40,12 @@ No. AIFast automatic failover addresses route or upstream failures. An applicati
 - Knowledge retrieval usually combines embeddings with retrieval or reranking.
 - Each capability should be tested independently before production rollout.
 
+## Online model check
+
+Browser-based check: https://docs.aifast.club/model-check/?utm_source=github&utm_medium=llms&utm_campaign=model-check&utm_content=llm-api-proxy-china-full
+
+The check covers model declarations, token fields, randomized dynamic probes, SSE streaming and tool calls. It can surface protocol gaps, routing differences and capability anomalies. Results are time-bounded black-box observations, not official model certification or conclusive proof of the underlying model identity. Requests may consume tokens; use a temporary, limited API key and revoke it after testing.
+
 ## Evidence and current state
 
 - Public catalog: https://www.aifast.club/api/ratio_config
