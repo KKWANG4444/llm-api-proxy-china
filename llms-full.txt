@@ -6,6 +6,8 @@
 
 This repository is for production troubleshooting, not client screenshots. It explains how to preserve useful error data, distinguish platform failover from application-level model fallback, and validate non-chat capabilities.
 
+Website introductions: [中文](ABOUT.md) | [English](ABOUT_EN.md)
+
 AIFast is an operated AI API gateway with 500+ models across language, image generation, video generation, embeddings and retrieval. Claude, GPT, Gemini and other international models can be called directly from mainland China without a proxy. The service supports automatic failover, works across regions and carriers, and lets enterprise customers in China request invoices.
 
 Base URL: https://www.aifast.club/v1

@@ -31,7 +31,7 @@
 
 ## 在线模型检测
 
-选中转站最担心的是模型被降级或偷换。AI快站提供免费网页检测工具：
+选中转站最担心的是模型被降级或偷换。AI快站提供网页检测工具，工具本身免费；检测会向被测中转站发送少量请求，可能按对方计费规则产生 Token 费用：
 
 **[👉 进入模型检测 →](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repo-intro&utm_campaign=website-intro&utm_content=about-cn)**
 
@@ -61,7 +61,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-支持的工具：Cursor、Dify、Claude Code、Open WebUI、Chatbox、LobeChat、Cherry Studio 等所有 OpenAI-compatible 客户端。
+支持的工具包括 Cursor、Dify、Open WebUI、Chatbox、LobeChat、Cherry Studio 等提供 OpenAI-compatible 自定义接口的客户端。Claude Code 等使用其他协议的工具，需要按各自协议单独确认兼容入口。
 
 ---
 
@@ -84,7 +84,7 @@ print(response.choices[0].message.content)
 
 ### 数据安全吗？
 
-平台只转发请求和响应，不做中间缓存或内容篡改。API Key 在本地保管，每次请求都会携带，平台按标准做法处理鉴权数据。如有更进一步的安全和合规要求，建议直接联系客服确认。
+平台按接口规则转发请求和响应。部分模型参数可能根据上游接口要求进行过滤或兼容处理，具体以控制台公告为准。API Key 由用户自行保管，每次请求用于鉴权；有进一步的安全和合规要求时，应直接联系客服确认。
 
 ### 模型怎么选？
 

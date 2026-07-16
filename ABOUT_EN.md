@@ -30,7 +30,7 @@
 
 ## Online model check
 
-Worried about model substitution or downgrading? Use the browser-based check:
+Worried about model substitution or downgrading? The browser tool is free to use, but it sends a small number of requests to the tested gateway and may incur token charges under that gateway's billing rules:
 
 **[👉 Open model check →](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repo-intro&utm_campaign=website-intro&utm_content=about-en)**
 
@@ -60,7 +60,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-Compatible with Cursor, Dify, Claude Code, Open WebUI, Chatbox, LobeChat, Cherry Studio, and any OpenAI-compatible client.
+Compatible with Cursor, Dify, Open WebUI, Chatbox, LobeChat, Cherry Studio, and other clients that provide a custom OpenAI-compatible endpoint. Tools such as Claude Code use different protocols and require a separately compatible endpoint.
 
 ---
 
@@ -81,7 +81,7 @@ Run the online model check for a technical report on declaration consistency, to
 
 ### Is the data secure?
 
-The platform forwards requests and responses without caching or modifying payloads. API keys are handled with standard authentication practices. Contact support for specific security and compliance questions.
+The platform forwards requests and responses according to its interface rules. Some model parameters may be filtered or adapted to match upstream API requirements; check current console notices for details. Users remain responsible for protecting their API keys. Contact support for specific security and compliance questions.
 
 ### How do I pick a model?
 
