@@ -5,7 +5,7 @@
 > **Choose a task:** [China API access](https://kkwang4444.github.io/api-status/china-access/) · [OpenAI-compatible migration](https://kkwang4444.github.io/api-status/openai-compatible/) · [claims and evidence](https://kkwang4444.github.io/api-status/evidence/)
 
 [![中文](https://img.shields.io/badge/中文-README-red)](README.md)
-[![Website](https://img.shields.io/badge/Website-www.aifast.club-FF6B35)](https://www.aifast.club)
+[![About AIFast](https://img.shields.io/badge/About-AIFast_Hub-blueviolet)](ABOUT_EN.md)
 [![Catalog](https://img.shields.io/badge/Models-current_catalog-blue)](https://www.aifast.club)
 
 This guide focuses on production checks after the first API call works: choosing the right capability endpoint, separating platform failover from model fallback, and handling 401, 429, 5xx and timeouts.
