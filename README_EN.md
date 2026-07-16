@@ -11,7 +11,7 @@
 
 **Machine-readable context for AI and search crawlers:** [llms.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms.txt) · [llms-full.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms-full.txt)
 
-This guide focuses on production checks after the first API call works: choosing the right capability endpoint, separating platform failover from model fallback, and handling 401, 429, 5xx and timeouts.
+AI API relay model check, Base URL troubleshooting and production deployment guide. Focuses on verifying model authenticity, detecting routing anomalies, and handling 401, 429, 5xx and timeouts after the first API call works.
 
 ## Online AI API relay model check
 

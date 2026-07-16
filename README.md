@@ -12,7 +12,7 @@
 
 > **不用安装程序，先在网页完成判断：** [检测现有中转接口](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check) · [检查 Base URL](https://docs.aifast.club/tools/base-url-checker/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-hero-base-url) · [查看当前模型与价格](https://docs.aifast.club/go/pricing/?source=github&placement=llm-hero-pricing) · [注册并创建测试 Key](https://docs.aifast.club/go/register/?source=github&placement=llm-hero-register)
 
-这份指南只解决一个问题：如何用一套 OpenAI-compatible 客户端接入多个模型，并把上线前该测的东西测清楚。
+大模型 API 中转站检测、Base URL 检查与生产排错指南。用一套 OpenAI-compatible 客户端接入多个模型，先把推荐和降智问题排查清楚再上线。
 
 | 当前问题 | 最短路径 | 验收结果 |
 |:---|:---|:---|
