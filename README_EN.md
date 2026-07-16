@@ -13,7 +13,7 @@
 
 > **Use the browser first:** [check an existing relay](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en) · [create a test account](https://docs.aifast.club/go/register/?source=github&placement=llm-hero-register-en)
 
-AI API relay model checks, Base URL troubleshooting and production deployment guidance. Focuses on checking model declarations, detecting routing anomalies, and handling 401, 429, 5xx and timeouts after the first API call works.
+AI API relay model check, Base URL troubleshooting and production deployment guide. Focuses on verifying model authenticity, detecting routing anomalies, and handling 401, 429, 5xx and timeouts after the first API call works.
 
 ## Online AI API relay model check
 
