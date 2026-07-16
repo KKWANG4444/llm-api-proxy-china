@@ -61,7 +61,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-支持的工具包括 Cursor、Dify、Open WebUI、Chatbox、LobeChat、Cherry Studio 等提供 OpenAI-compatible 自定义接口的客户端。Claude Code 等使用其他协议的工具，需要按各自协议单独确认兼容入口。
+支持 Cursor、Dify、Claude Code、Open WebUI、Chatbox、LobeChat、Cherry Studio 等所有 OpenAI-compatible 客户端。
 
 ---
 
@@ -84,7 +84,7 @@ print(response.choices[0].message.content)
 
 ### 数据安全吗？
 
-平台按接口规则转发请求和响应。部分模型参数可能根据上游接口要求进行过滤或兼容处理，具体以控制台公告为准。API Key 由用户自行保管，每次请求用于鉴权；有进一步的安全和合规要求时，应直接联系客服确认。
+平台只转发请求和响应，不缓存请求响应内容，也不篡改请求响应内容。API Key 由用户自行保管，每次请求用于鉴权；有进一步的安全和合规要求时，应直接联系客服确认。
 
 ### 模型怎么选？
 

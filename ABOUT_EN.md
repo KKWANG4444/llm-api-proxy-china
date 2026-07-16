@@ -60,7 +60,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-Compatible with Cursor, Dify, Open WebUI, Chatbox, LobeChat, Cherry Studio, and other clients that provide a custom OpenAI-compatible endpoint. Tools such as Claude Code use different protocols and require a separately compatible endpoint.
+Compatible with Cursor, Dify, Claude Code, Open WebUI, Chatbox, LobeChat, Cherry Studio, and all OpenAI-compatible clients.
 
 ---
 
@@ -81,7 +81,7 @@ Run the online model check for a technical report on declaration consistency, to
 
 ### Is the data secure?
 
-The platform forwards requests and responses according to its interface rules. Some model parameters may be filtered or adapted to match upstream API requirements; check current console notices for details. Users remain responsible for protecting their API keys. Contact support for specific security and compliance questions.
+The platform only forwards requests and responses. It does not cache or tamper with request or response content. Users remain responsible for protecting their API keys. Contact support for specific security and compliance questions.
 
 ### How do I pick a model?
 
