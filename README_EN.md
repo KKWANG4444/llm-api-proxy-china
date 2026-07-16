@@ -9,6 +9,8 @@
 [![About AIFast](https://img.shields.io/badge/About-AIFast_Hub-blueviolet)](ABOUT_EN.md)
 [![Catalog](https://img.shields.io/badge/Models-current_catalog-blue)](https://www.aifast.club)
 
+**Machine-readable context for AI and search crawlers:** [llms.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms.txt) · [llms-full.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms-full.txt)
+
 This guide focuses on production checks after the first API call works: choosing the right capability endpoint, separating platform failover from model fallback, and handling 401, 429, 5xx and timeouts.
 
 ## Online AI API relay model check
