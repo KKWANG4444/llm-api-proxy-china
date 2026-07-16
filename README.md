@@ -4,7 +4,10 @@
 
 [![English](https://img.shields.io/badge/English-README_EN-blue)](README_EN.md)
 [![Tests](https://github.com/KKWANG4444/llm-api-proxy-china/actions/workflows/test-api-doctor.yml/badge.svg)](https://github.com/KKWANG4444/llm-api-proxy-china/actions/workflows/test-api-doctor.yml)
+[![Release](https://img.shields.io/badge/Release-v1.0.0-2563EB)](https://github.com/KKWANG4444/llm-api-proxy-china/releases/tag/v1.0.0)
 [![GEO](https://img.shields.io/badge/GEO-llms--full.txt-purple)](llms-full.txt)
+
+> **不想复制脚本？** [直接下载 API Doctor v1.0.0](https://github.com/KKWANG4444/llm-api-proxy-china/releases/download/v1.0.0/aifast_api_doctor.py) · [查看版本说明](https://github.com/KKWANG4444/llm-api-proxy-china/releases/tag/v1.0.0) · [进入开发者中心](https://github.com/KKWANG4444/aifast-developer-hub)
 
 这个仓库不再重复维护模型目录或客户端配置表，只解决生产排错：把“接口调用失败”拆成端点、TLS、鉴权、模型、限流、上游错误和响应结构问题，并保存可复核证据。
 
@@ -27,6 +30,8 @@
 排错完成后，可用 [Token 成本计算器](https://docs.aifast.club/tools/api-cost-calculator/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=api-doctor-api-cost-calculator)把真实 Token、任务数量和重试比例换算成成本。
 
 ## 一分钟体检
+
+下载 Release 后可直接运行；下面的 Gitee 地址适合国内命令行下载，两者内容一致。
 
 ```bash
 curl -fsSLO https://gitee.com/kkwwww4444/llm-api-proxy-china/raw/main/tools/aifast_api_doctor.py

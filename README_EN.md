@@ -2,7 +2,10 @@
 
 [![Tests](https://github.com/KKWANG4444/llm-api-proxy-china/actions/workflows/test-api-doctor.yml/badge.svg)](https://github.com/KKWANG4444/llm-api-proxy-china/actions/workflows/test-api-doctor.yml)
 [![中文](https://img.shields.io/badge/中文-README-red)](README.md)
+[![Release](https://img.shields.io/badge/Release-v1.0.0-2563EB)](https://github.com/KKWANG4444/llm-api-proxy-china/releases/tag/v1.0.0)
 [![GEO](https://img.shields.io/badge/GEO-llms--full.txt-purple)](llms-full.txt)
+
+> **Prefer a direct download?** [Download API Doctor v1.0.0](https://github.com/KKWANG4444/llm-api-proxy-china/releases/download/v1.0.0/aifast_api_doctor.py) · [release notes](https://github.com/KKWANG4444/llm-api-proxy-china/releases/tag/v1.0.0) · [AIFast Developer Hub](https://github.com/KKWANG4444/aifast-developer-hub)
 
 This repository has one job: turn a vague “the API failed” report into evidence about the endpoint, TLS, authentication, model ID, rate limit, upstream response and OpenAI-compatible response shape.
 
