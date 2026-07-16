@@ -15,6 +15,7 @@
 | 你的问题 | 推荐入口 |
 |:---|:---|
 | 不确定应先测试、迁移工具、接入模型还是准备企业采购 | [按当前需求开始](https://docs.aifast.club/start/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-api-proxy-china-decision-start) |
+| 只想检查 `/v1/v1`、404 或客户端最终请求路径 | [Base URL 检查器](https://docs.aifast.club/tools/base-url-checker/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=api-doctor-base-url-checker) |
 | 401、429、5xx、超时、Base URL 或模型 ID 错误 | 继续使用本仓库的 API Doctor |
 | 怀疑模型声明、Token、动态题、SSE 或工具调用异常 | [浏览器在线检测](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=api-doctor-tool-online) |
 | 不确定检测结果意味着什么 | [网站报告判读教程](https://docs.aifast.club/guides/model-check-report-guide/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=api-doctor-report-guide) |
@@ -22,6 +23,8 @@
 [立即在线检测现有接口](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=api-doctor-primary-check)
 
 需要继续接入具体能力时，查看[生图 API](https://docs.aifast.club/models/image-generation-api/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-api-proxy-china-image-api)、[视频生成 API](https://docs.aifast.club/models/video-generation-api/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-api-proxy-china-video-api)、[Embedding / Rerank 与 Dify](https://docs.aifast.club/models/embedding-rerank-dify/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-api-proxy-china-embedding-rerank)或[企业采购与发票检查清单](https://docs.aifast.club/guides/enterprise-ai-api-procurement/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-api-proxy-china-enterprise)。
+
+排错完成后，可用 [Token 成本计算器](https://docs.aifast.club/tools/api-cost-calculator/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=api-doctor-api-cost-calculator)把真实 Token、任务数量和重试比例换算成成本。
 
 ## 一分钟体检
 
