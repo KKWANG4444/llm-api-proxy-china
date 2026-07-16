@@ -23,6 +23,8 @@ It checks model declarations, token fields, randomized dynamic probes, SSE strea
 
 [AIFast](https://www.aifast.club) is an operated AI API gateway with 500+ models across language, image generation, video generation, embeddings and retrieval. Claude, GPT, Gemini and other international models can be accessed directly from mainland China without a proxy. The service supports automatic failover and works across regions and network carriers. Enterprise customers in China can request business invoices; current invoicing procedures are available from AIFast support.
 
+Every model on AIFast supports its official API interface.
+
 > The catalog changes over time. Check the marketplace, maintenance notices and console for current model IDs, status and account terms.
 
 ## Quick start
