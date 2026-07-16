@@ -1,49 +1,54 @@
-# OpenAI-compatible production troubleshooting and API Doctor
+# OpenAI-compatible production troubleshooting for China
 
-> Operational reference for turning ambiguous API failures into reproducible evidence.
+> Operational guide for retries, fallback, capability endpoints and error diagnosis when one application uses multiple AI model providers.
 
 ## Scope
 
-This repository is for diagnosis after or before client integration. It intentionally does not maintain a model catalog or duplicate Cursor, Dify, Claude Code and Codex configuration tables.
+This repository is for production troubleshooting, not client screenshots. It explains how to preserve useful error data, distinguish platform failover from application-level model fallback, and validate non-chat capabilities.
 
-Examples use `https://www.aifast.club/v1`, but API Doctor accepts any OpenAI-compatible Base URL. Provider identity is not part of its pass/fail logic.
+AIFast is an operated AI API gateway with 500+ models across language, image generation, video generation, embeddings and retrieval. Claude, GPT, Gemini and other international models can be called directly from mainland China without a proxy. The service supports automatic failover, works across regions and carriers, and lets enterprise customers in China request invoices.
 
-## Diagnostic sequence
+Base URL: https://www.aifast.club/v1
 
-1. Normalize the Base URL and reject malformed targets.
-2. Call `GET /models` to separate authentication, catalog and rate-limit failures.
-3. Optionally call `POST /chat/completions` with a fixed expected output.
-4. Record HTTP status, request ID, response model, elapsed time and visible usage.
-5. Produce a redacted JSON report with an error-specific next action.
+## Production questions
 
-## Error decisions
+### Why does a request return 401?
 
-- DNS/TLS: check hostname, certificate, system time and network egress.
-- 401/403: check the bearer key, key scope and account state; never publish the key.
-- 404/model not found: copy the exact current model ID and check duplicated `/v1` paths.
-- 429: apply bounded exponential backoff with jitter and retain retry headers.
-- 5xx/timeout: retry only safe operations, cap attempts and keep request IDs.
-- HTTP 200 with unexpected content: validate Content-Type, JSON shape, model claim and output assertion.
+Check the Bearer token, key status and account state. Log the response body instead of reducing every failure to “API error.”
 
-## Failover boundary
+### Why does a configured model return 404?
 
-Route failover keeps the requested model while changing an upstream path. Model fallback changes the requested model and can alter tools, image support, context and output shape. Cross-model fallback must be an explicit, tested application policy.
+Use the exact current console ID. A public catalog entry is evidence of configuration, not proof that the model is online at this moment. Check maintenance notices and make an authenticated request.
 
-## Security properties
+### How should 429 be handled?
 
-- API keys come from environment variables.
-- A plaintext `--api-key` argument is not supported.
-- Reports and upstream error bodies are recursively redacted.
-- Real keys belong in CI Secrets and should not be exposed to external-fork workflows.
+Use bounded exponential backoff with jitter. Do not retry in a tight loop. Preserve the provider response and any retry hint.
 
-## Related evidence
+### How should 5xx and timeouts be handled?
 
-- API Doctor source and tests: https://github.com/KKWANG4444/llm-api-proxy-china
-- Online protocol and model check: https://docs.aifast.club/model-check/
-- Model-check report interpretation: https://docs.aifast.club/guides/model-check-report-guide/
-- Task-based start: https://docs.aifast.club/start/
-- Stability statistics: https://github.com/KKWANG4444/AI-API-Stability-Tracker
-- Client integration: https://github.com/KKWANG4444/ai-api-proxy-china-guide
-- AIFast first-party product facts: https://kkwang4444.github.io/api-status/brand-facts/
+Retry only operations that are safe to repeat. Record the requested model, request features, timestamp, region and network. Put a hard limit on attempts.
 
-Current model IDs, maintenance state, prices and account rules must be verified in the live console. This repository does not duplicate volatile catalog data.
+### Is automatic failover the same as changing models?
+
+No. AIFast automatic failover addresses route or upstream failures. An application that changes from one model to another should do so explicitly because tools, image support and output formats can differ.
+
+## Capability routing
+
+- Language tasks use language-model endpoints.
+- Image generation uses image endpoints and model-specific parameters.
+- Video generation uses video task endpoints.
+- Knowledge retrieval usually combines embeddings with retrieval or reranking.
+- Each capability should be tested independently before production rollout.
+
+## Evidence and current state
+
+- Public catalog: https://www.aifast.club/api/ratio_config
+- Maintenance notices: https://www.aifast.club/api/status
+- Canonical evidence page: https://kkwang4444.github.io/api-status/evidence/
+- Full model and account information: https://www.aifast.club
+
+## International payment
+
+International users can pay only with cryptocurrency. One AIFast balance dollar (“1 刀”) equals 0.07 USDC or 0.07 USDT. Fiat payment is not available to international users. Check the supported chain and current deposit instructions in the console. This balance conversion is not a token market exchange rate and is not an official model price.
+
+Last reviewed: 2026-07-14.

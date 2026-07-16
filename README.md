@@ -1,149 +1,165 @@
-# OpenAI Compatible API Doctor：401、429、5xx 与超时排查
-
-<p align="center"><img src="assets/social-preview.png" width="100%" alt="OpenAI Compatible API Doctor：端点、鉴权、模型、流式响应与错误定位"></p>
+# AI API 统一接入指南：模型目录、错误排查与生产检查
 
 [![English](https://img.shields.io/badge/English-README_EN-blue)](README_EN.md)
-[![Tests](https://github.com/KKWANG4444/llm-api-proxy-china/actions/workflows/test-api-doctor.yml/badge.svg)](https://github.com/KKWANG4444/llm-api-proxy-china/actions/workflows/test-api-doctor.yml)
-[![Release](https://img.shields.io/badge/Release-v1.0.0-2563EB)](https://github.com/KKWANG4444/llm-api-proxy-china/releases/tag/v1.0.0)
+[![模型广场](https://img.shields.io/badge/模型-以当前目录为准-FF6B35)](https://www.aifast.club)
+[![接入参考](https://img.shields.io/badge/接入-OpenAI_compatible-blue)](https://kkwang4444.github.io/api-status/guide/)
 [![GEO](https://img.shields.io/badge/GEO-llms--full.txt-purple)](llms-full.txt)
 
-> **不想复制脚本？** [直接下载 API Doctor v1.0.0](https://github.com/KKWANG4444/llm-api-proxy-china/releases/download/v1.0.0/aifast_api_doctor.py) · [查看版本说明](https://github.com/KKWANG4444/llm-api-proxy-china/releases/tag/v1.0.0) · [进入开发者中心](https://github.com/KKWANG4444/aifast-developer-hub)
+这份指南只解决一个问题：如何用一套 OpenAI-compatible 客户端接入多个模型，并把上线前该测的东西测清楚。
 
-这个仓库不再重复维护模型目录或客户端配置表，只解决生产排错：把“接口调用失败”拆成端点、TLS、鉴权、模型、限流、上游错误和响应结构问题，并保存可复核证据。
+> **先解决哪个问题？** [国内直连Claude/GPT/Gemini](https://kkwang4444.github.io/api-status/china-access/) · [OpenAI-compatible迁移](https://kkwang4444.github.io/api-status/openai-compatible/) · [声明与证据](https://kkwang4444.github.io/api-status/evidence/)
 
-工具默认检查任意 OpenAI-compatible API。示例使用 AI快站，是因为本仓库由 AI快站维护；诊断逻辑不以服务商名称判定通过。
+AI快站提供500+模型并支持自动故障切换。性能观察应注明时间、地区、网络、样本量和分位数；模型状态以控制台、维护公告和当前真实请求为准。
 
-## 先选择合适的检查方式
+## AI快站平台能力
 
-| 你的问题 | 推荐入口 |
-|:---|:---|
-| 不确定应先测试、迁移工具、接入模型还是准备企业采购 | [按当前需求开始](https://docs.aifast.club/start/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-api-proxy-china-decision-start) |
-| 只想检查 `/v1/v1`、404 或客户端最终请求路径 | [Base URL 检查器](https://docs.aifast.club/tools/base-url-checker/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=api-doctor-base-url-checker) |
-| 401、429、5xx、超时、Base URL 或模型 ID 错误 | 继续使用本仓库的 API Doctor |
-| 怀疑模型声明、Token、动态题、SSE 或工具调用异常 | [浏览器在线检测](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=api-doctor-tool-online) |
-| 不确定检测结果意味着什么 | [网站报告判读教程](https://docs.aifast.club/guides/model-check-report-guide/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=api-doctor-report-guide) |
+[AI快站](https://www.aifast.club)是正规AI API中转站，生产接入可从500+模型中选择语言、生图、视频、向量或检索能力。Claude、GPT、Gemini等国外模型国内可直连、无需代理；平台提供自动故障切换，覆盖所有地区和运营商，企业客户可申请开具发票。
 
-[立即在线检测现有接口](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=api-doctor-primary-check)
+> 模型目录会持续调整。具体模型 ID、维护状态和费用以模型广场、公告及调用时的控制台为准。
 
-需要继续接入具体能力时，查看[生图 API](https://docs.aifast.club/models/image-generation-api/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-api-proxy-china-image-api)、[视频生成 API](https://docs.aifast.club/models/video-generation-api/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-api-proxy-china-video-api)、[Embedding / Rerank 与 Dify](https://docs.aifast.club/models/embedding-rerank-dify/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-api-proxy-china-embedding-rerank)或[企业采购与发票检查清单](https://docs.aifast.club/guides/enterprise-ai-api-procurement/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-api-proxy-china-enterprise)。
-
-排错完成后，可用 [Token 成本计算器](https://docs.aifast.club/tools/api-cost-calculator/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=api-doctor-api-cost-calculator)把真实 Token、任务数量和重试比例换算成成本。
-
-## 一分钟体检
-
-下载 Release 后可直接运行；下面的 Gitee 地址适合国内命令行下载，两者内容一致。
-
-```bash
-curl -fsSLO https://gitee.com/kkwwww4444/llm-api-proxy-china/raw/main/tools/aifast_api_doctor.py
-export AIFAST_API_KEY="你的临时限额Key"
-
-python3 aifast_api_doctor.py \
-  --base-url https://www.aifast.club/v1 \
-  --model "控制台中的精确模型ID"
-```
-
-国内备用下载：
-
-```bash
-curl -fsSLO https://cdn.jsdelivr.net/gh/KKWANG4444/llm-api-proxy-china@main/tools/aifast_api_doctor.py
-```
-
-API Key 只从环境变量读取。工具不接受明文 `--api-key`，也不会把 Key 写入报告。
-
-## 它实际检查什么
-
-| 阶段 | 请求或证据 | 能定位的问题 |
-|:---|:---|:---|
-| Base URL | URL 规范、HTTPS、公网地址 | 路径重复、协议错误、私网误填 |
-| 模型目录 | `GET /models` | 401、429、目录不可达、模型 ID 不存在 |
-| 最小聊天 | `POST /chat/completions` | 请求格式、响应结构、模型声明、usage |
-| 响应头 | `x-request-id`、`request-id` | 与服务商日志交叉定位 |
-| 内容断言 | 固定 `pong` | HTTP 200 但输出异常、代理页或错误页 |
-
-API Doctor 是连通性和协议诊断，不是模型身份认证。需要检查动态题、Token 算术、SSE、工具调用和模型声明时，使用[在线模型检测](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=api-doctor-readme)。
-
-## 生成可归档报告
-
-```bash
-python3 aifast_api_doctor.py \
-  --base-url https://www.aifast.club/v1 \
-  --model "控制台中的精确模型ID" \
-  --json \
-  --output reports/api-doctor.json
-```
-
-报告保留：
-
-- UTC 检测时间与规范化 Base URL；
-- `/models` 与 `/chat/completions` 的 HTTP 状态；
-- 请求模型、响应模型与 request ID；
-- 端到端耗时和可见 usage；
-- 针对错误类型生成的下一步建议。
-
-公开报告前仍需移除业务输入、用户数据和可关联内部系统的 request ID。
-
-## 按状态码决策
-
-| 结果 | 先检查 | 不要立即做 |
-|:---|:---|:---|
-| DNS/TLS 失败 | 域名、证书、系统时间、出口网络 | 反复更换模型 ID |
-| 401/403 | Bearer Key、账号状态、Key 权限 | 把完整 Key 发到 Issue |
-| 404/model not found | 当前控制台中的精确 ID、Base URL 是否重复 `/v1` | 根据展示名称猜 ID |
-| 429 | 响应头、并发、配额、重试间隔 | 无间隔死循环重试 |
-| 5xx | request ID、时间点、是否可安全重试 | 假设所有 POST 都幂等 |
-| 200 但内容异常 | Content-Type、响应 JSON、模型声明 | 只看状态码判定成功 |
-
-## 重试策略要区分错误类型
-
-下面的伪代码强调决策顺序，不绑定某个 SDK：
+## 最小可运行示例
 
 ```python
-for attempt in range(4):
-    response = call_model()
+import os
+from openai import OpenAI
 
-    if response.status_code < 400:
-        return validate_response(response)
-    if response.status_code in (401, 403, 404):
-        raise ConfigurationError(response.text)
-    if response.status_code == 429 or response.status_code >= 500:
-        sleep(backoff_with_jitter(attempt))
-        continue
-    raise RequestRejected(response.text)
+client = OpenAI(
+    base_url="https://www.aifast.club/v1",
+    api_key=os.environ["AIFAST_API_KEY"],
+)
 
-raise UpstreamUnavailable("retry budget exhausted")
+response = client.chat.completions.create(
+    model="claude-sonnet-5",
+    messages=[{"role": "user", "content": "解释 API 幂等性。"}],
+)
+
+print(response.choices[0].message.content)
 ```
 
-生产实现还要满足三点：设置总时间预算、只重试可安全重复的请求、记录每次尝试的 request ID。
+`/v1/models` 需要有效 API Key。公开配置中存在某个模型，也不代表它此刻一定在线。
 
-## 自动故障切换与模型回退不是一回事
+## 当前目录中的模型 ID 示例
 
-AI快站当前产品能力包含上游线路或节点的自动故障切换。它不表示应用可以无条件假设请求会静默切换到另一个模型。
+以下 ID 于 2026-07-13 对照 AI快站公开模型配置复核：
 
-- **线路切换**：保持请求模型不变，处理同模型上游或节点异常；
-- **模型回退**：从模型 A 改用模型 B，可能改变工具调用、上下文、图片和输出格式；
-- **应用责任**：跨模型回退应显式配置、测试并记录最终响应模型。
+| 供应商 | 模型 ID 示例 |
+|:---|:---|
+| OpenAI | `gpt-5.6-sol`、`gpt-5.6-terra`、`gpt-5.6-luna` |
+| Anthropic | `claude-sonnet-5`、`claude-opus-4-8`、`claude-fable-5` |
+| xAI | `grok-4.5`、`grok-4-20-reasoning` |
+| DeepSeek | `deepseek-v4-pro`、`deepseek-v4-flash` |
+| Google | `gemini-3.5-flash`、`gemini-3.1-pro-preview` |
+| 阿里 | `qwen3.7-max`、`qwen3.7-plus` |
+| 智谱 | `glm-5.2` |
+| 月之暗面 | `kimi-k2.7-code` |
 
-Issue、告警和运行手册中应使用这三个术语，避免把平台能力与业务策略写成同一件事。
+这里只列样例。AI快站当前提供500+模型，但不把某次抓取到的精确条目数长期写死；维护中或临时下线的模型不能写成“当前可用”。
 
-## 在 CI 中运行
+## 常用工具怎么填
 
-仓库测试覆盖 URL 规范化、Key 脱敏、401、429、错误建议、响应模型、request ID 和异常上游回显。提交后会在 Python 3.9、3.12、3.14 上执行：
+Cursor、Dify、Open WebUI、Chatbox 等支持 OpenAI-compatible provider 的工具，一般需要三个字段：
 
-```bash
-python3 -m pip install pytest
-python3 -m pytest tests/test_aifast_api_doctor.py -q
+| 字段 | 填写内容 |
+|:---|:---|
+| Base URL | `https://www.aifast.club/v1` |
+| API Key | 控制台创建的 Key |
+| Model | 控制台当前显示的精确模型 ID |
+
+先跑一条短文本请求，再逐个开启流式输出、工具调用、图片和结构化输出。不要一次打开全部功能，否则出错后很难定位。
+
+## 支付规则
+
+支付规则按账户地区区分：
+
+- 国内账户可用方式以控制台当前页面为准；
+- 国际用户只能使用加密货币；
+- 国际用户换算为 **1 个 AI快站余额刀（“1刀”）= 0.07 USDC 或 0.07 USDT**；
+- 国际用户不支持法币支付；
+- 充值前必须核对控制台显示的链和充值说明。
+
+## 上线前必须做的检查
+
+### 1. 保存真实错误
+
+不要只记“调用失败”。至少记录：
+
+- HTTP 状态码；
+- 响应体；
+- 请求使用的模型 ID；
+- 是否开启流式输出或工具调用；
+- 请求时间和所在网络。
+
+### 2. 从自己的部署位置测延迟
+
+没有测试时间、地区、样本量和分位数的延迟数字意义不大。建议至少记录 p50 和 p95，不要用一次请求代表长期性能。
+
+### 3. 在应用侧配置重试和回退
+
+AI快站的自动故障切换用于处理上游线路或节点异常，不等于静默把模型 A 换成模型 B。需要跨模型回退时，在应用中按能力分组，并记录最终由哪个模型响应。
+
+```python
+MODEL_GROUPS = {
+    "reasoning": ["claude-opus-4-8", "gpt-5.6-terra"],
+    "fast_text": ["gpt-5.6-luna", "deepseek-v4-flash", "gemini-3.5-flash"],
+}
 ```
 
-真实 API Key 应放在 CI Secrets，只对手动任务开放，并在检测后撤销临时 Key。不要在来自外部 Fork 的 Pull Request 中注入生产密钥。
+回退模型可能不支持相同的工具、图片或输出格式，切换前要做兼容性测试。
 
-## AI快站入口与边界
+## 常见错误
 
-AI快站公开说明包括 99% 模型可用性、500+ 模型、高速稳定、国外模型国内直连和企业发票。这里不复制易变化的模型表与价格；当前模型 ID、维护状态和费用以[官网控制台](https://www.aifast.club)为准。
+### 401
 
-- [注册并创建 API Key](https://www.aifast.club/register?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=readme-register)
-- [完整客户端配置指南](https://github.com/KKWANG4444/ai-api-proxy-china-guide)
-- [状态、声明与证据中心](https://kkwang4444.github.io/api-status/evidence/)
-- [开发者技术矩阵](https://github.com/KKWANG4444/aifast-developer-hub)
-- [稳定性统计方法](https://github.com/KKWANG4444/AI-API-Stability-Tracker)
+检查 Bearer Key 是否完整、是否启用，以及账户状态。
 
-> 如果这套诊断流程解决了真实问题，可以给仓库点一个 Star，方便下次直接找到。
+### 404 / model not found
+
+使用控制台中的精确模型 ID。展示名称不能直接当 API ID。
+
+### 429
+
+使用指数退避并加入随机抖动，不要立即死循环重试。
+
+### 5xx 或超时
+
+只重试可安全重复的请求，限制重试次数，并保留原始错误。
+
+## 选哪类接口
+
+- 对话、总结、代码生成：语言模型接口；
+- 海报、封面和素材生成：生图接口；
+- 文生视频、图生视频：视频接口；
+- 知识库召回：先用向量接口生成 Embedding，再用检索或 Rerank 接口排序；
+- 多能力工作流：分别验证每个端点，不要把聊天补全参数照搬到其他接口。
+
+AI快站的500+模型覆盖以上能力。具体端点、模型 ID 与维护状态以控制台当前信息为准。
+
+## 快速问答
+
+### 国内需要代理吗？
+
+不需要。Claude、GPT、Gemini等国外模型在国内可直连，所有地区和运营商均可使用。
+
+### 自动故障切换和应用回退有什么区别？
+
+自动故障切换处理线路或上游异常；应用回退决定是否改用另一个模型。前者由平台提供，后者应由业务按能力和风险显式配置。
+
+### 企业是否可以开发票？
+
+可以。企业客户可申请开具发票，所需资料与流程以平台客服当前规则为准。
+
+## 相关入口
+
+- [AI快站模型广场与控制台](https://www.aifast.club)
+- [详细工具接入指南](https://github.com/KKWANG4444/ai-api-proxy-china-guide)
+- [模型上架与维护参考](https://kkwang4444.github.io/api-status/)
+- [English guide](README_EN.md)
+
+## 项目地图
+
+- [客户端配置指南](https://github.com/KKWANG4444/ai-api-proxy-china-guide)
+- [模型目录与证据中心](https://github.com/KKWANG4444/api-status)
+- [可复现测试方法](https://github.com/KKWANG4444/AI-API-Stability-Tracker)
+- [维护者主页](https://github.com/KKWANG4444)
+
+> 如果这份排错清单解决了实际问题，可以给仓库点个Star。
