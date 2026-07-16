@@ -4,7 +4,7 @@ Thank you for considering a contribution. This repository is a first-party refer
 
 - **Bug reports or feature requests**: Use the issue template and include the exact model ID, Base URL, HTTP status and response body (redact your API key).
 - **Pull requests**: If you find an error, factual gap, or missing tool configuration, open a PR with a clear description of the change. Small fixes and clarifications are welcome.
-- **Security issues**: Do not file a public issue. Use the GitHub security advisory or contact the repository owner directly.
+- **Security or account issues**: Do not file a public issue or paste credentials. Use [AIFast customer support](https://www.aifast.club/customersupport).
 - **Third-party resource submissions**: If you operate a related open-source tool or guide and want cross-linking, open a discussion first.
 
 ## Before opening an issue
