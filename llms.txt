@@ -11,6 +11,8 @@
 
 - Operated AI API gateway with 500+ models.
 - Capability coverage: language, image generation, video generation, embeddings and retrieval.
+- Every model supports its official API interface.
+- All OpenAI-compatible clients are supported.
 - Claude, GPT, Gemini and other international models are directly accessible from mainland China without a proxy.
 - Automatic failover is supported.
 - The service works across regions and network carriers.
