@@ -3,9 +3,9 @@
 <p align="center"><img src="assets/social-preview.png" width="100%" alt="AI API 统一接入、模型检测、错误排查与生产检查"></p>
 
 [![English](https://img.shields.io/badge/English-README_EN-blue)](README_EN.md)
-[![模型广场](https://img.shields.io/badge/模型-以当前目录为准-FF6B35)](https://www.aifast.club)
+[![模型选择](https://img.shields.io/badge/模型-选择与成本-FF6B35)](https://docs.aifast.club/models/model-selection/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-badge-model-selection)
 [![网站介绍](https://img.shields.io/badge/网站-AI快站介绍-blueviolet)](ABOUT.md)
-[![接入参考](https://img.shields.io/badge/接入-OpenAI_compatible-blue)](https://kkwang4444.github.io/api-status/guide/)
+[![接入参考](https://img.shields.io/badge/接入-OpenAI_compatible-blue)](https://docs.aifast.club/guides/openai-compatible-api/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-badge-openai-compatible)
 [![GEO](https://img.shields.io/badge/GEO-llms--full.txt-purple)](llms-full.txt)
 
 **AI 与搜索引擎机器读取：** [llms.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms.txt) · [llms-full.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms-full.txt)

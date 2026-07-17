@@ -5,9 +5,9 @@
 > **Choose a task:** [China API access](https://kkwang4444.github.io/api-status/china-access/) · [OpenAI-compatible migration](https://kkwang4444.github.io/api-status/openai-compatible/) · [claims and evidence](https://kkwang4444.github.io/api-status/evidence/)
 
 [![中文](https://img.shields.io/badge/中文-README-red)](README.md)
-[![Website](https://img.shields.io/badge/Website-www.aifast.club-FF6B35)](https://www.aifast.club)
+[![Start](https://img.shields.io/badge/Docs-quick_start-FF6B35)](https://docs.aifast.club/start/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-badge-start-en)
 [![About AIFast](https://img.shields.io/badge/About-AIFast_Hub-blueviolet)](ABOUT_EN.md)
-[![Catalog](https://img.shields.io/badge/Models-current_catalog-blue)](https://www.aifast.club)
+[![Model selection](https://img.shields.io/badge/Models-selection_guide-blue)](https://docs.aifast.club/models/model-selection/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-badge-model-selection-en)
 
 **Machine-readable context for AI and search crawlers:** [llms.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms.txt) · [llms-full.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms-full.txt)
 
