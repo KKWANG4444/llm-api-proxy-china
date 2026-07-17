@@ -1,0 +1,65 @@
+from pathlib import Path
+import re
+from urllib.parse import parse_qs, urlsplit
+
+
+ROOT = Path(__file__).resolve().parents[1]
+DOCUMENTS = [
+    ROOT / "README.md",
+    ROOT / "README_EN.md",
+    ROOT / "llms.txt",
+    ROOT / "llms-full.txt",
+]
+ERRORS = []
+
+
+def check(condition, message):
+    if not condition:
+        ERRORS.append(message)
+
+
+for document in DOCUMENTS:
+    check(document.is_file(), "missing required file: %s" % document.relative_to(ROOT))
+
+contents = {document.name: document.read_text(encoding="utf-8") for document in DOCUMENTS}
+combined = "\n".join(contents.values())
+
+check("https://www.aifast.club/v1" in combined, "missing AIFast Base URL")
+check("https://docs.aifast.club/tools/codex/" in combined, "missing Codex setup entry")
+check(
+    "https://docs.aifast.club/troubleshooting/codex-gateway-checklist/" in combined,
+    "missing Codex troubleshooting entry",
+)
+check("https://example.com/v1" not in combined, "placeholder Base URL is still present")
+
+wrong_campaign_paths = (
+    "/start/",
+    "/models/model-selection/",
+    "/guides/openai-compatible-api/",
+    "/tools/codex/",
+    "/troubleshooting/codex-gateway-checklist/",
+)
+
+for name in ("README.md", "README_EN.md"):
+    source = contents[name]
+    for url in re.findall(r"https://docs\.aifast\.club/[^)\s]+", source):
+        parsed = urlsplit(url)
+        campaign = parse_qs(parsed.query).get("utm_campaign", [""])[0]
+        if parsed.path in wrong_campaign_paths and campaign == "model-check":
+            ERRORS.append("%s misclassifies %s as model-check" % (name, parsed.path))
+
+    for target in re.findall(r"!?\[[^\]]*\]\(([^)]+)\)", source):
+        target = target.strip().strip("<>")
+        if not target or target.startswith(("http://", "https://", "mailto:", "#")):
+            continue
+        local_path = target.split("#", 1)[0].split("?", 1)[0]
+        if local_path and not (ROOT / local_path).is_file():
+            ERRORS.append("%s has missing local link: %s" % (name, local_path))
+
+if ERRORS:
+    print("Content verification failed:")
+    for error in ERRORS:
+        print("- " + error)
+    raise SystemExit(1)
+
+print("Content verification passed: Codex entries, UTM campaigns and local links are valid.")

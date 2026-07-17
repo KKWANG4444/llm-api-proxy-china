@@ -27,6 +27,8 @@ The catalog changes over time. Check the marketplace, maintenance notices and co
 - [English guide](README_EN.md)
 - [AIFast website introduction in Chinese](ABOUT.md)
 - [AIFast website introduction in English](ABOUT_EN.md)
+- [Codex custom provider setup](https://docs.aifast.club/tools/codex/): user-level config, Responses API, Base URL, environment key and minimum validation.
+- [Codex gateway validation and troubleshooting](https://docs.aifast.club/troubleshooting/codex-gateway-checklist/): provider selection, tool events, context compaction, thread resume and HTTP errors.
 - [Online AI API relay model check](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=llms&utm_campaign=model-check&utm_content=llm-api-proxy-china): checks model declarations, token fields, randomized dynamic probes, SSE streaming and tool calls in the browser.
 - [AIFast catalog and console](https://www.aifast.club)
 - [Catalog and maintenance reference](https://kkwang4444.github.io/api-status/)

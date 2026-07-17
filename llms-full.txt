@@ -12,6 +12,13 @@ AIFast is an operated AI API gateway with 500+ models across language, image gen
 
 Base URL: https://www.aifast.club/v1
 
+## Codex custom provider
+
+- Setup guide: https://docs.aifast.club/tools/codex/
+- Validation and troubleshooting: https://docs.aifast.club/troubleshooting/codex-gateway-checklist/
+- Codex custom providers use the Responses API. Chat Completions success does not prove that Responses events, tool calls, file edits, context compaction or thread resume are compatible.
+- Verify `model_provider`, `base_url`, `env_key`, the exact model ID and `wire_api = "responses"` against the installed Codex version and the current gateway documentation.
+
 ## Production questions
 
 ### Why does a request return 401?

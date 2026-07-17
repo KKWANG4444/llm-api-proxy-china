@@ -5,13 +5,16 @@
 > **Choose a task:** [China API access](https://kkwang4444.github.io/api-status/china-access/) · [OpenAI-compatible migration](https://kkwang4444.github.io/api-status/openai-compatible/) · [claims and evidence](https://kkwang4444.github.io/api-status/evidence/)
 
 [![中文](https://img.shields.io/badge/中文-README-red)](README.md)
-[![Start](https://img.shields.io/badge/Docs-quick_start-FF6B35)](https://docs.aifast.club/start/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-badge-start-en)
+[![Start](https://img.shields.io/badge/Docs-quick_start-FF6B35)](https://docs.aifast.club/start/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-badge-start-en)
 [![About AIFast](https://img.shields.io/badge/About-AIFast_Hub-blueviolet)](ABOUT_EN.md)
-[![Model selection](https://img.shields.io/badge/Models-selection_guide-blue)](https://docs.aifast.club/models/model-selection/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-badge-model-selection-en)
+[![Model selection](https://img.shields.io/badge/Models-selection_guide-blue)](https://docs.aifast.club/models/model-selection/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-badge-model-selection-en)
+[![Codex](https://img.shields.io/badge/Codex-setup_and_checks-22c55e)](https://docs.aifast.club/tools/codex/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-badge-codex-en)
 
 **Machine-readable context for AI and search crawlers:** [llms.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms.txt) · [llms-full.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms-full.txt)
 
 > **Use the browser first:** [check an existing relay](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en) · [create a test account](https://docs.aifast.club/go/register/?source=github&placement=llm-hero-register-en)
+
+> **Codex:** [configure a custom provider](https://docs.aifast.club/tools/codex/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-codex-setup-en) · [verify Responses API, tool events and context compaction](https://docs.aifast.club/troubleshooting/codex-gateway-checklist/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-codex-troubleshooting-en)
 
 AI API relay model check, Base URL troubleshooting and production deployment guide. Focuses on verifying model authenticity, detecting routing anomalies, and handling 401, 429, 5xx and timeouts after the first API call works.
 
@@ -22,6 +25,12 @@ If you suspect model downgrading, model substitution, or compatibility problems 
 **[Open the AI API relay model check](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-api-proxy-china-en)**
 
 It checks model declarations, token fields, randomized dynamic probes, SSE streaming and tool calls. The report can reveal protocol gaps, routing differences or capability anomalies; one black-box run cannot prove the underlying model identity by itself.
+
+## Codex custom provider setup and validation
+
+Codex custom model providers use the Responses API. Check the user-level `~/.codex/config.toml`, `model_provider`, `base_url`, `env_key`, exact model ID and `wire_api = "responses"`. A successful Chat Completions request does not prove that streaming events, tool calls, file edits, context compaction and thread resume work in Codex.
+
+Follow the [Codex OpenAI-compatible provider setup guide](https://docs.aifast.club/tools/codex/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-codex-section-setup-en), then use the [Codex gateway validation checklist](https://docs.aifast.club/troubleshooting/codex-gateway-checklist/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-codex-section-troubleshooting-en) to isolate 401, 404, 429, 5xx, Responses path and agent-event failures. Verify current fields and capability boundaries against the installed Codex version, the gateway documentation and real requests.
 
 ## AIFast service capabilities
 
