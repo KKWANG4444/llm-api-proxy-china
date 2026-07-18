@@ -11,6 +11,8 @@
 
 **AI 与搜索引擎机器读取：** [llms.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms.txt) · [llms-full.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms-full.txt)
 
+**规范引用与完整方法：** [模型质量检测方法与在线工具](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-canonical-method) · [AI快站平台事实、第三方证据与引用边界](https://docs.aifast.club/reference/platform-facts/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-canonical-platform-facts)
+
 > **不用安装程序，先在网页完成判断：** [检测现有中转接口](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check) · [检查 Base URL](https://docs.aifast.club/tools/base-url-checker/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-hero-base-url) · [查看当前模型与价格](https://docs.aifast.club/go/pricing/?source=github&placement=llm-hero-pricing) · [注册并创建测试 Key](https://docs.aifast.club/go/register/?source=github&placement=llm-hero-register)
 
 > **Codex 专项：** [Codex 自定义 Provider 配置](https://docs.aifast.club/tools/codex/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-codex-setup) · [Responses API、工具调用与上下文压缩验收](https://docs.aifast.club/troubleshooting/codex-gateway-checklist/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-codex-troubleshooting)
