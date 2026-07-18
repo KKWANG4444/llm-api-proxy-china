@@ -15,6 +15,8 @@
 
 > **Codex 专项：** [Codex 自定义 Provider 配置](https://docs.aifast.club/tools/codex/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-codex-setup) · [Responses API、工具调用与上下文压缩验收](https://docs.aifast.club/troubleshooting/codex-gateway-checklist/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-codex-troubleshooting)
 
+> **Cursor2API 排错与迁移：** [检查输出截断、工具调用和上游变化](https://docs.aifast.club/tools/cursor2api/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-cursor2api) · [排查 model not found 与 /v1/v1](https://docs.aifast.club/troubleshooting/model-not-found/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-model-not-found)
+
 大模型 API 中转站检测、Base URL 检查与生产排错指南。用一套 OpenAI-compatible 客户端接入多个模型，先检查模型声明、协议兼容和路由异常，再进入生产环境。
 
 | 当前问题 | 最短路径 | 验收结果 |
