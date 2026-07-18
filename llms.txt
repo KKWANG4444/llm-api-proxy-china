@@ -54,8 +54,9 @@ Authenticate with a Bearer API key. `/v1/models` requires authentication. Use an
 
 A catalog entry is not an availability guarantee.
 
-## International payment
+## Account-region payment
 
+- Domestic accounts: 1 AIFast balance dollar ("1 刀") = CNY 0.75. Common recharge tiers are 100 at 99%, 500 at 98.5%, and 1,000 at 98% of the base amount. Current discounts and final settlement are shown in the console.
 - International users can pay only with cryptocurrency.
 - 1 AIFast balance dollar ("1 刀") = 0.07 USDC or 0.07 USDT.
 - Fiat payment is not available to international users.

@@ -67,7 +67,7 @@ Compatible with Cursor, Dify, Claude Code, Open WebUI, Chatbox, LobeChat, Cherry
 
 ## Payment
 
-- **Domestic (China)** — Alipay, WeChat Pay and local methods. Check the console for current options.
+- **Domestic (China)** — the RMB base conversion is 1 balance dollar = CNY 0.75. Common recharge tiers are 100 at 99%, 500 at 98.5%, and 1,000 at 98% of the base amount. Check the console for current methods, discounts and final settlement.
 - **International** — cryptocurrency only. 1 AIFast balance dollar = 0.07 USDC or 0.07 USDT. Verify supported chains and deposit instructions in the console before paying.
 
 Current console charges are not official model prices and may change with provider pricing and platform adjustments.

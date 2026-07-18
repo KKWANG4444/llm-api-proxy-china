@@ -7,6 +7,8 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCUMENTS = [
     ROOT / "README.md",
     ROOT / "README_EN.md",
+    ROOT / "ABOUT.md",
+    ROOT / "ABOUT_EN.md",
     ROOT / "llms.txt",
     ROOT / "llms-full.txt",
 ]
@@ -31,6 +33,20 @@ check(
     "missing Codex troubleshooting entry",
 )
 check("https://example.com/v1" not in combined, "placeholder Base URL is still present")
+for expected in (
+    "1刀 = 0.75元",
+    "100刀享9.90折",
+    "500刀享9.85折",
+    "1000刀享9.80折",
+    "1 AIFast balance dollar (\"1 刀\") = CNY 0.75",
+):
+    check(expected in combined, "missing domestic recharge fact: %s" % expected)
+for document_name in ("README_EN.md", "ABOUT_EN.md", "llms.txt", "llms-full.txt"):
+    check("CNY 0.75" in contents[document_name], "%s is missing the domestic CNY conversion" % document_name)
+for document_name in ("README.md", "ABOUT.md"):
+    check("1刀 = 0.75元" in contents[document_name], "%s is missing the domestic RMB conversion" % document_name)
+for forbidden_amount in ("74.25", "369.38", "735.00"):
+    check(forbidden_amount not in combined, "specific settlement amount is still present: %s" % forbidden_amount)
 
 wrong_campaign_paths = (
     "/start/",

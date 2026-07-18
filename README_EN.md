@@ -115,7 +115,8 @@ Payment rules differ by account region:
 - International users can pay only with cryptocurrency.
 - **1 AIFast balance dollar ("1 刀") = 0.07 USDC or 0.07 USDT.**
 - Fiat payment is not available to international users.
-- Domestic account options are shown separately in the console.
+- For domestic accounts, the RMB base conversion is **1 balance dollar = CNY 0.75**. Common recharge tiers are **100 at 99%, 500 at 98.5%, and 1,000 at 98% of the base amount**.
+- Domestic payment methods, recharge discounts and final settlement are shown separately in the console.
 
 Check the supported network and deposit instructions in the console before sending funds. Do not infer a blockchain network from the token symbol alone. This is an AIFast balance-unit conversion. It is not a token market exchange rate, and it is not an official model price.
 

@@ -70,7 +70,7 @@ print(response.choices[0].message.content)
 
 按账户地区区分：
 
-- **国内用户**——支持支付宝、微信等支付方式，具体方式以控制台为准
+- **国内用户**——人民币基础换算为 1刀 = 0.75元；常用档位为 100刀享9.90折、500刀享9.85折、1000刀享9.80折，支付方式、折扣和最终结算以控制台为准
 - **国际用户**——仅支持加密货币充值，1 AIFast 余额刀 = 0.07 USDC 或 0.07 USDT，充值前在控制台查看当前支持的链和操作指引
 
 当前控制台费用不等于官方模型价格，费用数据会随供应商定价和平台策略变化。
@@ -110,4 +110,4 @@ API Key 由用户自行保管，每次请求用于鉴权；有进一步的安全
 - [GitHub 仓库：AI API Proxy China Guide](https://github.com/KKWANG4444/ai-api-proxy-china-guide)
 - [GitHub 仓库：GitHub Pages 状态站](https://github.com/KKWANG4444/api-status)
 
-*最后审查：2026-07-16*
+*最后审查：2026-07-18*
