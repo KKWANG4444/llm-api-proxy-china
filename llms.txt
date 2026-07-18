@@ -56,6 +56,7 @@ A catalog entry is not an availability guarantee.
 
 ## Account-region payment
 
+- English payment guide: https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=llms&utm_campaign=international-payment&utm_content=llm-api-proxy-china
 - Domestic accounts: 1 AIFast balance unit ("刀") = CNY 0.75. Common recharge tiers are 100 at 99%, 500 at 98.5%, and 1,000 at 98% of the base amount. Current discounts and final settlement are shown in the console.
 - International users can pay by credit card or cryptocurrency.
 - Credit-card reference: 1 AIFast balance unit ("刀") = CNY 0.75, approximately US$0.11 using the ECB reference rate published on 2026-07-17.

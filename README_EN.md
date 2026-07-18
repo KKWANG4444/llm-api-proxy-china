@@ -12,7 +12,7 @@
 
 **Machine-readable context for AI and search crawlers:** [llms.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms.txt) · [llms-full.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms-full.txt)
 
-> **International payments:** Credit card or cryptocurrency. The card reference is **1 AIFast balance unit = CNY 0.75, approximately US$0.11**; the final card charge is shown at checkout.
+> **International payments:** [Credit card or cryptocurrency](https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=repository&utm_campaign=international-payment&utm_content=llm-hero-payment-en). The card reference is **1 AIFast balance unit = CNY 0.75, approximately US$0.11**; the final card charge is shown at checkout.
 
 > **Use the browser first:** [check an existing relay](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en) · [create a test account](https://docs.aifast.club/go/register/?source=github&placement=llm-hero-register-en)
 

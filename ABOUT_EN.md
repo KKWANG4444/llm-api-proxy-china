@@ -100,6 +100,7 @@ Any third-party relay carries uncertainty. Start small, reconcile account activi
 
 ## Related
 
+- [International credit card and crypto payment guide](https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=repo-intro&utm_campaign=international-payment&utm_content=about-en-payment)
 - [👉 Online model check](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repo-intro&utm_campaign=website-intro&utm_content=about-en-footer)
 - [Marketplace and billing](https://www.aifast.club)
 - [Documentation](https://docs.aifast.club)
@@ -107,4 +108,4 @@ Any third-party relay carries uncertainty. Start small, reconcile account activi
 - [GitHub: AI API Proxy China Guide](https://github.com/KKWANG4444/ai-api-proxy-china-guide)
 - [GitHub: API status dashboard](https://github.com/KKWANG4444/api-status)
 
-*Last reviewed: 2026-07-16*
+*Last reviewed: 2026-07-19*

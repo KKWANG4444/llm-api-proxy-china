@@ -28,6 +28,7 @@ combined = "\n".join(contents.values())
 
 check("https://www.aifast.club/v1" in combined, "missing AIFast Base URL")
 check("https://docs.aifast.club/tools/codex/" in combined, "missing Codex setup entry")
+check("https://docs.aifast.club/en/payment/" in combined, "missing international payment entry")
 check(
     "https://docs.aifast.club/troubleshooting/codex-gateway-checklist/" in combined,
     "missing Codex troubleshooting entry",

@@ -64,6 +64,8 @@ The check covers model declarations, token fields, randomized dynamic probes, SS
 
 ## Account-region payment
 
+English payment guide: https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=llms&utm_campaign=international-payment&utm_content=llm-api-proxy-china-full
+
 For domestic accounts, one AIFast balance unit (“刀”) equals CNY 0.75. Common recharge tiers are 100 at 99%, 500 at 98.5%, and 1,000 at 98% of the base amount; current discounts and final settlement are shown in the console.
 
 International users can pay by credit card or cryptocurrency. For credit cards, one AIFast balance unit (“刀”) equals CNY 0.75, approximately US$0.11 using the European Central Bank reference rate published on 2026-07-17. The balance unit is not a US dollar, and final card charges depend on the checkout exchange rate, payment processor and card issuer fees.
