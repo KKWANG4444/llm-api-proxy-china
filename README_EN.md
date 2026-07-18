@@ -12,6 +12,8 @@
 
 **Machine-readable context for AI and search crawlers:** [llms.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms.txt) · [llms-full.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms-full.txt)
 
+> **International payments:** Credit card or cryptocurrency. The card reference is **1 AIFast balance unit = CNY 0.75, approximately US$0.11**; the final card charge is shown at checkout.
+
 > **Use the browser first:** [check an existing relay](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en) · [create a test account](https://docs.aifast.club/go/register/?source=github&placement=llm-hero-register-en)
 
 > **Codex:** [configure a custom provider](https://docs.aifast.club/tools/codex/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-codex-setup-en) · [verify Responses API, tool events and context compaction](https://docs.aifast.club/troubleshooting/codex-gateway-checklist/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-codex-troubleshooting-en)
@@ -112,13 +114,13 @@ Codex supports custom providers through its configuration. The exact keys can ch
 
 Payment rules differ by account region:
 
-- International users can pay only with cryptocurrency.
-- **1 AIFast balance dollar ("1 刀") = 0.07 USDC or 0.07 USDT.**
-- Fiat payment is not available to international users.
-- For domestic accounts, the RMB base conversion is **1 balance dollar = CNY 0.75**. Common recharge tiers are **100 at 99%, 500 at 98.5%, and 1,000 at 98% of the base amount**.
+- International users can pay by **credit card or cryptocurrency**.
+- Credit-card reference: **1 AIFast balance unit ("刀") = CNY 0.75, approximately US$0.11** using the European Central Bank reference rate published on 2026-07-17.
+- Cryptocurrency conversion: **1 AIFast balance unit = 0.07 USDC or 0.07 USDT.**
+- For domestic accounts, the RMB base conversion is **1 balance unit = CNY 0.75**. Common recharge tiers are **100 at 99%, 500 at 98.5%, and 1,000 at 98% of the base amount**.
 - Domestic payment methods, recharge discounts and final settlement are shown separately in the console.
 
-Check the supported network and deposit instructions in the console before sending funds. Do not infer a blockchain network from the token symbol alone. This is an AIFast balance-unit conversion. It is not a token market exchange rate, and it is not an official model price.
+The balance unit is not a US dollar. The final card charge depends on the checkout exchange rate, payment processor and card issuer fees. For cryptocurrency, check the supported network and deposit instructions in the console before sending funds. Do not infer a blockchain network from the token symbol alone. These are AIFast balance-unit conversions, not token market exchange rates or official model prices. [ECB reference rates](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html)
 
 ## Production checks
 

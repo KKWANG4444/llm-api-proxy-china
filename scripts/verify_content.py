@@ -38,7 +38,9 @@ for expected in (
     "100刀享9.90折",
     "500刀享9.85折",
     "1000刀享9.80折",
-    "1 AIFast balance dollar (\"1 刀\") = CNY 0.75",
+    "1 AIFast balance unit (\"刀\") = CNY 0.75",
+    "approximately US$0.11",
+    "credit card or cryptocurrency",
 ):
     check(expected in combined, "missing domestic recharge fact: %s" % expected)
 for document_name in ("README_EN.md", "ABOUT_EN.md", "llms.txt", "llms-full.txt"):
@@ -47,6 +49,13 @@ for document_name in ("README.md", "ABOUT.md"):
     check("1刀 = 0.75元" in contents[document_name], "%s is missing the domestic RMB conversion" % document_name)
 for forbidden_amount in ("74.25", "369.38", "735.00"):
     check(forbidden_amount not in combined, "specific settlement amount is still present: %s" % forbidden_amount)
+for stale_payment_claim in (
+    "International users can pay only with cryptocurrency",
+    "Fiat payment is not available to international users",
+    "国际用户只能使用加密货币",
+    "仅支持加密货币充值",
+):
+    check(stale_payment_claim not in combined, "stale international payment claim is still present: %s" % stale_payment_claim)
 
 wrong_campaign_paths = (
     "/start/",
