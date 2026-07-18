@@ -147,6 +147,8 @@ MODEL_GROUPS = {
 
 检查 Bearer Key 是否完整、是否启用，以及账户状态。
 
+完整步骤：[401 invalid_api_key 与 API Key 无效排查](https://docs.aifast.club/troubleshooting/401-invalid-api-key/?utm_source=github&utm_medium=repository&utm_campaign=api-error-guide&utm_content=llm-error-401)
+
 ### 404 / model not found
 
 使用控制台中的精确模型 ID。展示名称不能直接当 API ID。
@@ -155,9 +157,13 @@ MODEL_GROUPS = {
 
 使用指数退避并加入随机抖动，不要立即死循环重试。
 
+完整步骤：[429 Too Many Requests、限流与重试排查](https://docs.aifast.club/troubleshooting/429-rate-limit/?utm_source=github&utm_medium=repository&utm_campaign=api-error-guide&utm_content=llm-error-429)
+
 ### 5xx 或超时
 
 只重试可安全重复的请求，限制重试次数，并保留原始错误。
+
+完整步骤：[502 Bad Gateway、stream disconnected 与 SSE 断流排查](https://docs.aifast.club/troubleshooting/502-stream-disconnected/?utm_source=github&utm_medium=repository&utm_campaign=api-error-guide&utm_content=llm-error-502)
 
 ## 选哪类接口
 
