@@ -66,10 +66,10 @@ The check covers model declarations, token fields, randomized dynamic probes, SS
 
 English payment guide: https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=llms&utm_campaign=international-payment&utm_content=llm-api-proxy-china-full
 
-For domestic accounts, one AIFast balance unit (“刀”) equals CNY 0.75. Common recharge tiers are 100 at 99%, 500 at 98.5%, and 1,000 at 98% of the base amount; current discounts and final settlement are shown in the console.
+For domestic accounts, ⭐️ 1 AIFast Credit equals CNY 0.75. Common recharge tiers are ⭐️ 100 Credits at 99%, ⭐️ 500 Credits at 98.5%, and ⭐️ 1,000 Credits at 98% of the base amount; current discounts and final settlement are shown in the console.
 
-International users can pay by credit card or cryptocurrency. For credit cards, one AIFast balance unit (“刀”) equals CNY 0.75, approximately US$0.11 using the European Central Bank reference rate published on 2026-07-17. The balance unit is not a US dollar, and final card charges depend on the checkout exchange rate, payment processor and card issuer fees.
+International users can pay by credit card or cryptocurrency. For credit cards, ⭐️ 1 AIFast Credit equals CNY 0.75, approximately US$0.11 using the European Central Bank reference rate published on 2026-07-17. AIFast Credits (⭐️) are platform usage units shown for account balance and model pricing, not US dollars, legal tender or cryptocurrency tokens. Final card charges depend on the checkout exchange rate, payment processor and card issuer fees.
 
-For cryptocurrency, one AIFast balance unit equals 0.07 USDC or 0.07 USDT. Check the supported chain and current deposit instructions in the console. These balance conversions are not token market exchange rates or official model prices. Reference: https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html
+For cryptocurrency, ⭐️ 1 AIFast Credit equals 0.07 USDC or 0.07 USDT. Check the supported chain and current deposit instructions in the console. These AIFast Credit conversions are not token market exchange rates or official model prices. Reference: https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html
 
-Last reviewed: 2026-07-18.
+Last reviewed: 2026-07-19.
