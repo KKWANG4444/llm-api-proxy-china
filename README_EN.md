@@ -16,6 +16,8 @@
 
 > **Use the browser first:** [check an existing relay](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en) · [create a test account](https://docs.aifast.club/go/register/?source=github&placement=llm-hero-register-en)
 
+> **Developer tool matrix:** [AIFast Developer Hub](https://github.com/KKWANG4444/aifast-developer-hub) brings together browser checks, client setup, migration, troubleshooting and evidence methods. The check remains on the website and requires no program download.
+
 > **Codex:** [configure a custom provider](https://docs.aifast.club/tools/codex/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-codex-setup-en) · [verify Responses API, tool events and context compaction](https://docs.aifast.club/troubleshooting/codex-gateway-checklist/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-codex-troubleshooting-en)
 
 AI API relay model check, Base URL troubleshooting and production deployment guide. Focuses on verifying model authenticity, detecting routing anomalies, and handling 401, 429, 5xx and timeouts after the first API call works.
