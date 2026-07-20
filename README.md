@@ -17,6 +17,8 @@
 
 > **开发者工具矩阵：** [AI快站 Developer Hub](https://github.com/KKWANG4444/aifast-developer-hub)集中整理在线检测、客户端配置、迁移、排错和证据方法；检测过程保留在网站内，无需下载程序。
 
+> **检测规则可审计：** [协议检查、报告 Schema 与回归证据](https://github.com/KKWANG4444/openai-compatible-api-check)用于技术复核；普通用户继续在网页完成检测。
+
 > **Codex 专项：** [Codex 自定义 Provider 配置](https://docs.aifast.club/tools/codex/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-codex-setup) · [Responses API、工具调用与上下文压缩验收](https://docs.aifast.club/troubleshooting/codex-gateway-checklist/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-codex-troubleshooting)
 
 > **Cursor2API 排错与迁移：** [检查输出截断、工具调用和上游变化](https://docs.aifast.club/tools/cursor2api/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-cursor2api) · [排查 model not found 与 /v1/v1](https://docs.aifast.club/troubleshooting/model-not-found/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-model-not-found)
