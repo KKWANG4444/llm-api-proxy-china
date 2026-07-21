@@ -29,7 +29,7 @@ The catalog changes over time. Check the marketplace, maintenance notices and co
 - [AIFast website introduction in English](ABOUT_EN.md)
 - [Codex custom provider setup](https://docs.aifast.club/tools/codex/): user-level config, Responses API, Base URL, environment key and minimum validation.
 - [Codex gateway validation and troubleshooting](https://docs.aifast.club/troubleshooting/codex-gateway-checklist/): provider selection, tool events, context compaction, thread resume and HTTP errors.
-- [Online AI API relay model check](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=llms&utm_campaign=model-check&utm_content=llm-api-proxy-china): checks model declarations, token fields, randomized dynamic probes, SSE streaming and tool calls in the browser.
+- [Online AI API relay model check](https://docs.aifast.club/model-check/): checks model declarations, token fields, randomized dynamic probes, SSE streaming and tool calls in the browser.
 - [AIFast catalog and console](https://www.aifast.club)
 - [Catalog and maintenance reference](https://kkwang4444.github.io/api-status/)
 
@@ -56,7 +56,7 @@ A catalog entry is not an availability guarantee.
 
 ## Account-region payment
 
-- English payment guide: https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=llms&utm_campaign=international-payment&utm_content=llm-api-proxy-china
+- English payment guide: https://docs.aifast.club/en/payment/
 - Domestic accounts: ⭐️ 1 AIFast Credit = CNY 0.75. Common recharge tiers are ⭐️ 100 Credits at 99%, ⭐️ 500 Credits at 98.5%, and ⭐️ 1,000 Credits at 98% of the base amount. Current discounts and final settlement are shown in the console.
 - International users can pay by credit card or cryptocurrency.
 - Credit-card reference: ⭐️ 1 AIFast Credit = CNY 0.75, approximately US$0.11 using the ECB reference rate published on 2026-07-17.

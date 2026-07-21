@@ -22,10 +22,10 @@
 |:---|:---|
 | 模型总量 | 500+ 模型，持续扩展 |
 | 能力覆盖 | 语言、生图、视频、向量、检索 |
-| 接口支持 | 所有模型都支持官方接口，并支持所有 OpenAI-compatible 客户端 |
-| 国外模型国内直连 | Claude、GPT、Gemini 等不用代理可直接调用 |
-| 自动故障切换 | 平台层面路由切换，不影响应用 |
-| 网络覆盖 | 所有地区及运营商均可使用 |
+| 接口支持 | 提供 OpenAI-compatible 及模型对应接口；Chat、Responses、Anthropic、多模态能力需按模型和客户端实测 |
+| 国外模型国内直连 | Claude、GPT、Gemini 等支持国内直连，通常无需自行配置海外代理 |
+| 自动故障切换 | 平台处理线路或上游异常；跨模型回退仍由应用显式配置 |
+| 网络覆盖 | 正式接入前应从目标地区和运营商复测 DNS、TLS、流式输出与错误率 |
 | 企业服务 | 可开发票、对公转账，联系客服了解当前流程 |
 
 ---
@@ -34,7 +34,7 @@
 
 选中转站最担心的是模型被降级或偷换。AI快站提供网页检测工具，工具本身免费；检测会向被测中转站发送少量请求，可能按对方计费规则产生 Token 费用：
 
-**[👉 进入模型检测 →](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repo-intro&utm_campaign=website-intro&utm_content=about-cn)**
+**[👉 进入模型检测 →](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=about-cn)**
 
 可检测：
 - 模型声明是否一致
@@ -103,7 +103,7 @@ API Key 由用户自行保管，每次请求用于鉴权；有进一步的安全
 
 ## 相关资源
 
-- [👉 进入在线模型检测](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repo-intro&utm_campaign=website-intro&utm_content=about-cn-footer)
+- [👉 进入在线模型检测](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=about-cn-footer)
 - [模型广场与费用](https://www.aifast.club)
 - [文档站](https://docs.aifast.club)
 - [GitHub 仓库：LLM API Proxy China](README.md)

@@ -14,7 +14,7 @@
 
 > **International payments:** [Credit card or cryptocurrency](https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=repository&utm_campaign=international-payment&utm_content=llm-hero-payment-en). The card reference is **⭐️ 1 AIFast Credit = CNY 0.75, approximately US$0.11**; the final card charge is shown at checkout.
 
-> **Use the browser first:** [check an existing relay](https://docs.aifast.club/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en) · [payment and account setup](https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=repository&utm_campaign=international-payment&utm_content=llm-hero-payment-en)
+> **Use the browser first:** [check an existing relay](https://docs.aifast.club/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en) · [payment and account setup](https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=repository&utm_campaign=international-payment&utm_content=llm-browser-payment-en)
 
 > **Developer tool matrix:** [AIFast Developer Hub](https://github.com/KKWANG4444/aifast-developer-hub) brings together browser checks, client setup, migration, troubleshooting and evidence methods. The check remains on the website and requires no program download.
 
@@ -40,9 +40,9 @@ Follow the [Codex OpenAI-compatible provider setup guide](https://docs.aifast.cl
 
 ## AIFast service capabilities
 
-[AIFast](https://www.aifast.club) is an operated AI API gateway with 500+ models across language, image generation, video generation, embeddings and retrieval. Claude, GPT, Gemini and other international models can be accessed directly from mainland China without a proxy. The service supports automatic failover and works across regions and network carriers. Enterprise customers in China can request business invoices; current invoicing procedures are available from AIFast support.
+[AIFast](https://www.aifast.club) provides unified access to 500+ language, image generation, video generation, embedding and retrieval models. Claude, GPT, Gemini and other international models support direct mainland China access without requiring users to configure an overseas proxy. The service provides automatic failover, and enterprise customers in China can request business invoices. Production teams should still test DNS, TLS, streaming and error rates from their target regions and network carriers.
 
-Every model on AIFast supports its official API interface.
+Different models use Chat Completions, Responses, Anthropic Messages, image, video or asynchronous task APIs. Confirm each model's current protocol support with the API documentation, live catalog and real requests instead of assuming one successful endpoint covers every model.
 
 > The catalog changes over time. Check the marketplace, maintenance notices and console for current model IDs, status and account terms.
 

@@ -51,7 +51,7 @@ No. AIFast automatic failover addresses route or upstream failures. An applicati
 
 ## Online model check
 
-Browser-based check: https://docs.aifast.club/model-check/?utm_source=github&utm_medium=llms&utm_campaign=model-check&utm_content=llm-api-proxy-china-full
+Browser-based check: https://docs.aifast.club/model-check/
 
 The check covers model declarations, token fields, randomized dynamic probes, SSE streaming and tool calls. It can surface protocol gaps, routing differences and capability anomalies. Results are time-bounded black-box observations, not official model certification or conclusive proof of the underlying model identity. Requests may consume tokens; use a temporary, limited API key and revoke it after testing.
 
@@ -64,7 +64,7 @@ The check covers model declarations, token fields, randomized dynamic probes, SS
 
 ## Account-region payment
 
-English payment guide: https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=llms&utm_campaign=international-payment&utm_content=llm-api-proxy-china-full
+English payment guide: https://docs.aifast.club/en/payment/
 
 For domestic accounts, ⭐️ 1 AIFast Credit equals CNY 0.75. Common recharge tiers are ⭐️ 100 Credits at 99%, ⭐️ 500 Credits at 98.5%, and ⭐️ 1,000 Credits at 98% of the base amount; current discounts and final settlement are shown in the console.
 

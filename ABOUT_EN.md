@@ -33,7 +33,7 @@
 
 Worried about model substitution or downgrading? The browser tool is free to use, but it sends a small number of requests to the tested gateway and may incur token charges under that gateway's billing rules:
 
-**[👉 Open model check →](https://docs.aifast.club/en/model-check/?utm_source=github&utm_medium=repo-intro&utm_campaign=website-intro&utm_content=about-en)**
+**[👉 Open model check →](https://docs.aifast.club/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=about-en)**
 
 It checks:
 - Model declaration consistency
@@ -100,8 +100,8 @@ Any third-party relay carries uncertainty. Start small, reconcile account activi
 
 ## Related
 
-- [International credit card and crypto payment guide](https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=repo-intro&utm_campaign=international-payment&utm_content=about-en-payment)
-- [👉 Online model check](https://docs.aifast.club/en/model-check/?utm_source=github&utm_medium=repo-intro&utm_campaign=website-intro&utm_content=about-en-footer)
+- [International credit card and crypto payment guide](https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=repository&utm_campaign=international-payment&utm_content=about-en-payment)
+- [👉 Online model check](https://docs.aifast.club/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=about-en-footer)
 - [Marketplace and billing](https://www.aifast.club)
 - [Documentation](https://docs.aifast.club)
 - [GitHub: LLM API Proxy China](README_EN.md)
