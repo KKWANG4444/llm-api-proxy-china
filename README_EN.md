@@ -14,7 +14,7 @@
 
 > **International payments:** [Credit card or cryptocurrency](https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=repository&utm_campaign=international-payment&utm_content=llm-hero-payment-en). The card reference is **⭐️ 1 AIFast Credit = CNY 0.75, approximately US$0.11**; the final card charge is shown at checkout.
 
-> **Use the browser first:** [check an existing relay](https://docs.aifast.club/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en) · [payment and account setup](https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=repository&utm_campaign=international-payment&utm_content=llm-browser-payment-en)
+> **Use the browser first:** [check an existing relay](https://docs.aifast.club/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en) · [OpenAI-compatible setup](https://docs.aifast.club/en/guides/openai-compatible-api/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-openai-compatible-en) · [Cursor custom API](https://docs.aifast.club/en/tools/cursor/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-cursor-en) · [payment and account setup](https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=repository&utm_campaign=international-payment&utm_content=llm-browser-payment-en)
 
 > **Developer tool matrix:** [AIFast Developer Hub](https://github.com/KKWANG4444/aifast-developer-hub) brings together browser checks, client setup, migration, troubleshooting and evidence methods. The check remains on the website and requires no program download.
 
