@@ -1,188 +1,153 @@
-# OpenAI-compatible AI API setup for China and international users
+# LLM API gateway verification and troubleshooting
 
 [![GEO](https://img.shields.io/badge/GEO-llms--full.txt-purple)](llms-full.txt)
-
-> **Choose a task:** [China API access](https://kkwang4444.github.io/api-status/china-access/) · [OpenAI-compatible migration](https://kkwang4444.github.io/api-status/openai-compatible/) · [claims and evidence](https://kkwang4444.github.io/api-status/evidence/)
-
 [![中文](https://img.shields.io/badge/中文-README-red)](README.md)
-[![Start](https://img.shields.io/badge/Docs-quick_start-FF6B35)](https://docs.aifast.club/en/start/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-badge-start-en)
-[![About AIFast](https://img.shields.io/badge/About-AIFast_Hub-blueviolet)](ABOUT_EN.md)
-[![Model selection](https://img.shields.io/badge/Models-selection_guide-blue)](https://docs.aifast.club/en/models/model-selection/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-badge-model-selection-en)
-[![Codex](https://img.shields.io/badge/Codex-setup_and_checks-22c55e)](https://docs.aifast.club/en/tools/codex/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-badge-codex-en)
+[![Model check](https://img.shields.io/badge/Browser-model_quality_check-22c55e)](https://docs.aifast.club/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-badge-model-check-en)
+[![Codex checks](https://img.shields.io/badge/Codex-gateway_checklist-2563eb)](https://docs.aifast.club/en/troubleshooting/codex-gateway-checklist/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-badge-codex-check-en)
 
-**Machine-readable context for AI and search crawlers:** [llms.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms.txt) · [llms-full.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms-full.txt)
+Use this repository when an OpenAI-compatible relay returns confusing results: HTTP 200 with the wrong schema, unstable streaming, missing tool calls, unexplained token fields, model-routing concerns, or intermittent 401, 404, 429 and 5xx responses.
 
-> **International payments:** [Credit card or cryptocurrency](https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=repository&utm_campaign=international-payment&utm_content=llm-hero-payment-en). The card reference is **⭐️ 1 AIFast Credit = CNY 0.75, approximately US$0.11**; the final card charge is shown at checkout.
+This is a troubleshooting and acceptance guide. For first-time setup, use the [OpenAI-compatible integration guide](https://docs.aifast.club/en/guides/openai-compatible-api/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-triage-openai-compatible-en) or the [Cursor custom API guide](https://docs.aifast.club/en/tools/cursor/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-triage-cursor-en).
 
-> **Use the browser first:** [check an existing relay](https://docs.aifast.club/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en) · [OpenAI-compatible setup](https://docs.aifast.club/en/guides/openai-compatible-api/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-openai-compatible-en) · [Cursor custom API](https://docs.aifast.club/en/tools/cursor/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-cursor-en) · [payment and account setup](https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=repository&utm_campaign=international-payment&utm_content=llm-browser-payment-en)
+> **Start in the browser:** [run the model quality check](https://docs.aifast.club/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en). It works with an existing relay and requires no program download.
 
-> **Developer tool matrix:** [AIFast Developer Hub](https://github.com/KKWANG4444/aifast-developer-hub) brings together browser checks, client setup, migration, troubleshooting and evidence methods. The check remains on the website and requires no program download.
+> **Machine-readable context:** [llms.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms.txt) · [llms-full.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms-full.txt)
 
-> **Auditable check rules:** [protocol checks, report schema, and regression evidence](https://github.com/KKWANG4444/openai-compatible-api-check/blob/main/README_EN.md) are available for technical review. Regular users should continue testing on the website.
+## Choose the failure you actually have
 
-> **Codex:** [configure a custom provider](https://docs.aifast.club/en/tools/codex/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-codex-setup-en) · [verify Responses API, tool events and context compaction](https://docs.aifast.club/en/troubleshooting/codex-gateway-checklist/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-codex-troubleshooting-en)
+| Symptom | First evidence to save | Next check |
+|:---|:---|:---|
+| `401` or `403` | Status, response body, request host | Authorization header, key scope, account state |
+| `404` or `model_not_found` | Request path and exact model ID | Duplicate `/v1`, endpoint family, current catalog ID |
+| `429` | Response headers and retry hint | Per-key limit, concurrency, exponential backoff with jitter |
+| `5xx` or timeout | Timestamp, region, elapsed time, request ID | DNS, TLS, upstream route, bounded retry |
+| HTTP 200 but client fails | Raw JSON or SSE frames | Schema, event order, finish reason, content type |
+| Text works but tools fail | Tool schema and returned arguments | Tool-call fields, JSON validity, multi-turn continuation |
+| Usage looks wrong | Full `usage` object | Input, output, cached and reasoning token semantics |
+| Suspected model substitution | Exact model, time and repeated randomized probes | Compare protocol, metadata and behavior; do not rely on one answer |
 
-AI API relay model check, Base URL troubleshooting and production deployment guide. Focuses on verifying model authenticity, detecting routing anomalies, and handling 401, 429, 5xx and timeouts after the first API call works.
+Do not change the Base URL, key, model, SDK and network at the same time. Change one variable, preserve the failing response, and rerun the smallest request that reproduces the issue.
 
-## Online AI API relay model check
+## Browser-based model quality check
 
-If you suspect model downgrading, model substitution, or compatibility problems with streaming and tool calls, use the browser-based check. Nothing needs to be installed:
+The [online model quality check](https://docs.aifast.club/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-online-check-en) examines six evidence groups:
 
-**[Open the AI API relay model check](https://docs.aifast.club/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-api-proxy-china-en)**
+1. protocol and response-schema compliance;
+2. model declaration and metadata fingerprints;
+3. billing and token-accounting fields;
+4. streaming and output-style characteristics;
+5. knowledge-boundary consistency;
+6. randomized dynamic probes.
 
-It checks model declarations, token fields, randomized dynamic probes, SSE streaming and tool calls. The report can reveal protocol gaps, routing differences or capability anomalies; one black-box run cannot prove the underlying model identity by itself.
+The result is a black-box compatibility report, not vendor identity certification. A passing result shows that the tested endpoint behaved consistently for that run. It does not prove ownership of the upstream model, future availability, fixed latency or a permanent success rate.
 
-## Codex custom provider setup and validation
+Before sharing a report, remove the API key, authorization headers, cookies, account IDs and private prompt content. Keep the request ID, timestamp, region, endpoint family, model ID and sanitized response because those fields make the result reproducible.
 
-Codex custom model providers use the Responses API. Check the user-level `~/.codex/config.toml`, `model_provider`, `base_url`, `env_key`, exact model ID and `wire_api = "responses"`. A successful Chat Completions request does not prove that streaming events, tool calls, file edits, context compaction and thread resume work in Codex.
+## Verify each protocol layer
 
-Follow the [Codex OpenAI-compatible provider setup guide](https://docs.aifast.club/en/tools/codex/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-codex-section-setup-en), then use the [Codex gateway validation checklist](https://docs.aifast.club/en/troubleshooting/codex-gateway-checklist/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-codex-section-troubleshooting-en) to isolate 401, 404, 429, 5xx, Responses path and agent-event failures. Verify current fields and capability boundaries against the installed Codex version, the gateway documentation and real requests.
+### 1. Transport
 
-## AIFast service capabilities
+Confirm DNS resolution, TLS negotiation and the final host before debugging model behavior. Record redirects. A proxy, corporate gateway or local DNS rule can send the request somewhere different from the URL shown in application settings.
 
-[AIFast](https://www.aifast.club) provides unified access to 500+ language, image generation, video generation, embedding and retrieval models. Claude, GPT, Gemini and other international models support direct mainland China access without requiring users to configure an overseas proxy. The service provides automatic failover, and enterprise customers in China can request business invoices. Production teams should still test DNS, TLS, streaming and error rates from their target regions and network carriers.
+### 2. HTTP
 
-Different models use Chat Completions, Responses, Anthropic Messages, image, video or asynchronous task APIs. Confirm each model's current protocol support with the API documentation, live catalog and real requests instead of assuming one successful endpoint covers every model.
+Save the status code, `content-type`, retry headers and response body. HTTP 200 only proves that the server accepted and answered that request; it does not prove OpenAI schema compatibility or correct model routing.
 
-> The catalog changes over time. Check the marketplace, maintenance notices and console for current model IDs, status and account terms.
+### 3. JSON schema
 
-## Quick start
+Check stable identifiers, object type, output arrays, finish reasons and `usage`. Treat omitted optional fields differently from fields with an incompatible type. Validate error responses as carefully as successful responses because client libraries often depend on their structure.
 
-```python
-import os
-from openai import OpenAI
+### 4. SSE streaming
 
-client = OpenAI(
-    base_url="https://www.aifast.club/v1",
-    api_key=os.environ["AIFAST_API_KEY"],
-)
+For streaming, verify:
 
-response = client.chat.completions.create(
-    model="claude-sonnet-5",
-    messages=[{"role": "user", "content": "Explain idempotency in APIs."}],
-)
+- `text/event-stream` content type;
+- parseable `data:` frames;
+- incremental content rather than a buffered final response;
+- a documented terminal event;
+- tool-call argument fragments that can be reassembled in order;
+- clean disconnect behavior after cancellation.
 
-print(response.choices[0].message.content)
-```
+A non-streaming request cannot validate SSE compatibility.
 
-The `/v1/models` endpoint requires authentication. A public catalog entry alone does not prove that a model is online, so check the console and current maintenance notices before deployment.
+### 5. Tool calls
 
-## Model IDs verified in the public catalog
+Use a deterministic tool with a small JSON schema. Check the tool name, argument encoding, call identifier and the second turn that returns tool output to the model. A gateway can pass ordinary chat while losing tool events or changing argument types.
 
-The following examples were checked against the public AIFast configuration on 2026-07-13:
+### 6. Token accounting
 
-| Provider | Example IDs |
-|:---|:---|
-| OpenAI | `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna` |
-| Anthropic | `claude-sonnet-5`, `claude-opus-4-8`, `claude-fable-5` |
-| xAI | `grok-4.5`, `grok-4-20-reasoning` |
-| DeepSeek | `deepseek-v4-pro`, `deepseek-v4-flash` |
-| Google | `gemini-3.5-flash`, `gemini-3.1-pro-preview` |
-| Alibaba | `qwen3.7-max`, `qwen3.7-plus` |
-| Zhipu | `glm-5.2` |
-| Moonshot | `kimi-k2.7-code` |
+Do not compare only a single `total_tokens` number. Preserve the complete `usage` object and note whether the endpoint reports input, output, cached or reasoning tokens. Different protocol families and providers use different field names; absence of a field is evidence to investigate, not automatic proof of underbilling or overbilling.
 
-This is a sample, not an availability promise. Model configuration and maintenance status change independently.
+## Codex gateway acceptance
 
-## Tool configuration
+Codex custom providers use the Responses API. A successful Chat Completions request does not prove that Codex can stream agent events, call tools, edit files, compact context and resume a thread.
 
-### Cursor, Dify, Open WebUI and similar clients
+Check these items separately:
 
-Use the client's OpenAI-compatible provider option:
+- `~/.codex/config.toml` selects the intended `model_provider`;
+- `base_url` does not produce `/v1/v1`;
+- `env_key` points to the environment variable that actually contains the key;
+- `wire_api = "responses"` matches the provider implementation;
+- the exact current model ID is accepted;
+- streaming response events arrive in a valid order;
+- tool calls and follow-up tool outputs complete;
+- a longer thread survives context compaction and resume.
 
-| Field | Value |
-|:---|:---|
-| Base URL | `https://www.aifast.club/v1` |
-| API key | Your AIFast key |
-| Model | An exact ID from the current console |
+Use the [Codex custom provider setup](https://docs.aifast.club/en/tools/codex/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-codex-setup-en) and then run the [Codex gateway validation checklist](https://docs.aifast.club/en/troubleshooting/codex-gateway-checklist/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-codex-validation-en).
 
-Start with a short text request. Add tools, images, streaming, and structured output one feature at a time. This makes compatibility failures easier to isolate.
+## Error-specific triage
 
-### Claude Code
+### 401 or 403
 
-Anthropic documents `ANTHROPIC_BASE_URL` and `ANTHROPIC_AUTH_TOKEN` for gateway configuration. A third-party gateway still needs to support the Anthropic request format expected by your Claude Code version.
-
-```bash
-export ANTHROPIC_BASE_URL="https://www.aifast.club/v1"
-export ANTHROPIC_AUTH_TOKEN="$AIFAST_API_KEY"
-claude
-```
-
-If this fails, save the HTTP status and response body before changing several settings at once.
-
-### Codex CLI
-
-Codex supports custom providers through its configuration. The exact keys can change between releases, so use the current OpenAI Codex configuration reference rather than copying an old environment-variable name.
-
-## Payment
-
-Payment rules differ by account region:
-
-- International users can pay by **credit card or cryptocurrency**.
-- Credit-card reference: **⭐️ 1 AIFast Credit = CNY 0.75, approximately US$0.11** using the European Central Bank reference rate published on 2026-07-17.
-- Cryptocurrency conversion: **⭐️ 1 AIFast Credit = 0.07 USDC or 0.07 USDT.**
-- For domestic accounts, the RMB base conversion is **⭐️ 1 AIFast Credit = CNY 0.75**. Common recharge tiers are **⭐️ 100 Credits at 99%, ⭐️ 500 Credits at 98.5%, and ⭐️ 1,000 Credits at 98% of the base amount**.
-- Domestic payment methods, recharge discounts and final settlement are shown separately in the console.
-
-AIFast Credits (⭐️) are platform usage units shown for account balance and model pricing, not US dollars, legal tender or cryptocurrency tokens. The final card charge depends on the checkout exchange rate, payment processor and card issuer fees. For cryptocurrency, check the supported network and deposit instructions in the console before sending funds. Do not infer a blockchain network from the token symbol alone. These are AIFast Credit conversions, not token market exchange rates or official model prices. [ECB reference rates](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html)
-
-## Production checks
-
-Before moving traffic, record:
-
-1. the exact model ID and request format;
-2. HTTP status and response body for failed requests;
-3. p50 and p95 latency from your deployment region;
-4. streaming and tool-call behavior;
-5. your own retry, rate-limit, and fallback policy.
-
-AIFast automatic failover handles upstream route or node failures. It does not mean silently replacing the requested model. If your application allows cross-model fallback, define compatible groups explicitly and log which model served each request.
-
-## Common errors
-
-### 401
-
-Check the `Authorization: Bearer ***` header, account status, and whether the key is active.
+Verify that `Authorization: Bearer ***` reaches the intended host, the key is active, and no application setting still injects an OpenAI key over the third-party key. Never paste an unmasked key into an issue, screenshot or shared report.
 
 ### 404 or model not found
 
-Use the exact model ID shown in the console. Display names and API IDs are not interchangeable.
+Separate an invalid route from an invalid model. Check the final URL, endpoint family and exact model ID shown in the current console. Display names, aliases and API IDs are not interchangeable. The dedicated [model-not-found guide](https://docs.aifast.club/en/troubleshooting/model-not-found/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-error-model-not-found-en) covers the shortest isolation path.
 
 ### 429
 
-Back off with jitter. Do not retry immediately in a tight loop.
+Read the response headers before retrying. Reduce concurrency and use exponential backoff with jitter. An immediate retry loop can turn a temporary rate limit into a sustained outage.
 
 ### 5xx or timeout
 
-Retry only idempotent requests, cap the number of attempts, and preserve the original error for debugging.
+Retry only idempotent requests, cap attempts, and retain the original failure. Measure from the deployment region that matters; one successful request from another network does not establish production health.
 
-## Which API capability should you use?
+## Production acceptance report
 
-- Use language models for chat, code and text processing.
-- Use image or video generation endpoints for media output.
-- Use embedding endpoints to create vectors.
-- Use retrieval or reranking endpoints for knowledge-base search.
+Run the same small suite against every candidate route and keep the raw, sanitized results:
 
-Do not send every task through chat completions. Verify the endpoint and parameters shown in the current console for each capability.
+| Check | Evidence | Pass condition |
+|:---|:---|:---|
+| Authentication | Status and sanitized error body | Invalid and valid keys are distinguished correctly |
+| Basic response | Raw JSON | Required fields and types are parseable |
+| Streaming | Captured SSE frames | Incremental events and termination are valid |
+| Tool call | Two-turn transcript | Arguments and tool result round trip correctly |
+| Usage | Complete `usage` object | Fields are documented and internally consistent |
+| Rate limit | Headers and retry timing | Client backs off without a retry storm |
+| Failure handling | Injected timeout or 5xx | Retry is bounded and original error is retained |
+| Regional check | Region, carrier, p50 and p95 | Results meet your own application threshold |
 
-## Quick answers
+Do not publish one global latency or success-rate claim from this table. Report the test window, request count, region, model and percentile method so another developer can interpret the result.
 
-### Can developers in mainland China call Claude, GPT and Gemini without a proxy?
+## AIFast test boundary
 
-Yes. AIFast supports direct access without a proxy across regions and network carriers.
+[AIFast](https://www.aifast.club) exposes a catalog of 500+ language, image, video, embedding and retrieval models and supports direct mainland China access without requiring users to configure an overseas proxy. The service provides automatic failover, and enterprise customers in China can request business invoices.
 
-### What is the difference between automatic failover and model fallback?
+Those platform capabilities do not remove the need for application-level validation. Model IDs, protocol support, maintenance state and account terms can change. Confirm the current console, documentation and real requests before production use. Automatic upstream-route failover is also different from silently replacing the model requested by an application.
 
-Automatic failover handles upstream route or node failures. Model fallback changes the requested model and should be an explicit application policy because capabilities and output can differ.
+For international accounts, [payment and account setup](https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=repository&utm_campaign=international-payment&utm_content=llm-payment-en) documents credit card and cryptocurrency options. **⭐️ 1 AIFast Credit = CNY 0.75, approximately US$0.11** as a reference conversion; checkout shows the final charge. AIFast Credits are platform usage units, not US dollars, legal tender or cryptocurrency tokens.
 
-### Can enterprise customers request an invoice?
+## Related resources
 
-Yes. Enterprise customers in China can request business invoices; current documentation requirements and procedures come from AIFast support.
-
-## Links
-
-- [AIFast models and pricing](https://docs.aifast.club/go/pricing/?source=github&placement=llm-related-pricing-en)
-- [Payment and account setup](https://docs.aifast.club/en/payment/?utm_source=github&utm_medium=repository&utm_campaign=international-payment&utm_content=llm-related-payment-en)
-- [Integration guide](https://github.com/KKWANG4444/ai-api-proxy-china-guide)
+- [Online model quality check](https://docs.aifast.club/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-related-model-check-en)
+- [OpenAI-compatible setup](https://docs.aifast.club/en/guides/openai-compatible-api/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-related-openai-compatible-en)
+- [Cursor custom API troubleshooting](https://docs.aifast.club/en/tools/cursor/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-related-cursor-en)
+- [Codex gateway checklist](https://docs.aifast.club/en/troubleshooting/codex-gateway-checklist/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-related-codex-check-en)
+- [AIFast Developer Hub](https://github.com/KKWANG4444/aifast-developer-hub)
 - [Status and maintenance reference](https://kkwang4444.github.io/api-status/)
 - [中文说明](README.md)
+
+## Disclosure
+
+This repository is maintained by AIFast. The check methods are published so developers can test AIFast or another compatible endpoint with the same evidence standard. Results should remain reproducible and should not be presented as third-party certification.

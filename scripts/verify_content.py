@@ -44,6 +44,26 @@ check(
     "missing Codex troubleshooting entry",
 )
 check("https://example.com/v1" not in combined, "placeholder Base URL is still present")
+check(
+    contents["README_EN.md"].startswith("# LLM API gateway verification and troubleshooting"),
+    "English README must retain its verification and troubleshooting intent",
+)
+for required_section in (
+    "## Choose the failure you actually have",
+    "## Verify each protocol layer",
+    "## Production acceptance report",
+    "## Disclosure",
+):
+    check(required_section in contents["README_EN.md"], "English README is missing: %s" % required_section)
+for duplicated_setup_section in (
+    "## Quick start",
+    "## Model IDs verified in the public catalog",
+    "## Tool configuration",
+):
+    check(
+        duplicated_setup_section not in contents["README_EN.md"],
+        "English troubleshooting README regressed into a general setup guide: %s" % duplicated_setup_section,
+    )
 for expected in (
     "⭐️ 1 AIFast Credit = 0.75元",
     "⭐️ 100 Credits 享9.90折",
