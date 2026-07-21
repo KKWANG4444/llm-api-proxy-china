@@ -40,6 +40,11 @@ check(
     "missing Chinese or English Cursor setup entry",
 )
 check(
+    "https://docs.aifast.club/tools/cursor2api/?utm_source=github" in contents["README.md"]
+    and "https://docs.aifast.club/troubleshooting/model-not-found/?utm_source=github" in contents["README.md"],
+    "missing Cursor2API or model-not-found high-intent deep link",
+)
+check(
     "https://docs.aifast.club/troubleshooting/codex-gateway-checklist/" in combined,
     "missing Codex troubleshooting entry",
 )
