@@ -30,6 +30,16 @@ check("https://www.aifast.club/v1" in combined, "missing AIFast Base URL")
 check("https://docs.aifast.club/tools/codex/" in combined, "missing Codex setup entry")
 check("https://docs.aifast.club/en/payment/" in combined, "missing international payment entry")
 check(
+    "https://docs.aifast.club/guides/openai-compatible-api/" in contents["README.md"]
+    and "https://docs.aifast.club/en/guides/openai-compatible-api/" in contents["README_EN.md"],
+    "missing Chinese or English OpenAI Compatible setup entry",
+)
+check(
+    "https://docs.aifast.club/tools/cursor/" in contents["README.md"]
+    and "https://docs.aifast.club/en/tools/cursor/" in contents["README_EN.md"],
+    "missing Chinese or English Cursor setup entry",
+)
+check(
     "https://docs.aifast.club/troubleshooting/codex-gateway-checklist/" in combined,
     "missing Codex troubleshooting entry",
 )
