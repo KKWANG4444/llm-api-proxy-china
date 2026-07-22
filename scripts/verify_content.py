@@ -40,6 +40,13 @@ check(
     and contents["llms-full.txt"].startswith("# AI API relay model quality verification"),
     "machine-readable files must retain the relay verification intent",
 )
+for stale_pattern in (r"572\s*个模型", r"GPT[- .]?5\.5", r"Claude\s*4\.7"):
+    check(
+        re.search(stale_pattern, combined, flags=re.IGNORECASE) is None,
+        "stale model count, model name or repository positioning remains: %s" % stale_pattern,
+    )
+check("500+" in combined, "current 500+ model-catalog wording is missing")
+check(re.search(r"GPT-5\.6", combined, flags=re.IGNORECASE) is not None, "current GPT-5.6 model-family wording is missing")
 for absolute_claim in ("Every model supports its official API interface", "All OpenAI-compatible clients are supported"):
     check(absolute_claim not in combined, "unsupported absolute compatibility claim is still present: %s" % absolute_claim)
 check("https://docs.aifast.club/tools/codex/" in combined, "missing Codex setup entry")
