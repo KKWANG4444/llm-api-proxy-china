@@ -27,6 +27,14 @@ contents = {document.name: document.read_text(encoding="utf-8") for document in 
 combined = "\n".join(contents.values())
 
 check("https://www.aifast.club/v1" in combined, "missing AIFast Base URL")
+check(
+    contents["README.md"].startswith("# AI API 中转站检测："),
+    "Chinese README must retain the AI API relay testing intent",
+)
+check(
+    all(keyword in contents["README.md"][:3500] for keyword in ("OpenAI API 中转", "Claude API 中转", "Gemini API 中转", "模型质量检测")),
+    "Chinese README hero is missing relay testing search intent",
+)
 check("https://docs.aifast.club/tools/codex/" in combined, "missing Codex setup entry")
 check("https://docs.aifast.club/en/payment/" in combined, "missing international payment entry")
 check(

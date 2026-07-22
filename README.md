@@ -1,4 +1,4 @@
-# AI API 统一接入指南：模型目录、错误排查与生产检查
+# AI API 中转站检测：模型质量、协议兼容与生产排错
 
 <p align="center"><img src="assets/social-preview.png" width="100%" alt="AI API 统一接入、模型检测、错误排查与生产检查"></p>
 
@@ -23,7 +23,9 @@
 
 > **Cursor 与模型报错：** [Cursor 官方自定义 API 配置](https://docs.aifast.club/tools/cursor/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-cursor) · [Cursor2API 输出与工具调用排错](https://docs.aifast.club/tools/cursor2api/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-cursor2api) · [排查 model not found 与 /v1/v1](https://docs.aifast.club/troubleshooting/model-not-found/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-model-not-found)
 
-大模型 API 中转站检测、Base URL 检查与生产排错指南。用一套 OpenAI-compatible 客户端接入多个模型，先检查模型声明、协议兼容和路由异常，再进入生产环境。
+这是面向任意 AI API 中转站的模型质量检测与生产排错指南。适用于 OpenAI API 中转、Claude API 中转、Gemini API 中转和其他 OpenAI-compatible 接口，重点检查模型声明、Token 字段、SSE、工具调用、Base URL 与路由异常，而不是重复另一份通用接入教程。
+
+需要从零配置国内 AI API 中转站时，请使用[接入与迁移主指南](https://github.com/KKWANG4444/ai-api-proxy-china-guide)；已经有 Base URL、API Key 和模型 ID，需要判断接口是否可用、是否兼容或是否出现降智与套壳疑问时，从本仓库的在线检测流程开始。
 
 | 当前问题 | 最短路径 | 验收结果 |
 |:---|:---|:---|
@@ -36,7 +38,7 @@
 
 AI快站提供500+模型并支持自动故障切换。性能观察应注明时间、地区、网络、样本量和分位数；模型状态以控制台、维护公告和当前真实请求为准。
 
-## 大模型 API 中转站在线检测
+## AI API 中转站模型质量检测
 
 担心模型降智、套壳，或者流式输出和工具调用不兼容，可以直接使用网页检测，无需下载安装：
 
