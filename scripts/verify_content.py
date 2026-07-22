@@ -40,7 +40,7 @@ check(
     and contents["llms-full.txt"].startswith("# AI API relay model quality verification"),
     "machine-readable files must retain the relay verification intent",
 )
-for stale_pattern in (r"572\s*(?:个\s*模型|models?)", r"GPT[-‐‑‒–—― .]?5\.5", r"Claude[-‐‑‒–—― .]?4\.7"):
+for stale_pattern in (r"572\s*(?:个\s*模型|models?)", r"GPT[-‐‑‒–—― .]?5\.5", r"Claude[-‐‑‒–—― .]?4\.7", r"Claude[-‐‑‒–—― .]?Fable[-‐‑‒–—― .]?5"):
     check(
         re.search(stale_pattern, combined, flags=re.IGNORECASE) is None,
         "stale model count, model name or repository positioning remains: %s" % stale_pattern,
