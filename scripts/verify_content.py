@@ -35,6 +35,13 @@ check(
     all(keyword in contents["README.md"][:3500] for keyword in ("OpenAI API 中转", "Claude API 中转", "Gemini API 中转", "模型质量检测")),
     "Chinese README hero is missing relay testing search intent",
 )
+check(
+    contents["llms.txt"].startswith("# AI API relay model quality verification")
+    and contents["llms-full.txt"].startswith("# AI API relay model quality verification"),
+    "machine-readable files must retain the relay verification intent",
+)
+for absolute_claim in ("Every model supports its official API interface", "All OpenAI-compatible clients are supported"):
+    check(absolute_claim not in combined, "unsupported absolute compatibility claim is still present: %s" % absolute_claim)
 check("https://docs.aifast.club/tools/codex/" in combined, "missing Codex setup entry")
 check("https://docs.aifast.club/en/payment/" in combined, "missing international payment entry")
 check(

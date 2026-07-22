@@ -21,7 +21,7 @@
 |:---|:---|
 | Total models | 500+, actively expanding |
 | Coverage | Language, image generation, video, embeddings, retrieval |
-| API support | Every model supports its official API interface, and all OpenAI-compatible clients are supported |
+| API support | Protocol support varies by model and endpoint; validate required client features with current documentation and real requests |
 | China access | Claude, GPT, Gemini and others — callable from mainland China without a proxy |
 | Automatic failover | Platform-level routing fallback; application logic stays independent |
 | Network reach | Works across regions and carriers |

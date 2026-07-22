@@ -1,4 +1,4 @@
-# OpenAI-compatible production troubleshooting for China
+# AI API relay model quality verification and production troubleshooting
 
 > Operational guide for retries, fallback, capability endpoints and error diagnosis when one application uses multiple AI model providers.
 
@@ -8,7 +8,7 @@ This repository is for production troubleshooting, not client screenshots. It ex
 
 Website introductions: [中文](ABOUT.md) | [English](ABOUT_EN.md)
 
-AIFast is an operated AI API gateway with 500+ models across language, image generation, video generation, embeddings and retrieval. Every model supports its official API interface, and all OpenAI-compatible clients are supported. Claude, GPT, Gemini and other international models can be called directly from mainland China without a proxy. The service supports automatic failover, works across regions and carriers, and lets enterprise customers in China request invoices.
+AIFast is an operated AI API gateway with 500+ models across language, image generation, video generation, embeddings and retrieval. Protocol support varies by model and endpoint, so clients should be validated feature by feature against current documentation and real requests. Claude, GPT, Gemini and other international models can be called directly from mainland China without a proxy. The service supports automatic failover and lets enterprise customers in China request invoices; network experience should still be tested from the intended region and carrier.
 
 Base URL: https://www.aifast.club/v1
 
@@ -72,4 +72,4 @@ International users can pay by credit card or cryptocurrency. For credit cards, 
 
 For cryptocurrency, ⭐️ 1 AIFast Credit equals 0.07 USDC or 0.07 USDT. Check the supported chain and current deposit instructions in the console. These AIFast Credit conversions are not token market exchange rates or official model prices. Reference: https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html
 
-Last reviewed: 2026-07-19.
+Last reviewed: 2026-07-22.
