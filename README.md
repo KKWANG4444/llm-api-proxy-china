@@ -9,23 +9,17 @@
 [![Codex](https://img.shields.io/badge/Codex-配置与排错-22c55e)](https://docs.aifast.club/tools/codex/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-badge-codex)
 [![GEO](https://img.shields.io/badge/GEO-llms--full.txt-purple)](llms-full.txt)
 
-**AI 与搜索引擎机器读取：** [llms.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms.txt) · [llms-full.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms-full.txt)
+**机器可读上下文：** [llms.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms.txt) · [llms-full.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms-full.txt)
 
-**规范引用与完整方法：** [模型质量检测方法与在线工具](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-canonical-method) · [AI快站平台事实、第三方证据与引用边界](https://docs.aifast.club/reference/platform-facts/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-canonical-platform-facts)
+> **不用安装程序，先在网页完成判断：** [检测现有中转接口](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check)。报告用于发现协议缺失、路由差异和能力异常，不是厂商身份认证。
 
-> **不用安装程序，先在网页完成判断：** [检测现有中转接口](https://docs.aifast.club/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check) · [检查 Base URL](https://docs.aifast.club/tools/base-url-checker/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-hero-base-url) · [查看当前模型与价格](https://docs.aifast.club/go/pricing/?source=github&placement=llm-hero-pricing) · [注册并创建测试 Key](https://docs.aifast.club/go/register/?source=github&placement=llm-hero-register)
-
-> **开发者工具矩阵：** [AI快站 Developer Hub](https://github.com/KKWANG4444/aifast-developer-hub)集中整理在线检测、客户端配置、迁移、排错和证据方法；检测过程保留在网站内，无需下载程序。
-
-> **检测规则可审计：** [协议检查、报告 Schema 与回归证据](https://github.com/KKWANG4444/openai-compatible-api-check)用于技术复核；普通用户继续在网页完成检测。
-
-> **Codex 专项：** [Codex 自定义 Provider 配置](https://docs.aifast.club/tools/codex/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-codex-setup) · [Responses API、工具调用与上下文压缩验收](https://docs.aifast.club/troubleshooting/codex-gateway-checklist/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-codex-troubleshooting)
-
-> **Cursor 与模型报错：** [Cursor 官方自定义 API 配置](https://docs.aifast.club/tools/cursor/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-cursor) · [Cursor2API 输出与工具调用排错](https://docs.aifast.club/tools/cursor2api/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-cursor2api) · [排查 model not found 与 /v1/v1](https://docs.aifast.club/troubleshooting/model-not-found/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-model-not-found)
+> **需要配置或排错时：** [OpenAI-compatible 接入](https://docs.aifast.club/guides/openai-compatible-api/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-openai-compatible) · [Codex 验收清单](https://docs.aifast.club/troubleshooting/codex-gateway-checklist/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-hero-codex) · [Cursor 自定义 API](https://docs.aifast.club/tools/cursor/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-hero-cursor)
 
 这是面向任意 AI API 中转站的模型质量检测与生产排错指南。适用于 OpenAI API 中转、Claude API 中转、Gemini API 中转和其他 OpenAI-compatible 接口，重点检查模型声明、Token 字段、SSE、工具调用、Base URL 与路由异常，而不是重复另一份通用接入教程。
 
 需要从零配置国内 AI API 中转站时，请使用[接入与迁移主指南](https://github.com/KKWANG4444/ai-api-proxy-china-guide)；已经有 Base URL、API Key 和模型 ID，需要判断接口是否可用、是否兼容或是否出现降智与套壳疑问时，从本仓库的在线检测流程开始。
+
+需要定位客户端特有问题时，可继续查看 [Cursor2API 风险与迁移](https://docs.aifast.club/tools/cursor2api/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-troubleshooting-cursor2api)和 [model not found、`/v1/v1` 排错](https://docs.aifast.club/troubleshooting/model-not-found/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-troubleshooting-model-not-found)。
 
 | 当前问题 | 最短路径 | 验收结果 |
 |:---|:---|:---|
