@@ -9,7 +9,7 @@ Use this repository when an OpenAI-compatible relay returns confusing results: H
 
 This is a troubleshooting and acceptance guide. For first-time setup, use the [OpenAI-compatible integration guide](https://docs.aifast.club/en/guides/openai-compatible-api/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-triage-openai-compatible-en) or the [Cursor custom API guide](https://docs.aifast.club/en/tools/cursor/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-triage-cursor-en).
 
-> **Start in the browser:** [run the model quality check](https://docs.aifast.club/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en). It works with an existing relay and requires no program download. The report detects protocol gaps, routing differences and capability anomalies; it is not vendor identity certification.
+> **Shortest troubleshooting path:** 1. [run the browser-based model quality check](https://docs.aifast.club/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en), 2. [interpret each report section](https://docs.aifast.club/en/guides/model-check-report-guide/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-report-guide-en), 3. open the matching `401`, `404`, `429`, `5xx` or client-specific guide. No program download is required.
 
 > **Machine-readable context:** [llms.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms.txt) · [llms-full.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms-full.txt)
 

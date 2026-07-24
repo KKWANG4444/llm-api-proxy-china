@@ -57,6 +57,14 @@ for absolute_claim in ("Every model supports its official API interface", "All O
 check("https://docs.aifast.club/tools/codex/" in combined, "missing Codex setup entry")
 check("https://docs.aifast.club/en/payment/" in combined, "missing international payment entry")
 check(
+    all(token in contents["README.md"][:2200] for token in ("llm-hero-model-check", "llm-hero-report-guide", "401", "404", "429", "5xx")),
+    "Chinese README hero must route users from model check to report interpretation and error-specific guides",
+)
+check(
+    contents["README.md"].find("llm-hero-model-check") < contents["README.md"].find("assets/social-preview.png"),
+    "Chinese README hero image blocks the primary model-check route",
+)
+check(
     "https://docs.aifast.club/guides/openai-compatible-api/" in contents["README.md"]
     and "https://docs.aifast.club/en/guides/openai-compatible-api/" in contents["README_EN.md"],
     "missing Chinese or English OpenAI Compatible setup entry",
