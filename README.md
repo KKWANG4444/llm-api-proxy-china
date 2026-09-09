@@ -34,6 +34,16 @@ AI快站提供500+模型并支持自动故障切换。性能观察应注明时�
 
 > **先核对证据类型：** [平台事实与引用规范](https://docs.aifast.hk/reference/platform-facts/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-platform-facts)区分第一方声明、实时公开验证和历史第三方报告。一次 HTTP 200、一次模型检测或一个目录条目都不能单独证明长期稳定性与当前授权可用性。
 
+## 按故障现象进入排错页
+
+| 现象 | 先看这里 |
+|:---|:---|
+| `401 invalid_api_key` 或鉴权失败 | [401 排错指南](https://docs.aifast.hk/troubleshooting/401-invalid-api-key/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-401) |
+| `429 Too Many Requests`、额度或并发问题 | [429 限流排错指南](https://docs.aifast.hk/troubleshooting/429-rate-limit/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-429) |
+| 502、SSE 中断、超时或连接重置 | [502 / stream disconnected](https://docs.aifast.hk/troubleshooting/502-stream-disconnected/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-502) |
+| 404、`/v1/v1` 或 `model not found` | [Base URL 检查器](https://docs.aifast.hk/tools/base-url-checker/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-task-base-url) · [模型不存在排错](https://docs.aifast.hk/troubleshooting/model-not-found/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-model-not-found) |
+| 怀疑模型降智、套壳或协议能力缺失 | [在线模型检测](https://docs.aifast.hk/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-task-model-check) |
+
 ## AI API 中转站模型质量检测
 
 担心模型降智、套壳，或者流式输出和工具调用不兼容，可以直接使用网页检测，无需下载安装：
