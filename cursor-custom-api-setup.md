@@ -1,10 +1,12 @@
-# Cursor 接入自定义 API 完整配置流程
+# Cursor 自定义 API 配置：Base URL、Agent 与 Cursor2API 区别
 
 [← 返回主页](README.md)
 
 > **先判断问题在哪一层：** [运行网页模型质量检测](https://docs.aifast.hk/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=cursor-setup-hero-model-check)检查鉴权、模型声明、Token、SSE 和工具调用；需要核对 Cursor 新旧版本入口、Verify 按钮和功能边界时，继续阅读[新版 Cursor 配置教程](https://docs.aifast.hk/tools/cursor/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=cursor-setup-hero-docs)。无需下载检测程序。
 
-Cursor 支持 BYOK（Bring Your Own Key），用自己的 API key 连接自己的模型接口。这对以下场景特别有用：
+> **先区分两条链路：** Cursor 官方自定义 API Key 是 Cursor 当前版本提供的 BYOK 能力；Cursor2API 是社区协议转换项目，两者不是同一功能。如果你使用的是 Cursor2API，请先看 [Cursor2API 配置、401、截断与迁移指南](https://docs.aifast.hk/tools/cursor2api/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=cursor-setup-cursor2api)。
+
+Cursor 支持 BYOK（Bring Your Own Key），可用自己的 API Key 连接受支持的模型接口。设置入口和能力范围会随 Cursor 版本、套餐与提供商变化，配置前应先核对当前官方说明。这对以下场景特别有用：
 
 - 想用 Cursor，但国内网络连不上官方 API
 - 团队希望统一切换到另一个模型
@@ -32,7 +34,7 @@ Cursor → Settings → Models → API Keys → OpenAI / Anthropic
 |:---|:---|
 | API Key | 控制台创建的 Key |
 | Override Base URL | `https://www.aifast.hk/v1` |
-| Model | 控制台当前展示的精确 ID（如 `gpt-6-astra`（复杂推理与编程）或 `gpt-6-astra`（复杂推理与编程）或 `gpt-5.6-luna`） |
+| Model | 从控制台当前模型目录复制的精确模型 ID，不要填写展示名或自行猜测别名 |
 
 填写后 Cursor 会自动发一条测试请求来验证连接。如果失败，页面会显示错误信息。
 
