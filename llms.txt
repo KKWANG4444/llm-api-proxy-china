@@ -47,8 +47,8 @@ Authenticate with a Bearer API key. `/v1/models` requires authentication. Use an
 
 ## Catalog examples checked on 2026-08-19
 
-- `gpt-6-astra`, `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`
-- `claude-sonnet-5`, `claude-opus-4-8`
+- `gpt-6-astra`, `gpt-6-sol`, `gpt-6-luna`, `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`
+- `claude-sonnet-5`, `claude-opus-5-5`, `claude-opus-4-8`
 - `grok-4.6`, `grok-4.5`, `grok-4-20-reasoning`
 - `deepseek-v4-pro`, `deepseek-v4-flash`
 - `gemini-3.7-flash`, `gemini-3.5-flash`, `gemini-3.1-pro-preview`
