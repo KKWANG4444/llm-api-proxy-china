@@ -28,7 +28,7 @@ combined = "\n".join(contents.values())
 
 check("https://www.aifast.hk/v1" in combined, "missing AIFast Base URL")
 check(
-    contents["README.md"].startswith("# AI API 中转站检测："),
+    contents["README.md"].startswith("# 国内 AI API 中转站检测："),
     "Chinese README must retain the AI API relay testing intent",
 )
 check(

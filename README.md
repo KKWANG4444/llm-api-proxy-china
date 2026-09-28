@@ -1,4 +1,4 @@
-# AI API 中转站检测：模型质量、协议兼容与生产排错
+# 国内 AI API 中转站检测：模型质量、协议兼容与生产排错
 
 [![English](https://img.shields.io/badge/English-README_EN-blue)](README_EN.md)
 [![模型选择](https://img.shields.io/badge/模型-选择与成本-FF6B35)](https://docs.aifast.hk/models/model-selection/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-badge-model-selection)
@@ -14,6 +14,8 @@
 > **Cursor 高频问题：** [Cursor 自定义 API 配置、Base URL 与 Agent 验收](cursor-custom-api-setup.md) · [Cursor2API 配置、401、截断与标准 API 迁移](https://docs.aifast.hk/tools/cursor2api/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-hero-cursor2api)
 
 > **还在选择服务：** [OpenAI Compatible API 候选服务与 12 项实测清单](https://docs.aifast.hk/guides/how-to-choose-ai-api-gateway/?utm_source=github&utm_medium=repository&utm_campaign=gateway-comparison&utm_content=llm-hero-candidate-comparison)，先用统一标准缩小候选范围，再运行本仓库的检测流程。
+
+> **按搜索问题进入：** [国内 AI 中转站怎么选](https://docs.aifast.hk/guides/how-to-choose-ai-api-gateway/?utm_source=github&utm_medium=repository&utm_campaign=search-intent&utm_content=llm-domestic-gateway) · [DeepSeek API 接入](https://docs.aifast.hk/guides/chinese-model-api/?utm_source=github&utm_medium=repository&utm_campaign=search-intent&utm_content=llm-deepseek-api) · [ChatGPT / OpenAI Compatible API](https://docs.aifast.hk/guides/openai-compatible-api/?utm_source=github&utm_medium=repository&utm_campaign=search-intent&utm_content=llm-chatgpt-compatible) · [Cursor 自定义 API](cursor-custom-api-setup.md)
 
 这是面向在中国及跨境网络环境中使用 LLM API proxy、OpenAI-compatible API 和 AI API 中转站的模型质量检测与生产排错指南。适用于 OpenAI API 中转、Claude API 中转、Gemini API 中转，重点检查模型声明、Token 字段、SSE、工具调用、Base URL 与路由异常，而不是重复另一份通用接入教程。
 
