@@ -10,7 +10,9 @@ Cursor 支持 BYOK（Bring Your Own Key），可用自己的 API Key 连接受�
 
 - 想用 Cursor，但国内网络连不上官方 API
 - 团队希望统一切换到另一个模型
-- 想用 Cursor 但不想用官方的付费计划
+- 希望由所选模型提供商单独计费，并保留当前 Cursor 套餐的功能边界
+
+自带 Key 不自动替代 Cursor 订阅或解锁全部功能。模型服务商仍会收取调用费用，团队或企业套餐还可能涉及 Cursor 的用量费用；请核对当前套餐规则。
 
 Cursor 的官方文档说得很清楚：Settings > Models > 填入你的 API provider。
 
@@ -36,7 +38,7 @@ Cursor → Settings → Models → API Keys → OpenAI / Anthropic
 | Override Base URL | `https://www.aifast.hk/v1` |
 | Model | 从控制台当前模型目录复制的精确模型 ID，不要填写展示名或自行猜测别名 |
 
-填写后 Cursor 会自动发一条测试请求来验证连接。如果失败，页面会显示错误信息。
+填写后按当前版本的 Save 或 Verify 操作保存、验证，再发起一条短请求。如果失败，保留完整错误信息，不把按钮名称或旧版界面当成固定步骤。
 
 ### Step 3：添加并验证模型
 
@@ -72,6 +74,12 @@ curl -sS -o /dev/null -w "%{http_code}\n" \
 ---
 
 ## 3. 常见问题
+
+### 本机 curl 成功，Cursor 还是连不上
+
+Cursor 官方说明，自带 API Key 的请求仍经过 Cursor 服务器进行最终提示词构建。本机测试成功不能证明 Cursor 服务器到目标接口也可达，`localhost` 也不代表你的电脑对 Cursor 服务器可见。记录失败时间、状态码和模型 ID，再与服务商的调用日志核对；没有日志权限时保留完整报错。
+
+Cursor 的零数据保留政策不自动适用于自带 Key 的请求，私有代码处理应同时核对 Cursor 与所选模型提供商的当前政策。
 
 ### 保存时提示 Invalid API Key
 
@@ -111,18 +119,20 @@ curl -sS -o /dev/null -w "%{http_code}\n" \
 
 | 问题 | 操作 |
 |:---|:---|
-| 401 | 检查 API Key |
-| 保存失败 | 先 curl 测试 base_url 是否可达 |
+| 401 | [检查 Key、鉴权头与账号状态](https://docs.aifast.hk/troubleshooting/401-invalid-api-key/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=cursor-setup-table-401) |
+| 保存失败 | 先测试本机链路，再核对 Cursor 报错与服务商日志 |
 | 模型加不了 | 从控制台复制精确 ID，不要写展示名 |
 | Agent 卡住 | 区分 `/responses` 与 `/chat/completions`，检查 tools 和流式事件 |
 | Tab 不走第三方接口 | Cursor 专用模型边界，属于预期行为 |
-| 响应太慢 | 换低延迟模型 |
+| 429、额度或并发限制 | [区分限流与额度问题](https://docs.aifast.hk/troubleshooting/429-rate-limit/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=cursor-setup-table-429) |
+| 502、超时或流式中断 | [按请求 ID 和时间排查 SSE 链路](https://docs.aifast.hk/troubleshooting/502-stream-disconnected/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=cursor-setup-table-502) |
+| 响应太慢 | 先区分网络、排队与生成耗时，再比较满足任务需求的模型 |
 
 ---
 
 ## 参考
 
-- [Cursor API Key 官方文档](https://docs.cursor.com/settings/api-keys)
+- [Cursor API Key 官方文档](https://cursor.com/help/models-and-usage/api-keys)（2026-09-29 核对：请求链路、计费与数据政策）
 - [网页模型质量检测](https://docs.aifast.hk/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=cursor-setup-reference-model-check)
 - [Cursor 自定义 API 配置与功能边界](https://docs.aifast.hk/tools/cursor/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=cursor-setup-reference-docs)
 - [Base URL 与 `/v1/v1` 检查](https://docs.aifast.hk/tools/base-url-checker/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=cursor-setup-reference-base-url)
