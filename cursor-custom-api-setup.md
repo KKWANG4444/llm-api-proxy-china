@@ -14,7 +14,18 @@ Cursor 支持 BYOK（Bring Your Own Key），可用自己的 API Key 连接受�
 
 自带 Key 不自动替代 Cursor 订阅或解锁全部功能。模型服务商仍会收取调用费用，团队或企业套餐还可能涉及 Cursor 的用量费用；请核对当前套餐规则。
 
-Cursor 的官方文档说得很清楚：Settings > Models > 填入你的 API provider。
+Cursor 官方的自带 Key 设置入口是 Settings > Models。2026-10-02 核对时，官方把 OpenAI 自带 Key 的范围限定为标准、非推理聊天模型，实际可选项以模型选择器为准；中转站目录中的全部 GPT 模型不能自动视为 Cursor 支持列表。
+
+## 先按现象定位
+
+| 你遇到的问题 | 直接查看 |
+|:---|:---|
+| 找不到 Override OpenAI Base URL | [检查版本和提供商入口](#找不到-override-openai-base-url) |
+| API Key Valid，但实际聊天失败 | [核对模型选择器、请求路径与日志](#api-key-valid但聊天失败) |
+| 本机 curl 正常，Cursor 连不上 | [区分本机与 Cursor 服务器链路](#本机-curl-成功cursor-还是连不上) |
+| Chat 能用，Agent 卡住 | [逐层验证流式和工具调用](#2-verify-通过但-agent-失败怎么查) |
+
+第三方接口示例只适用于当前 Cursor 版本提供自定义 Base URL 的情况；官方支持自带 Key，不等于保证任意第三方网关兼容。
 
 ---
 
@@ -30,7 +41,7 @@ Cursor → Settings → Models → API Keys → OpenAI / Anthropic
 
 ### Step 2：填写 Provider
 
-选择 **OpenAI**（因为 AI快站 使用 OpenAI-compatible 协议）：
+若当前版本提供 OpenAI 的自定义 Base URL，按以下字段配置 AI快站的 OpenAI-compatible 接口；不要把中转 Key 填入仍指向模型厂商的地址：
 
 | 字段 | 内容 |
 |:---|:---|
@@ -74,6 +85,21 @@ curl -sS -o /dev/null -w "%{http_code}\n" \
 ---
 
 ## 3. 常见问题
+
+### 找不到 Override OpenAI Base URL
+
+先核对当前 Cursor 版本和提供商设置。官方自带 Key 文档列出提供商 Key 的填写步骤，没有保证每个版本都提供第三方 Base URL 入口。没有该选项时，不要通过修改未公开配置强行开启，也不要假定保存第三方 Key 后地址会自动切换。
+
+先用 [Base URL 检查器](https://docs.aifast.hk/tools/base-url-checker/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=cursor-missing-base-url)检查地址，再按 [OpenAI-compatible 接入教程](https://docs.aifast.hk/guides/openai-compatible-api/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=cursor-fallback-sdk)验证本机接口。两者成功也不代表当前 Cursor 支持该端点。
+
+### API Key Valid，但聊天失败
+
+1. 记录聊天模型选择器中的模型 ID，确认它与设置页验证的模型一致；不要把平台目录当作客户端支持列表。
+2. 新开聊天，只发一条短文本，暂不附加文件、图片或工具。
+3. 按时间、模型 ID 和请求 ID 核对服务商日志。没有请求记录时，先排查客户端配置和 Cursor 服务器到接口的链路。
+4. 有请求记录时，按实际状态码、端点和响应正文处理；返回 HTML 首页不能算有效 JSON API 响应。
+
+没有日志权限时，保存客户端版本、完整错误文本和发生时间，分享前删除 API Key、认证头和私有代码。
 
 ### 本机 curl 成功，Cursor 还是连不上
 
@@ -132,7 +158,7 @@ Cursor 的零数据保留政策不自动适用于自带 Key 的请求，私有�
 
 ## 参考
 
-- [Cursor API Key 官方文档](https://cursor.com/help/models-and-usage/api-keys)（2026-09-29 核对：请求链路、计费与数据政策）
+- [Cursor API Key 官方文档](https://cursor.com/help/models-and-usage/api-keys)（2026-10-02 核对：提供商范围、设置入口、请求链路与计费边界）
 - [网页模型质量检测](https://docs.aifast.hk/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=cursor-setup-reference-model-check)
 - [Cursor 自定义 API 配置与功能边界](https://docs.aifast.hk/tools/cursor/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=cursor-setup-reference-docs)
 - [Base URL 与 `/v1/v1` 检查](https://docs.aifast.hk/tools/base-url-checker/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=cursor-setup-reference-base-url)

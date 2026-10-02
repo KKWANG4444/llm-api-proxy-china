@@ -11,7 +11,7 @@
 
 > **最短排错路径：** ① [在线检测现有接口](https://docs.aifast.hk/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check) ② [读懂分项报告](https://docs.aifast.hk/guides/model-check-report-guide/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-report-guide) ③ 按 `401`、`404`、`429`、`5xx` 或客户端问题进入对应教程。无需下载程序。
 
-> **Cursor 高频问题：** [Cursor 自定义 API 配置、Base URL 与 Agent 验收](cursor-custom-api-setup.md) · [Cursor2API 配置、401、截断与标准 API 迁移](https://docs.aifast.hk/tools/cursor2api/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-hero-cursor2api)
+> **Cursor 配置与排错：** [自定义 API 配置](cursor-custom-api-setup.md) · [找不到 Base URL](cursor-custom-api-setup.md#找不到-override-openai-base-url) · [API Key Valid 但聊天失败](cursor-custom-api-setup.md#api-key-valid但聊天失败) · [Cursor2API 配置与迁移](https://docs.aifast.hk/tools/cursor2api/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-hero-cursor2api)
 
 > **还在选择服务：** [OpenAI Compatible API 候选服务与 12 项实测清单](https://docs.aifast.hk/guides/how-to-choose-ai-api-gateway/?utm_source=github&utm_medium=repository&utm_campaign=gateway-comparison&utm_content=llm-hero-candidate-comparison)，先用统一标准缩小候选范围，再运行本仓库的检测流程。
 

@@ -19,6 +19,7 @@ This is a troubleshooting and acceptance guide. For first-time setup, use the [O
 
 | Symptom | Start here |
 |:---|:---|
+| Cursor has no Base URL field, or says API Key Valid but chat fails | [Cursor provider limits and request checks](https://docs.aifast.hk/en/tools/cursor/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-cursor-en) |
 | `401 invalid_api_key` or authentication failure | [401 troubleshooting](https://docs.aifast.hk/en/troubleshooting/401-invalid-api-key/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-401-en) |
 | `429 Too Many Requests`, quota, or concurrency issues | [429 rate-limit troubleshooting](https://docs.aifast.hk/en/troubleshooting/429-rate-limit/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-429-en) |
 | 502, interrupted SSE, timeout, or connection reset | [502 / stream disconnected](https://docs.aifast.hk/en/troubleshooting/502-stream-disconnected/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-502-en) |
