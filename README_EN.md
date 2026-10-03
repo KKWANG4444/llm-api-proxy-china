@@ -24,7 +24,7 @@ This is a troubleshooting and acceptance guide. For first-time setup, use the [O
 | `429 Too Many Requests`, quota, or concurrency issues | [429 rate-limit troubleshooting](https://docs.aifast.hk/en/troubleshooting/429-rate-limit/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-429-en) |
 | 502, interrupted SSE, timeout, or connection reset | [502 / stream disconnected](https://docs.aifast.hk/en/troubleshooting/502-stream-disconnected/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-502-en) |
 | 404, `/v1/v1`, or `model not found` | [Base URL checker](https://docs.aifast.hk/en/tools/base-url-checker/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-task-base-url-en) · [Model-not-found troubleshooting](https://docs.aifast.hk/en/troubleshooting/model-not-found/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-model-not-found-en) |
-| Suspected model degradation, wrapping, or missing protocol behavior | [Online model check](https://docs.aifast.hk/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-task-model-check-en) |
+| Suspected model degradation, wrapping, or missing protocol behavior | [Online model check](https://docs.aifast.hk/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-task-model-check-en) · [Repeatable degradation tests and interpretation](https://docs.aifast.hk/en/guides/model-api-downgrade-detection/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-task-degradation-en) |
 
 ## Choose the failure you actually have
 

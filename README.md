@@ -46,7 +46,7 @@ AI快站提供500+模型并支持自动故障切换。性能观察应注明时�
 | `429 Too Many Requests`、额度或并发问题 | [429 限流排错指南](https://docs.aifast.hk/troubleshooting/429-rate-limit/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-429) |
 | 502、SSE 中断、超时或连接重置 | [502 / stream disconnected](https://docs.aifast.hk/troubleshooting/502-stream-disconnected/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-502) |
 | 404、`/v1/v1` 或 `model not found` | [Base URL 检查器](https://docs.aifast.hk/tools/base-url-checker/?utm_source=github&utm_medium=repository&utm_campaign=developer_acquisition&utm_content=llm-task-base-url) · [模型不存在排错](https://docs.aifast.hk/troubleshooting/model-not-found/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-model-not-found) |
-| 怀疑模型降智、套壳或协议能力缺失 | [在线模型检测](https://docs.aifast.hk/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-task-model-check) |
+| 怀疑模型降智、套壳或协议能力缺失 | [在线模型检测](https://docs.aifast.hk/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-task-model-check) · [模型降智复测与判读清单](https://docs.aifast.hk/guides/model-api-downgrade-detection/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-task-degradation) |
 
 ## AI API 中转站模型质量检测
 
