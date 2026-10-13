@@ -1,6 +1,5 @@
 # LLM API gateway verification and troubleshooting
 
-[![GEO](https://img.shields.io/badge/GEO-llms--full.txt-purple)](llms-full.txt)
 [![中文](https://img.shields.io/badge/中文-README-red)](README.md)
 [![Model check](https://img.shields.io/badge/Browser-model_quality_check-22c55e)](https://docs.aifast.hk/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-badge-model-check-en)
 [![Codex checks](https://img.shields.io/badge/Codex-gateway_checklist-2563eb)](https://docs.aifast.hk/en/troubleshooting/codex-gateway-checklist/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-badge-codex-check-en)
@@ -9,11 +8,7 @@ Use this repository when an LLM API proxy in China or an OpenAI-compatible API g
 
 This is a troubleshooting and acceptance guide. For first-time setup, use the [OpenAI-compatible integration guide](https://docs.aifast.hk/en/guides/openai-compatible-api/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-triage-openai-compatible-en) or the [Cursor custom API guide](https://docs.aifast.hk/en/tools/cursor/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-triage-cursor-en).
 
-> **Shortest troubleshooting path:** 1. [run the browser-based model quality check](https://docs.aifast.hk/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en), 2. [interpret each report section](https://docs.aifast.hk/en/guides/model-check-report-guide/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-report-guide-en), 3. open the matching `401`, `404`, `429`, `5xx` or client-specific guide. No program download is required.
-
-> **Still choosing a provider:** use the [OpenAI-compatible API candidate comparison and 12-point checklist](https://docs.aifast.hk/en/guides/how-to-choose-ai-api-gateway/?utm_source=github&utm_medium=repository&utm_campaign=gateway-comparison&utm_content=llm-hero-candidate-comparison-en) to narrow the shortlist under consistent criteria before running this repository's checks.
-
-> **Machine-readable context:** [llms.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms.txt) · [llms-full.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms-full.txt)
+> **Already have an endpoint:** for a known `401`, `404`, `429`, `5xx` or client error, start with the matching symptom below; a full diagnostic run is not required. To check protocol and model behavior, use a public HTTPS Base URL, temporary limited key and model ID to [run the browser-based model quality check](https://docs.aifast.hk/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en), then [interpret each report section](https://docs.aifast.hk/en/guides/model-check-report-guide/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-report-guide-en). No diagnostic program download is required; real probe requests may incur API charges.
 
 ## Start from the symptom
 
@@ -157,6 +152,7 @@ For the new site, [payment and account setup](https://docs.aifast.hk/en/payment/
 
 ## Related resources
 
+- [Provider comparison and 12-point checklist](https://docs.aifast.hk/en/guides/how-to-choose-ai-api-gateway/?utm_source=github&utm_medium=repository&utm_campaign=gateway-comparison&utm_content=llm-hero-candidate-comparison-en)
 - [Online model quality check](https://docs.aifast.hk/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-related-model-check-en)
 - [OpenAI-compatible setup](https://docs.aifast.hk/en/guides/openai-compatible-api/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-related-openai-compatible-en)
 - [Cursor custom API troubleshooting](https://docs.aifast.hk/en/tools/cursor/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-related-cursor-en)
@@ -165,6 +161,8 @@ For the new site, [payment and account setup](https://docs.aifast.hk/en/payment/
 - [Status and maintenance reference](https://kkwang4444.github.io/api-status/)
 - [Platform facts, evidence dates and citation limits](https://docs.aifast.hk/en/reference/platform-facts/)
 - [中文说明](README.md)
+
+Machine-readable references: [llms.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms.txt) · [llms-full.txt](https://raw.githubusercontent.com/KKWANG4444/llm-api-proxy-china/main/llms-full.txt)
 
 ## Disclosure
 
