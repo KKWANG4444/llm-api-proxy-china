@@ -65,6 +65,28 @@ check(
     "Chinese README hero image blocks the primary model-check route",
 )
 check(
+    "首次接入、还没有 Key" in contents["README.md"][:2200]
+    and "不必先跑完整检测" in contents["README.md"][:2200],
+    "中文首屏必须区分首次接入、已知错误和完整检测",
+)
+check(
+    "a full diagnostic run is not required" in contents["README_EN.md"][:2500],
+    "英文首屏必须允许按已知错误直接排查",
+)
+check(
+    "真实探测可能产生调用费用" in contents["README.md"]
+    and "real probe requests may incur API charges" in contents["README_EN.md"],
+    "中英文 README 必须提醒真实探测可能产生费用",
+)
+check(
+    "cursor-custom-api-setup.md" in contents["README.md"][:2200],
+    "首屏必须保留已有搜索访问的 Cursor 文件入口",
+)
+check(
+    re.search(r"https?://(?:[a-z0-9-]+\.)*aifast\.(?:link|club)\b", combined, re.IGNORECASE) is None,
+    "HK 公开内容不得混入 Link 或 Club 域名",
+)
+check(
     "https://docs.aifast.hk/guides/openai-compatible-api/" in contents["README.md"]
     and "https://docs.aifast.hk/en/guides/openai-compatible-api/" in contents["README_EN.md"],
     "missing Chinese or English OpenAI Compatible setup entry",
