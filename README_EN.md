@@ -10,6 +10,14 @@ This is a troubleshooting and acceptance guide. For first-time setup, use the [O
 
 > **Already have an endpoint:** for a known `401`, `404`, `429`, `5xx` or client error, start with the matching symptom below; a full diagnostic run is not required. To check protocol and model behavior, use a public HTTPS Base URL, temporary limited key and model ID to [run the browser-based model quality check](https://docs.aifast.hk/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en), then [interpret each report section](https://docs.aifast.hk/en/guides/model-check-report-guide/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-report-guide-en). No diagnostic program download is required; real probe requests may incur API charges.
 
+[![Gemini 4 Argon update](https://img.shields.io/badge/Gemini_4_Argon-2026--10--15-blue)](https://github.com/KKWANG4444/ai-api-proxy-china-guide/blob/main/gemini-4-argon-guide.md)
+
+## Gemini 4 Argon API update (2026-10-15)
+
+AIFast announced Gemini 4 Argon (`gemini-4-argon`) on 2026-10-14. The public catalog lists Gemini and OpenAI endpoint types. Use `https://www.aifast.hk/v1` for OpenAI-compatible clients; verify a small text request before testing streaming or tool calls. Catalog availability is not a measured uptime or compatibility guarantee.
+
+[Integration guide and context limits](https://github.com/KKWANG4444/ai-api-proxy-china-guide/blob/main/gemini-4-argon-guide.md) · [Launch announcement](https://www.aifast.hk/api/status) · [Current catalog](https://www.aifast.hk/api/pricing) · [Check your endpoint](https://docs.aifast.hk/model-check/)
+
 ## Start from the symptom
 
 | Symptom | Start here |
