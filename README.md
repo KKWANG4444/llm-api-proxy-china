@@ -173,6 +173,12 @@ MODEL_GROUPS = {
 
 只重试可安全重复的请求，限制重试次数，并保留原始错误。
 
+- HTTP 即为 502、尚无 SSE 事件：保存状态码、错误正文和请求 ID，先查网关与上游。
+- `upstream response stream was interrupted`：区分未收到可用事件、输出途中中断、固定秒数超时；记录最后事件，不仅凭文字判断模型故障。
+- Claude Code 提示 `Streaming response ended before any complete data was received`：非流式回退得到答案不等于流式修好。核对客户端版本、Messages 协议和网关响应，避免叠加重试。
+
+短请求对照应固定 Key、模型、协议与输入，只切换流式模式。下面教程提供有连接和总时限的 curl 示例；`curl -N` 只控制本地输出缓冲，退出码 0 不代替 HTTP 与协议完成检查。真实请求可能计费，先用临时限额 Key，日志分享前脱敏。
+
 完整步骤：[502 Bad Gateway、stream disconnected 与 SSE 断流排查](https://docs.aifast.hk/troubleshooting/502-stream-disconnected/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-error-502)
 
 ## 选哪类接口

@@ -30,6 +30,7 @@ The catalog changes over time. Check the marketplace, maintenance notices and co
 
 ## Main documents
 
+- [502 and interrupted SSE streams](https://docs.aifast.hk/en/troubleshooting/502-stream-disconnected/): distinguish HTTP errors, partial streams and Claude Code non-streaming fallback; compare bounded requests without treating HTTP 200 as task completion.
 - [Chinese guide](README.md)
 - [English guide](README_EN.md)
 - [AIFast website introduction in Chinese](ABOUT.md)

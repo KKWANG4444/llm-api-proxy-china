@@ -131,6 +131,14 @@ Read the response headers before retrying. Reduce concurrency and use exponentia
 
 Retry only idempotent requests, cap attempts, and retain the original failure. Measure from the deployment region that matters; one successful request from another network does not establish production health.
 
+- HTTP 502 before any SSE event: preserve the status, error body and request ID, then check the gateway and upstream.
+- `upstream response stream was interrupted`: distinguish no usable event, a partial response and a fixed-time cutoff. Record the last event; the wording alone does not identify a model failure.
+- Claude Code reports `Streaming response ended before any complete data was received`: an answer from non-streaming fallback does not prove streaming is fixed. Check the client version, Messages protocol and gateway response before adding retries.
+
+Keep the key, model, protocol and short input identical when comparing streaming and non-streaming requests. The guide below provides curl examples with connection and total time limits. `curl -N` only controls local output buffering; exit code 0 does not validate HTTP success or protocol completion. Real requests may incur charges; use a temporary limited key and redact shared logs.
+
+Full steps: [502 Bad Gateway, stream disconnected and SSE troubleshooting](https://docs.aifast.hk/en/troubleshooting/502-stream-disconnected/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-error-502-en)
+
 ## Production acceptance report
 
 Run the same small suite against every candidate route and keep the raw, sanitized results:

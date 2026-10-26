@@ -55,6 +55,15 @@ for document_name in ("README.md", "llms.txt"):
 for absolute_claim in ("Every model supports its official API interface", "All OpenAI-compatible clients are supported"):
     check(absolute_claim not in combined, "unsupported absolute compatibility claim is still present: %s" % absolute_claim)
 check("https://docs.aifast.hk/tools/codex/" in combined, "missing Codex setup entry")
+for document_name, prefix in (("README.md", ""), ("README_EN.md", "en/")):
+    check(
+        all(term in contents[document_name] for term in (
+            "upstream response stream was interrupted",
+            "Streaming response ended before any complete data was received",
+            "https://docs.aifast.hk/%stroubleshooting/502-stream-disconnected/" % prefix,
+        )),
+        "%s 必须保留断流症状与对应语言的 HK 排错深链" % document_name,
+    )
 check("https://docs.aifast.hk/en/payment/" in combined, "missing international payment entry")
 check(
     all(token in contents["README.md"][:2200] for token in ("llm-hero-model-check", "llm-hero-report-guide", "401", "404", "429", "5xx")),

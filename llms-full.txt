@@ -43,6 +43,10 @@ Use bounded exponential backoff with jitter. Do not retry in a tight loop. Prese
 
 Retry only operations that are safe to repeat. Record the requested model, request features, timestamp, region and network. Put a hard limit on attempts.
 
+For `upstream response stream was interrupted`, distinguish failure before usable data, interruption after partial output and a fixed-time cutoff. Preserve the HTTP status, structured error and last event. Claude Code's non-streaming fallback can finish a turn without fixing SSE; do not add unbounded retries or infer zero cost from a failed stream. Compare the same model, protocol and short input with bounded timeouts.
+
+Use the [HK SSE troubleshooting guide](https://docs.aifast.hk/en/troubleshooting/502-stream-disconnected/) for the diagnostic sequence and separate Chat Completions, Responses and Messages completion conditions. These checks do not certify model identity or long-term availability.
+
 ### Is automatic failover the same as changing models?
 
 No. AIFast automatic failover addresses route or upstream failures. An application that changes from one model to another should do so explicitly because tools, image support and output formats can differ.
