@@ -168,7 +168,9 @@ MODEL_GROUPS = {
 
 ### 429
 
-使用指数退避并加入随机抖动，不要立即死循环重试。
+先区分额度不足、速率限制和并发限制，不能对所有 429 无条件重试。明确的暂时限流按 `Retry-After` 或有上限的指数退避处理，并保留请求 ID。
+
+遇到 `concurrency limit exceeded for account, please retry later`，先暂停新增任务与重复重试，等待已发出的请求完成或正常取消，再用同模型单请求复测。多个 Agent 或实例可能共用限制；若服务商确认是账号级共享限制，同账号换 Key 通常不会增加容量。错误文字本身不能确定限制来自用户账号、网关还是上游。
 
 完整步骤：[429 Too Many Requests、限流与重试排查](https://docs.aifast.hk/troubleshooting/429-rate-limit/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-error-429)
 
