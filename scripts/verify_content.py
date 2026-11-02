@@ -57,6 +57,11 @@ for absolute_claim in ("Every model supports its official API interface", "All O
 check("https://docs.aifast.hk/tools/codex/" in combined, "missing Codex setup entry")
 for document_name, prefix in (("README.md", ""), ("README_EN.md", "en/")):
     check(
+        "concurrency limit exceeded for account, please retry later" in contents[document_name]
+        and "https://docs.aifast.hk/%stroubleshooting/429-rate-limit/" % prefix in contents[document_name],
+        "%s 必须保留并发超限解释和同语言 HK 排错入口" % document_name,
+    )
+    check(
         all(term in contents[document_name] for term in (
             "upstream response stream was interrupted",
             "Streaming response ended before any complete data was received",

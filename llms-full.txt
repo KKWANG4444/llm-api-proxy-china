@@ -41,7 +41,9 @@ Use the exact current console ID. A public catalog entry is evidence of configur
 
 ### How should 429 be handled?
 
-Use bounded exponential backoff with jitter. Do not retry in a tight loop. Preserve the provider response and any retry hint.
+Distinguish quota, rate and concurrency errors. Retry only confirmed temporary limits with Retry-After or bounded backoff; preserve the response and request ID. For `concurrency limit exceeded for account, please retry later`, pause new work and duplicate retries, allow in-flight requests to finish or cancel normally, then test one request. If the provider confirms an account-wide limit, another key on that account usually adds no capacity. The message alone does not identify the limiting layer or establish an HK concurrency quota.
+
+Diagnostic guide: https://docs.aifast.hk/en/troubleshooting/429-rate-limit/
 
 ### How should 5xx and timeouts be handled?
 

@@ -128,7 +128,11 @@ Separate an invalid route from an invalid model. Check the final URL, endpoint f
 
 ### 429
 
-Read the response headers before retrying. Reduce concurrency and use exponential backoff with jitter. An immediate retry loop can turn a temporary rate limit into a sustained outage.
+Distinguish insufficient quota, rate limits and concurrency limits before retrying. For a confirmed temporary limit, follow `Retry-After` or bounded backoff with jitter and retain the request ID. Do not retry every 429 unconditionally.
+
+For `concurrency limit exceeded for account, please retry later`, pause new tasks and duplicate retries, let in-flight requests finish or cancel normally, then retest one request with the same model. Agents and app instances may share a limit; if the provider confirms an account-wide limit, another key on that account usually adds no capacity. The wording alone cannot locate the restriction in the user account, gateway or upstream.
+
+Follow the [HK rate-limit and account-concurrency guide](https://docs.aifast.hk/en/troubleshooting/429-rate-limit/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-error-429-en) for the diagnostic sequence and shared-queue boundaries.
 
 ### 5xx or timeout
 
