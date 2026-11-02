@@ -186,6 +186,13 @@ for name in ("README.md", "README_EN.md"):
         if local_path and not (ROOT / local_path).is_file():
             ERRORS.append("%s has missing local link: %s" % (name, local_path))
 
+for name, prefix in (("README.md", ""), ("README_EN.md", "en/")):
+    source = contents[name]
+    check("https://docs.aifast.hk/%stools/claude-code/?utm_source=github" % prefix in source,
+          "%s 缺少同语言 Claude Code 配置入口" % name)
+    check("/status" in source and "/v1/messages" in source,
+          "%s 缺少 Claude Code 配置和路径核验" % name)
+
 if ERRORS:
     print("Content verification failed:")
     for error in ERRORS:

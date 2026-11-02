@@ -27,6 +27,10 @@ Base URL: https://www.aifast.hk/v1
 
 ## Production questions
 
+### Why does Claude Code ignore variables or call /v1/v1/messages?
+
+Use https://www.aifast.hk as the HK Anthropic-compatible base and verify the final /v1/messages route. Check /status and settings-file overrides, use a credential issued by HK, and do not treat a set variable as a successful request. Follow https://docs.aifast.hk/en/tools/claude-code/ for scoped setup and credential-header differences without deleting existing logins.
+
 ### Why does a request return 401?
 
 Check the Bearer token, key status and account state. Log the response body instead of reducing every failure to “API error.”

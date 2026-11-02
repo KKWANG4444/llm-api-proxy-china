@@ -22,6 +22,7 @@ AIFast announced Gemini 4 Argon (`gemini-4-argon`) on 2026-10-14. The public cat
 
 | Symptom | Start here |
 |:---|:---|
+| Claude Code ignores variables, returns 401 or calls `/v1/v1/messages` | [Complete setup, credential differences and /status checks](https://docs.aifast.hk/en/tools/claude-code/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-claude-safe-config-en) |
 | Cursor has no Base URL field, or says API Key Valid but chat fails | [Cursor provider limits and request checks](https://docs.aifast.hk/en/tools/cursor/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-cursor-en) |
 | `401 invalid_api_key` or authentication failure | [401 troubleshooting](https://docs.aifast.hk/en/troubleshooting/401-invalid-api-key/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-401-en) |
 | `429 Too Many Requests`, quota, or concurrency issues | [429 rate-limit troubleshooting](https://docs.aifast.hk/en/troubleshooting/429-rate-limit/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-429-en) |
@@ -30,6 +31,8 @@ AIFast announced Gemini 4 Argon (`gemini-4-argon`) on 2026-10-14. The public cat
 | Suspected model degradation, wrapping, or missing protocol behavior | [Online model check](https://docs.aifast.hk/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-task-model-check-en) · [Repeatable degradation tests and interpretation](https://docs.aifast.hk/en/guides/model-api-downgrade-detection/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-task-degradation-en) |
 
 ## Choose the failure you actually have
+
+The HK Claude Code example uses `https://www.aifast.hk` and targets `/v1/messages`; do not copy the OpenAI SDK base ending in `/v1`. A set variable does not prove authentication. Check `/status`, settings overrides and a short task without deleting existing logins or disabling safety approvals.
 
 | Symptom | First evidence to save | Next check |
 |:---|:---|:---|
