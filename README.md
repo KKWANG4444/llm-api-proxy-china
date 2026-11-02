@@ -28,6 +28,7 @@ AIFast announced Gemini 4 Argon (`gemini-4-argon`) on 2026-10-14. The public cat
 
 | 现象 | 先看这里 |
 |:---|:---|
+| Claude Code 变量不生效、401 或 `/v1/v1/messages` | [完整配置、认证区别与 /status 核验](https://docs.aifast.hk/tools/claude-code/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-claude-safe-config) |
 | Cursor 找不到 Base URL、API Key Valid 但聊天失败，或 Agent 卡住 | [仓库内 Cursor 排错流程](cursor-custom-api-setup.md) · [HK Docs 配置说明](https://docs.aifast.hk/tools/cursor/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-troubleshooting-cursor) |
 | `401 invalid_api_key` 或鉴权失败 | [401 排错指南](https://docs.aifast.hk/troubleshooting/401-invalid-api-key/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-401) |
 | `429 Too Many Requests`、额度或并发问题 | [429 限流排错指南](https://docs.aifast.hk/troubleshooting/429-rate-limit/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-task-429) |
@@ -36,6 +37,8 @@ AIFast announced Gemini 4 Argon (`gemini-4-argon`) on 2026-10-14. The public cat
 | 怀疑模型降智、套壳或协议能力缺失 | [在线模型检测](https://docs.aifast.hk/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-task-model-check) · [模型降智复测与判读清单](https://docs.aifast.hk/guides/model-api-downgrade-detection/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-task-degradation) |
 
 分享错误或检测报告前，删除 API Key、认证头、Cookie 和私有提示词；保留发生时间、模型 ID、客户端版本与脱敏错误正文。
+
+Claude Code 的 HK 示例使用 `https://www.aifast.hk`，最终请求应为 `/v1/messages`，不是把 OpenAI SDK 的 `/v1` 配置直接复制过去。认证变量存在不等于鉴权成功；先核对 `/status`、配置覆盖关系和实际短任务，不删除原有登录或关闭安全确认。
 
 ## AI API 中转站模型质量检测
 
