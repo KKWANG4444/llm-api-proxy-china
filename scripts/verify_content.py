@@ -40,7 +40,13 @@ check(
     and contents["llms-full.txt"].startswith("# AI API relay model quality verification"),
     "machine-readable files must retain the relay verification intent",
 )
-for stale_pattern in (r"572\s*(?:个\s*模型|models?)", r"GPT[-‐‑‒–—― .]?5\.5", r"Claude[-‐‑‒–—― .]?4\.7", r"Claude[-‐‑‒–—― .]?Fable[-‐‑‒–—― .]?5"):
+legacy_fable = r"Claude[-‐‑‒–—― .]?Fable[-‐‑‒–—― .]?5(?![.\-]\d|\d)"
+check(re.search(legacy_fable, "Claude Fable 5") is not None, "旧 Fable 型号必须仍可检出")
+for current_model in ("Claude Fable 5.2", "claude-fable-5-2"):
+    check(re.search(legacy_fable, current_model, re.IGNORECASE) is None, "不能误伤 Fable 5.2")
+for document_name in ("README.md", "README_EN.md", "llms.txt", "llms-full.txt"):
+    check("claude-fable-5-2" in contents[document_name] and "2026-11-10" in contents[document_name], "%s 缺少带日期的 Fable 入口" % document_name)
+for stale_pattern in (r"572\s*(?:个\s*模型|models?)", r"GPT[-‐‑‒–—― .]?5\.5", r"Claude[-‐‑‒–—― .]?4\.7", legacy_fable):
     check(
         re.search(stale_pattern, combined, flags=re.IGNORECASE) is None,
         "stale model count, model name or repository positioning remains: %s" % stale_pattern,

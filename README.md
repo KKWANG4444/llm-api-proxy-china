@@ -24,6 +24,12 @@ AIFast announced Gemini 4 Argon (`gemini-4-argon`) on 2026-10-14. The public cat
 
 [Integration guide and context limits](https://github.com/KKWANG4444/ai-api-proxy-china-guide/blob/main/gemini-4-argon-guide.md) · [Launch announcement](https://www.aifast.hk/api/status) · [Current catalog](https://www.aifast.hk/api/pricing) · [Check your endpoint](https://docs.aifast.hk/model-check/)
 
+## Claude Fable 5.2：目录有模型，但客户端报错？
+
+2026-11-10 核对 HK 公开目录：`claude-fable-5-2` 已列出，声明支持 `anthropic` 与 `openai`，分组为 `Claude-Code-1/2/3`。遇到 `model not found` 先核对 Key 分组和精确 ID；Claude Code 出现 404 时检查最终路径是否为 `/v1/messages`，不要重复拼接 `/v1`。
+
+[Fable 5.2 最小请求与错误分流](https://github.com/KKWANG4444/ai-api-proxy-china-guide/blob/main/claude-fable-5-2-guide.md) · [HK Claude Code 配置](https://docs.aifast.hk/tools/claude-code/?utm_source=github&utm_medium=repository&utm_campaign=fable-5-2&utm_content=llm-readme-claude-code)。目录记录不是鉴权生成实测，不证明每个账号拥有权限。
+
 ## 按故障现象进入排错页
 
 | 现象 | 先看这里 |

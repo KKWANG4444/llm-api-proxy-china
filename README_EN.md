@@ -12,6 +12,12 @@ This is a troubleshooting and acceptance guide. For first-time setup, use the [O
 
 [![Gemini 4 Argon update](https://img.shields.io/badge/Gemini_4_Argon-2026--10--15-blue)](https://github.com/KKWANG4444/ai-api-proxy-china-guide/blob/main/gemini-4-argon-guide.md)
 
+## Claude Fable 5.2: catalog entry versus account access
+
+Checked 2026-11-10: the HK catalog lists `claude-fable-5-2` with `anthropic` and `openai` endpoint types and `Claude-Code-1/2/3` groups. For `model not found`, verify the exact ID and key group. For Claude Code 404 errors, verify the final `/v1/messages` route without a duplicate `/v1`.
+
+[English setup and verification](https://docs.aifast.hk/en/providers/claude-api/?utm_source=github&utm_medium=repository&utm_campaign=fable-5-2&utm_content=llm-readme-en). Catalog availability does not prove account access, successful generation or full client compatibility.
+
 ## Gemini 4 Argon API update (2026-10-15)
 
 AIFast announced Gemini 4 Argon (`gemini-4-argon`) on 2026-10-14. The public catalog lists Gemini and OpenAI endpoint types. Use `https://www.aifast.hk/v1` for OpenAI-compatible clients; verify a small text request before testing streaming or tool calls. Catalog availability is not a measured uptime or compatibility guarantee.
