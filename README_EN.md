@@ -10,6 +10,14 @@ This is a troubleshooting and acceptance guide. For first-time setup, use the [O
 
 > **Already have an endpoint:** for a known `401`, `404`, `429`, `5xx` or client error, start with the matching symptom below; a full diagnostic run is not required. To check protocol and model behavior, use a public HTTPS Base URL, temporary limited key and model ID to [run the browser-based model quality check](https://docs.aifast.hk/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-model-check-en), then [interpret each report section](https://docs.aifast.hk/en/guides/model-check-report-guide/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-hero-report-guide-en). No diagnostic program download is required; real probe requests may incur API charges.
 
+## Gemini 4 Carbon API launch (2026-11-11)
+
+AIFast has listed `gemini-4-carbon`. The [HK public catalog](https://www.aifast.hk/api/pricing) marks it `available=true` and lists `gemini` and `openai` endpoint types. Use `https://www.aifast.hk/v1` for OpenAI-compatible clients. A catalog entry does not prove key access, successful generation, SSE or tool-call support.
+
+[Carbon request and troubleshooting guide (Chinese)](https://github.com/KKWANG4444/ai-api-proxy-china-guide/blob/main/gemini-4-carbon-guide.md) · [Launch announcement](https://www.aifast.hk/api/announcements). Check the exact model ID and key group before a short text request; validate agent features separately.
+
+[Current pricing](https://www.aifast.hk/pricing?utm_source=github&utm_medium=repository&utm_campaign=gemini-4-carbon&utm_content=llm-readme-en-carbon-pricing) · [Register](https://www.aifast.hk/register?channel=c_zfxp7cp4&utm_source=github&utm_medium=repository&utm_campaign=gemini-4-carbon&utm_content=llm-readme-en-carbon-register) · [Check an endpoint](https://docs.aifast.hk/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=gemini-4-carbon&utm_content=llm-readme-en-carbon-check)
+
 [![Gemini 4 Argon update](https://img.shields.io/badge/Gemini_4_Argon-2026--10--15-blue)](https://github.com/KKWANG4444/ai-api-proxy-china-guide/blob/main/gemini-4-argon-guide.md)
 
 ## Claude Fable 5.2: catalog entry versus account access

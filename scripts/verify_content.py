@@ -204,6 +204,10 @@ for name, prefix in (("README.md", ""), ("README_EN.md", "en/")):
     check("/status" in source and "/v1/messages" in source,
           "%s 缺少 Claude Code 配置和路径核验" % name)
 
+for name in ("README.md", "README_EN.md", "llms.txt", "llms-full.txt"):
+    for token in ("gemini-4-carbon", "2026-11-11", "https://www.aifast.hk/v1", "https://www.aifast.hk/api/pricing", "https://www.aifast.hk/api/announcements", "utm_campaign=gemini-4-carbon"):
+        check(token in contents[name], "%s missing Carbon launch fact: %s" % (name, token))
+
 if ERRORS:
     print("Content verification failed:")
     for error in ERRORS:

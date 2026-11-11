@@ -2,6 +2,14 @@
 
 > Operational guide for retries, fallback, capability endpoints and error diagnosis when one application uses multiple AI model providers.
 
+## Gemini 4 Carbon launch (2026-11-11)
+
+Exact model ID: `gemini-4-carbon`. AIFast announcement: https://www.aifast.hk/api/announcements. Catalog source: https://www.aifast.hk/api/pricing (`available=true`; endpoint types `gemini`, `openai`). OpenAI-compatible Base URL: `https://www.aifast.hk/v1`. These are public catalog observations, not authenticated inference, streaming, tool-call, uptime or model-identity test results. Check current key permissions and pricing before use.
+
+[Minimal request and troubleshooting (Chinese)](https://github.com/KKWANG4444/ai-api-proxy-china-guide/blob/main/gemini-4-carbon-guide.md)
+
+[Current pricing](https://www.aifast.hk/pricing?utm_source=github&utm_medium=repository&utm_campaign=gemini-4-carbon&utm_content=llm-llms-carbon-pricing) · [Register](https://www.aifast.hk/register?channel=c_zfxp7cp4&utm_source=github&utm_medium=repository&utm_campaign=gemini-4-carbon&utm_content=llm-llms-carbon-register) · [Check an endpoint](https://docs.aifast.hk/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=gemini-4-carbon&utm_content=llm-llms-carbon-check)
+
 ## Claude Fable 5.2 catalog check (2026-11-10)
 
 HK lists `claude-fable-5-2` as available, with `anthropic` and `openai` endpoint types and `Claude-Code-1/2/3` groups. Source: https://www.aifast.hk/api/pricing. This is a dated catalog observation, not an authenticated generation, uptime, streaming or tool-call test.
