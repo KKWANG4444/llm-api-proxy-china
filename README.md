@@ -1,5 +1,7 @@
 # 国内 AI API 中转站检测：模型质量、协议兼容与生产排错
 
+先按证据分流：[免调用报告示例](https://docs.aifast.hk/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-sample-report#sample-report)区分401无输出、SSE不完整和模型名称一致；[401错误原文分流](https://docs.aifast.hk/troubleshooting/401-invalid-api-key/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-error-evidence)附无密钥记录模板；[Claude Code配置与断流排查](https://docs.aifast.hk/tools/claude-code/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-client-evidence)核对版本、认证来源与实际路径。示例为人工构造，浏览不会调用模型，不是服务性能背书。
+
 [![English](https://img.shields.io/badge/English-README_EN-blue)](README_EN.md)
 [![模型选择](https://img.shields.io/badge/模型-选择与成本-FF6B35)](https://docs.aifast.hk/models/model-selection/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-badge-model-selection)
 [![网站介绍](https://img.shields.io/badge/网站-AI快站介绍-blueviolet)](ABOUT.md)

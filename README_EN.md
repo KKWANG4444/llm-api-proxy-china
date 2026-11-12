@@ -1,5 +1,7 @@
 # LLM API gateway verification and troubleshooting
 
+Start from the evidence: [no-call report examples](https://docs.aifast.hk/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-sample-report-en#sample-report) distinguish authentication rejection, incomplete SSE and matching model labels. The [401 guide](https://docs.aifast.hk/en/troubleshooting/401-invalid-api-key/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-error-evidence-en) includes a credential-free record template; the [Claude Code guide](https://docs.aifast.hk/en/tools/claude-code/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-client-evidence-en) checks versions, credential sources and request paths. Examples are synthetic, send no model requests, and do not endorse service performance.
+
 [![中文](https://img.shields.io/badge/中文-README-red)](README.md)
 [![Model check](https://img.shields.io/badge/Browser-model_quality_check-22c55e)](https://docs.aifast.hk/en/model-check/?utm_source=github&utm_medium=repository&utm_campaign=model-check&utm_content=llm-badge-model-check-en)
 [![Codex checks](https://img.shields.io/badge/Codex-gateway_checklist-2563eb)](https://docs.aifast.hk/en/troubleshooting/codex-gateway-checklist/?utm_source=github&utm_medium=repository&utm_campaign=api-doctor&utm_content=llm-badge-codex-check-en)
