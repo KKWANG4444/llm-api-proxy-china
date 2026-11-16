@@ -18,6 +18,14 @@
 
 <p align="center"><img src="assets/social-preview.png" width="100%" alt="AI API 统一接入、模型检测、错误排查与生产检查"></p>
 
+## Gemini 4 Hydrogen / Carbon 接入更新（2026-11-17）
+
+HK [上架公告](https://www.aifast.hk/api/announcements)已发布 `gemini-4-hydrogen`（11 月 13 日）和 `gemini-4-carbon`（11 月 11 日）。2026-11-17 [公开目录](https://www.aifast.hk/api/pricing)均标记 `available=true`，声明 `gemini`、`openai` 端点类型；OpenAI-compatible Base URL 保持 `https://www.aifast.hk/v1`。
+
+遇到 model not found 或 403，先核对同一 Key 的模型列表、分组与最终路径；不要把目录上架误认为所有账号已获权限。 本次没有执行付费推理，目录记录不证明生成、SSE、工具调用或模型身份。
+
+[Hydrogen / Carbon 分组与接入教程](https://docs.aifast.hk/providers/gemini-api/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-api-proxy-china-gemini) · [当前模型与价格](https://www.aifast.hk/pricing?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-api-proxy-china-gemini-pricing)
+
 ## Gemini 4 Carbon API 上架（2026-11-11）
 
 AI快站已上架 `gemini-4-carbon`。HK [公开目录](https://www.aifast.hk/api/pricing)标记 `available=true`，接口类型为 `gemini`、`openai`。OpenAI-compatible Base URL 使用 `https://www.aifast.hk/v1`。目录记录不等于你的 Key 已获权限，也不是生成、SSE 或工具调用实测。
