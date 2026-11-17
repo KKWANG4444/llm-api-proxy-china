@@ -16,7 +16,7 @@ This is a troubleshooting and acceptance guide. For first-time setup, use the [O
 
 HK [announcements](https://www.aifast.hk/api/announcements) list `gemini-4-hydrogen` (November 13) and `gemini-4-carbon` (November 11). The [public catalog](https://www.aifast.hk/api/pricing), checked on 2026-11-17, marks both as `available=true` with `gemini` and `openai` endpoint types. OpenAI-compatible Base URL: `https://www.aifast.hk/v1`.
 
-For model not found or 403, inspect the same key\'s model list, group and final path; catalog availability does not grant access to every account. No paid inference was run; catalog records do not prove generation, SSE, tool-call support or underlying model identity.
+For model not found or 403, inspect the same key's model list, group and final path; catalog availability does not grant access to every account. No paid inference was run; catalog records do not prove generation, SSE, tool-call support or underlying model identity.
 
 [Hydrogen / Carbon groups and setup](https://docs.aifast.hk/en/providers/gemini-api/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-api-proxy-china-gemini-en) · [Current catalog and pricing](https://www.aifast.hk/pricing?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-api-proxy-china-gemini-pricing-en)
 

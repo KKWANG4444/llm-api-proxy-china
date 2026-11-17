@@ -109,6 +109,6 @@ Current launch note: AIFast announced `claude-sonnet-5-5` on 2026-09-29 and `gpt
 
 ## Gemini 4 Hydrogen / Carbon catalog update (2026-11-17)
 
-HK announced gemini-4-hydrogen on November 13 and gemini-4-carbon on November 11. Checked 2026-11-17: both are available=true with gemini/openai endpoint types. Base URL: https://www.aifast.hk/v1 . For model not found or 403, inspect the same key\'s model list, group and final path; catalog availability does not grant access to every account. No authenticated inference was run; this is not generation, SSE, tool-call or model-identity evidence.
+HK announced gemini-4-hydrogen on November 13 and gemini-4-carbon on November 11. Checked 2026-11-17: both are available=true with gemini/openai endpoint types. Base URL: https://www.aifast.hk/v1 . For model not found or 403, inspect the same key's model list, group and final path; catalog availability does not grant access to every account. No authenticated inference was run; this is not generation, SSE, tool-call or model-identity evidence.
 
 Sources: https://www.aifast.hk/api/pricing and https://www.aifast.hk/api/announcements . Setup: https://docs.aifast.hk/en/providers/gemini-api/?utm_source=github&utm_medium=repository&utm_campaign=integration-guide&utm_content=llm-api-proxy-china-gemini-llms .
