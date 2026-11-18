@@ -45,6 +45,9 @@ check(re.search(legacy_fable, "Claude Fable 5") is not None, "旧 Fable 型号�
 for current_model in ("Claude Fable 5.2", "claude-fable-5-2"):
     check(re.search(legacy_fable, current_model, re.IGNORECASE) is None, "不能误伤 Fable 5.2")
 for document_name in ("README.md", "README_EN.md", "llms.txt", "llms-full.txt"):
+    section = contents[document_name].partition("## Gemini 4 Argon API update (2026-10-15)\n")[2].split("\n## ", 1)[0]
+    prefix = "" if document_name == "README.md" else "en/"
+    check("(https://docs.aifast.hk/%smodel-check/)" % prefix in section and re.search(r"2026-10-15[\s\S]*?\d{4}-\d{2}-\d{2}", section), "%s 的 Argon 入口应保留原锚点、双日期及同语言检测链接" % document_name)
     check("https://www.aifast.hk/api/ratio_config" not in contents[document_name], "%s：公开目录误指向需要登录的配置接口" % document_name)
     check("[Launch announcement](https://www.aifast.hk/api/status)" not in contents[document_name], "%s：站点状态不是模型公告来源" % document_name)
     check("claude-fable-5-2" in contents[document_name] and "2026-11-10" in contents[document_name], "%s 缺少带日期的 Fable 入口" % document_name)
