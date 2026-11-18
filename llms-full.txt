@@ -111,9 +111,9 @@ The new site funds accounts in USD and credits balances 1:1: ⭐️ 1 AIFast Cre
 
 Supported payment methods, discounts, network instructions and final charges are shown in the console and checkout page. AIFast Credits (⭐️) are platform usage units, not a separate currency or cryptocurrency token. Card processors or issuers may apply fees.
 
-Last reviewed: 2026-09-30.
+September model note (checked 2026-09-30). Later catalog entries carry their own verification dates.
 
-Current launch note: AIFast announced `claude-sonnet-5-5` on 2026-09-29 and `gpt-6.1-sol` on 2026-09-30. Copy the exact IDs from the current console and validate a minimal request before enabling streaming or tool calls.
+At that review, AIFast had announced `claude-sonnet-5-5` on 2026-09-29 and `gpt-6.1-sol` on 2026-09-30. Copy the exact IDs from the current console and validate a minimal request before enabling streaming or tool calls.
 
 ## Gemini 4 Hydrogen / Carbon catalog update (2026-11-17)
 
