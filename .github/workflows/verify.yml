@@ -12,7 +12,8 @@ permissions:
 jobs:
   test:
     name: test (${{ matrix.python-version }})
-    runs-on: ubuntu-latest
+    # Python 3.9 的官方安装包支持 Ubuntu 24.04，但不支持 26.04。
+    runs-on: ${{ matrix.python-version == '3.9' && 'ubuntu-24.04' || 'ubuntu-latest' }}
     strategy:
       fail-fast: false
       matrix:
